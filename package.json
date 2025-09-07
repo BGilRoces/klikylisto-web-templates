@@ -1,0 +1,15 @@
+﻿{
+  "name": "klikylisto-web-templates",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "build": "npm -ws run build || true",
+    "lint": "npm -ws run lint || true",
+    "dev:cafeteria": "npm -w apps/template-cafeteria run dev || true"
+  }
+}
