@@ -34,10 +34,10 @@ export default {
         }
       },
       fontFamily: {
-        'display': ['Dancing Script', 'Crimson Text', 'serif'],
-        'heading': ['Montserrat', 'Poppins', 'sans-serif'],
-        'body': ['Poppins', 'Montserrat', 'sans-serif'],
-        'elegant': ['Crimson Text', 'serif'],
+        'display': ['Space Grotesk', 'sans-serif'],
+        'heading': ['Space Grotesk', 'sans-serif'],
+        'body': ['Inter', 'sans-serif'],
+        'sans': ['Inter', 'sans-serif'],
       }
     },
   },
