@@ -1,4 +1,5 @@
-﻿/** @type {import('tailwindcss').Config} */
+﻿/* eslint-disable no-undef */
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -33,8 +34,10 @@ export default {
         }
       },
       fontFamily: {
-        'display': ['Playfair Display', 'serif'],
-        'body': ['Inter', 'sans-serif'],
+        'display': ['Dancing Script', 'Crimson Text', 'serif'],
+        'heading': ['Montserrat', 'Poppins', 'sans-serif'],
+        'body': ['Poppins', 'Montserrat', 'sans-serif'],
+        'elegant': ['Crimson Text', 'serif'],
       }
     },
   },
