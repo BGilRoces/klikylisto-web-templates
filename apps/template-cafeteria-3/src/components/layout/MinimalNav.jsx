@@ -2,14 +2,21 @@
 import { motion } from 'framer-motion'
 import { Coffee } from 'lucide-react'
 
-const MinimalNav = ({ scrollY }) => {
+const MinimalNav = ({ scrollY, onMenuClick }) => {
   const navItems = [
-    { name: 'Inicio', href: '#home' },
-    { name: 'Nosotros', href: '#about' },
-    { name: 'Menú', href: '#menu' },
-    { name: 'Experiencia', href: '#experience' },
-    { name: 'Contacto', href: '#contact' }
+    { name: 'Inicio', href: '#home', action: null },
+    { name: 'Nosotros', href: '#about', action: null },
+    { name: 'Menú', href: '#menu', action: onMenuClick },
+    { name: 'Experiencia', href: '#experience', action: null },
+    { name: 'Contacto', href: '#contact', action: null }
   ]
+
+  const handleItemClick = (item, e) => {
+    if (item.action) {
+      e.preventDefault()
+      item.action()
+    }
+  }
 
   return (
     <motion.nav
@@ -24,10 +31,11 @@ const MinimalNav = ({ scrollY }) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 cursor-pointer"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            onClick={() => window.navigateToHome && window.navigateToHome()}
           >
             <Coffee className="w-8 h-8 text-amber-700" />
             <span className="text-2xl font-bold text-stone-900">Aroma</span>
@@ -44,7 +52,8 @@ const MinimalNav = ({ scrollY }) => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-stone-700 hover:text-amber-700 font-medium transition-colors duration-200 relative"
+                onClick={(e) => handleItemClick(item, e)}
+                className="text-stone-700 hover:text-amber-700 font-medium transition-colors duration-200 relative cursor-pointer"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}

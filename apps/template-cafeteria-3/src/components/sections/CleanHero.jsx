@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { motion } from 'framer-motion'
 import { ArrowDown, Play } from 'lucide-react'
 
-const CleanHero = () => {
+const CleanHero = ({ onMenuClick }) => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-stone-50 to-amber-50">
       {/* Background Pattern */}
@@ -58,6 +59,7 @@ const CleanHero = () => {
             transition={{ delay: 0.8 }}
           >
             <motion.button
+              onClick={onMenuClick}
               className="bg-amber-700 text-white px-8 py-4 rounded-full hover:bg-amber-800 transition-all duration-300 font-medium"
               whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(180, 83, 9, 0.3)' }}
               whileTap={{ scale: 0.95 }}

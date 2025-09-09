@@ -60,174 +60,195 @@ const ContactForm = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.p
-            className="text-amber-700 font-medium mb-4 tracking-wider"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            CONTÁCTANOS
-          </motion.p>
-          
           <motion.h2
-            className="text-4xl lg:text-6xl font-light text-stone-900 mb-6"
+            className="text-4xl lg:text-5xl font-bold text-stone-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Vamos a
-            <br />
-            <span className="font-bold text-amber-700">conversar</span>
+            Contacto
           </motion.h2>
+          <motion.p
+            className="text-xl text-stone-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            ¿Tienes alguna pregunta? Nos encantaría escucharte
+          </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Main Content - Two equal columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
-          <motion.div
+          <motion.div 
+            className="space-y-8 h-full"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="space-y-8">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={info.title}
-                  className="flex items-start gap-4 group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
+            {contactInfo.map((info, index) => (
+              <motion.div
+                key={info.title}
+                className="bg-white rounded-2xl p-6 shadow-md border border-stone-200 hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex items-center gap-4">
                   <motion.div
-                    className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center group-hover:bg-amber-200 transition-colors duration-300"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center"
+                    whileHover={{ rotate: 10 }}
                   >
-                    <info.icon className="w-6 h-6 text-amber-700" />
+                    <info.icon className="w-6 h-6 text-amber-600" />
                   </motion.div>
                   
                   <div>
                     <h3 className="text-lg font-semibold text-stone-900 mb-1">{info.title}</h3>
-                    <p className="text-stone-700 font-medium">{info.value}</p>
-                    <p className="text-stone-500 text-sm">{info.subtitle}</p>
+                    <p className="text-amber-700 font-medium text-sm">{info.value}</p>
+                    <p className="text-stone-500 text-xs">{info.subtitle}</p>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Map placeholder */}
-            <motion.div
-              className="mt-12 bg-amber-100 rounded-2xl h-64 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-center text-amber-700">
-                <MapPin className="w-12 h-12 mx-auto mb-4" />
-                <p className="font-medium">Mapa interactivo</p>
-                <p className="text-sm">Encuentra nuestra ubicación</p>
-              </div>
-            </motion.div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact Form - Same height as left column */}
           <motion.div
+            className="h-full flex flex-col"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <label htmlFor="name" className="block text-stone-700 font-medium mb-2">
-                  Nombre completo
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:border-amber-700 focus:ring-2 focus:ring-amber-100 transition-all duration-300"
-                  placeholder="Tu nombre"
-                  required
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <label htmlFor="email" className="block text-stone-700 font-medium mb-2">
-                  Correo electrónico
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:border-amber-700 focus:ring-2 focus:ring-amber-100 transition-all duration-300"
-                  placeholder="tu@email.com"
-                  required
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <label htmlFor="message" className="block text-stone-700 font-medium mb-2">
-                  Mensaje
-                </label>
-                <textarea
-                  id="message"
-                  rows="6"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:border-amber-700 focus:ring-2 focus:ring-amber-100 transition-all duration-300 resize-none"
-                  placeholder="Cuéntanos cómo podemos ayudarte..."
-                  required
-                />
-              </motion.div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-amber-700 text-white px-8 py-4 rounded-xl hover:bg-amber-800 transition-all duration-300 font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-              >
-                {isSubmitting ? (
+            <div className="bg-white rounded-2xl p-8 shadow-md border border-stone-200 flex-1 flex flex-col">
+              <h3 className="text-2xl font-semibold text-stone-900 mb-6">Envíanos un mensaje</h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <motion.div
-                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    <label htmlFor="name" className="block text-stone-700 font-medium mb-2">
+                      Nombre completo
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-stone-50 border border-stone-300 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all duration-300"
+                      placeholder="Tu nombre"
+                      required
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <label htmlFor="email" className="block text-stone-700 font-medium mb-2">
+                      Correo electrónico
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 bg-stone-50 border border-stone-300 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all duration-300"
+                      placeholder="tu@email.com"
+                      required
+                    />
+                  </motion.div>
+                </div>
+
+                <motion.div
+                  className="flex-1 flex flex-col"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="message" className="block text-stone-700 font-medium mb-2">
+                    Mensaje
+                  </label>
+                  <textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full flex-1 min-h-[120px] px-4 py-3 bg-stone-50 border border-stone-300 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all duration-300 resize-none"
+                    placeholder="Cuéntanos cómo podemos ayudarte..."
+                    required
                   />
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Enviar mensaje
-                  </>
-                )}
-              </motion.button>
-            </form>
+                </motion.div>
+
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-xl transition-all duration-300 font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mt-auto"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {isSubmitting ? (
+                    <motion.div
+                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    />
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Enviar mensaje
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            </div>
           </motion.div>
         </div>
+
+        {/* Map Section - Full width below */}
+        <motion.div
+          className="mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-white rounded-2xl p-8 shadow-md border border-stone-200">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-semibold text-stone-900 mb-2">Encuéntranos</h3>
+              <p className="text-stone-600">Visítanos en el corazón de la ciudad</p>
+            </div>
+            
+            <div className="bg-stone-100 rounded-xl overflow-hidden h-96 shadow-inner">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6845876831583!2d-99.13677632527373!3d19.433701981887896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92f5a4c8c7d%3A0x6f2d8a6e8a8a8a8a!2sZócalo%2C%20Centro%2C%20Cuauhtémoc%2C%2006000%20Ciudad%20de%20México%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1634567890123!5m2!1ses-419!2smx"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación de Aroma Café"
+              ></iframe>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

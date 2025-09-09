@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Coffee, Snowflake, Star, Heart } from 'lucide-react'
 
-const ElegantMenu = () => {
+const ElegantMenu = ({ onMenuClick }) => {
   const [activeCategory, setActiveCategory] = useState('hot')
 
   const categories = [
@@ -84,7 +85,7 @@ const ElegantMenu = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white rounded-full p-2 shadow-lg">
+          <div className="bg-white rounded-xl p-4 shadow-lg">
             {categories.map((category) => (
               <motion.button
                 key={category.id}
@@ -149,6 +150,7 @@ const ElegantMenu = () => {
           viewport={{ once: true }}
         >
           <motion.button
+            onClick={onMenuClick}
             className="bg-amber-700 text-white px-8 py-4 rounded-full hover:bg-amber-800 transition-all duration-300 font-medium shadow-lg"
             whileHover={{ scale: 1.05, boxShadow: '0 15px 35px rgba(180, 83, 9, 0.3)' }}
             whileTap={{ scale: 0.95 }}
