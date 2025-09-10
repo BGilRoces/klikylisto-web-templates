@@ -4,7 +4,7 @@ import Container from '../layout/Container'
 
 const TemplatesSection = ({ children }) => {
   return (
-    <section className="py-16">
+    <section id="templates-section" className="py-16">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

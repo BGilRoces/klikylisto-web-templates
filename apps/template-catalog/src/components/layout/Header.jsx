@@ -65,6 +65,7 @@ const Header = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => document.getElementById('templates-section')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-amber-900 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-3">
@@ -78,6 +79,7 @@ const Header = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
                 className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 rounded-xl font-semibold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300"
               >
                 Contactar Ahora
