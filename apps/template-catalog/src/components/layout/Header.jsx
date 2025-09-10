@@ -39,8 +39,12 @@ const Header = () => {
             <div className="flex items-center gap-4 mb-6">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative p-4 bg-white rounded-2xl shadow-xl border border-amber-200">
-                  <Coffee size={40} className="text-amber-800" />
+                <div className="relative">
+                  <img 
+                    src="/assets/Logo.png" 
+                    alt="KlikYListo Logo" 
+                    className="w-20 h-20 object-contain"
+                  />
                 </div>
               </div>
               <div>

@@ -29,8 +29,12 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl blur-lg opacity-75"></div>
-                <div className="relative p-3 bg-white rounded-xl shadow-xl">
-                  <Coffee size={24} className="text-amber-800" />
+                <div className="relative">
+                  <img 
+                    src="/assets/Logo.png" 
+                    alt="KlikYListo Logo" 
+                    className="w-12 h-12 object-contain"
+                  />
                 </div>
               </div>
               <div>
