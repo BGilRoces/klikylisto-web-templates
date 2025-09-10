@@ -72,21 +72,24 @@ const CTASection = () => {
                     transition={{ delay: 1.1 }}
                     className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
                   >
-                    Comencemos a Crear
+                    Creemos
                     <span className="block text-transparent bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text">
                       Tu Sitio Web
                     </span>
                   </motion.h3>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2 }}
-                    className="text-lg text-gray-300 mb-6 leading-relaxed"
-                  >
-                    Cuéntanos sobre tu cafetería y te ayudaremos a crear la presencia digital perfecta. 
-                    <span className="text-amber-300 font-semibold"> Respuesta garantizada en 24 horas.</span>
-                  </motion.p>
+                  <div className='flex flex-row'>
+                    <motion.p
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.2 }}
+                      className="text-lg text-gray-300 mb-6 leading-relaxed"
+                    >
+                      Te ayudamos a crear la presencia digital perfecta.
+                      <div className='flex flex-row'>
+                        <span className="text-amber-300 font-semibold"> Respuesta garantizada en 24 horas.</span>
+                      </div>
+                    </motion.p>
+                  </div>
 
                   {/* Features compactos */}
                   <motion.div
