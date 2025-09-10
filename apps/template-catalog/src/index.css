@@ -2,11 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
+/* Reset específico para el catálogo */
+.catalog-root {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contenedor para templates - aislamiento de estilos */
+.template-container {
+  /* Reset básico para el template */
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  
+  /* Contención de estilos */
+  contain: layout style;
+}
+
+/* Sobrescribir estilos globales que puedan venir de los templates */
+.template-container * {
+  box-sizing: border-box;
+}
+
+/* Asegurar que los fixed elements de los templates no interfieran */
+.template-container .fixed,
+.template-container [style*="fixed"] {
+  position: absolute !important;
 }
