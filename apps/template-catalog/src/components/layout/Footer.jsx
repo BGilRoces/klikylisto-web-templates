@@ -1,6 +1,7 @@
 import React from 'react'
 import { Coffee, Mail, Phone, Heart, ArrowUp } from 'lucide-react'
 import Container from './Container'
+import WhatsAppButton from '../ui/WhatsAppButton'
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -70,6 +71,16 @@ const Footer = () => {
                 <a href="tel:+54 11 6238-7920" className="text-gray-300 hover:text-green-300 transition-colors">
                   +54 11 6238-7920
                 </a>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <WhatsAppButton 
+                  variant="footer" 
+                  size="icon"
+                  className="flex-shrink-0"
+                  showIcon={true}
+                />
+                <span className="text-gray-300">WhatsApp</span>
               </div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Coffee, Send, User, Mail, MessageSquare, CheckCircle, DollarSign } from 'lucide-react'
+import { Coffee, Send, User, Mail, MessageSquare, CheckCircle, DollarSign, AlertCircle } from 'lucide-react'
 import Container from '../layout/Container'
+import WhatsAppButton from '../ui/WhatsAppButton'
+import { sendContactEmail, validateEmailConfig } from '../../services/emailService'
 
 const CTASection = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ const CTASection = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' })
 
   const handleInputChange = (e) => {
     setFormData({
@@ -23,18 +26,43 @@ const CTASection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus({ type: '', message: '' })
     
-    // Simular envío del formulario
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: '', email: '', template: '', message: '' })
-    }, 3000)
+    try {
+      // Validar configuración de EmailJS
+      validateEmailConfig()
+      
+      // Enviar email
+      const result = await sendContactEmail(formData)
+      
+      if (result.success) {
+        setIsSubmitted(true)
+        setSubmitStatus({ 
+          type: 'success', 
+          message: '¡Mensaje enviado correctamente! Te contactaremos pronto.' 
+        })
+        
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false)
+          setFormData({ name: '', email: '', template: '', message: '' })
+          setSubmitStatus({ type: '', message: '' })
+        }, 5000)
+      } else {
+        setSubmitStatus({ 
+          type: 'error', 
+          message: result.message 
+        })
+      }
+    } catch (error) {
+      console.error('Error en envío:', error)
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'Error de configuración. Por favor, revisa la consola.' 
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -218,10 +246,35 @@ const CTASection = () => {
                           ) : (
                             <div className="flex items-center justify-center gap-2">
                               <Send size={20} />
-                              Enviar Mensaje
+                              Enviar Email
                             </div>
                           )}
                         </motion.button>
+
+                        {/* Separador */}
+                        <div className="flex items-center gap-4 my-4">
+                          <div className="flex-1 h-px bg-white/20"></div>
+                          <span className="text-white/60 text-sm font-medium">o</span>
+                          <div className="flex-1 h-px bg-white/20"></div>
+                        </div>
+
+                        {/* Botón de WhatsApp */}
+                        <WhatsAppButton 
+                          variant="solid" 
+                          className="w-full justify-center"
+                        >
+                          Contactar por WhatsApp
+                        </WhatsAppButton>
+
+                        {/* Mostrar mensajes de error si los hay */}
+                        {submitStatus.type === 'error' && (
+                          <div className="mt-4 p-3 bg-red-500/20 border border-red-500/30 rounded-xl">
+                            <div className="flex items-center gap-2 text-red-300">
+                              <AlertCircle size={16} />
+                              <span className="text-sm">{submitStatus.message}</span>
+                            </div>
+                          </div>
+                        )}
                       </form>
                     ) : (
                       <div className="text-center py-8">
@@ -229,7 +282,7 @@ const CTASection = () => {
                           <CheckCircle size={32} className="text-green-400" />
                         </div>
                         <h4 className="text-xl font-bold text-white mb-2">¡Mensaje Enviado!</h4>
-                        <p className="text-gray-300">Te contactaremos pronto para comenzar tu proyecto.</p>
+                        <p className="text-gray-300">{submitStatus.message || 'Te contactaremos pronto para comenzar tu proyecto.'}</p>
                       </div>
                     )}
                   </div>
