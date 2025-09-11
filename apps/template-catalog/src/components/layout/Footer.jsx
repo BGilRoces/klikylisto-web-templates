@@ -1,5 +1,5 @@
 import React from 'react'
-import { Coffee, Mail, Phone, Heart, ArrowUp } from 'lucide-react'
+import { Coffee, Mail, Phone, Heart, ArrowUp, MessageCircle } from 'lucide-react'
 import Container from './Container'
 import WhatsAppButton from '../ui/WhatsAppButton'
 
@@ -21,70 +21,88 @@ const Footer = () => {
         </svg>
       </div>
 
-      <Container className="pt-12 pb-6">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <Container className="pt-12 pb-8">
+        {/* Centered footer content */}
+        <div className="text-center space-y-8">
           
           {/* Brand section */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-center gap-3">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl blur-lg opacity-75"></div>
                 <div className="relative">
                   <img 
                     src="/assets/Logo.png" 
                     alt="KlikYListo Logo" 
-                    className="w-12 h-12 object-contain"
+                    className="w-14 h-14 object-contain"
                   />
                 </div>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-3xl font-bold text-white">
                   Klik<span className="text-amber-300">Y</span>Listo
                 </h3>
                 <p className="text-amber-200 text-sm">Desarrollo Web Premium</p>
               </div>
             </div>
             
-            <p className="text-gray-300 leading-relaxed">
-              Creamos experiencias digitales extraordinarias para cafeterías.
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Experiencias digitales extraordinarias para cafeterías
             </p>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-lg font-bold text-white mb-4 text-center">Contacto</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <div className="p-2 bg-amber-500/20 rounded-lg flex-shrink-0">
-                  <Mail size={16} className="text-amber-300" />
+          {/* Contact section */}
+          <div className="space-y-6">
+            {/* Contact options in a clean row */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
+              <a 
+                href="mailto:klikylisto@gmail.com" 
+                className="group flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 hover:border-amber-300/50 transition-all duration-300"
+              >
+                <div className="p-2 bg-amber-500/20 rounded-xl">
+                  <Mail size={18} className="text-amber-300" />
                 </div>
-                <a href="mailto:klikylisto@gmail.com" className="text-gray-300 hover:text-amber-300 transition-colors text-sm text-center sm:text-left">
-                  klikylisto@gmail.com
-                </a>
-              </div>
+                <span className="text-white font-medium">Email</span>
+              </a>
               
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <div className="p-2 bg-green-500/20 rounded-lg flex-shrink-0">
-                  <Phone size={16} className="text-green-300" />
+              <a 
+                href="tel:+54 11 6238-7920" 
+                className="group flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 hover:border-green-300/50 transition-all duration-300"
+              >
+                <div className="p-2 bg-green-500/20 rounded-xl">
+                  <Phone size={18} className="text-green-300" />
                 </div>
-                <a href="tel:+54 11 6238-7920" className="text-gray-300 hover:text-green-300 transition-colors text-sm text-center sm:text-left">
-                  +54 11 6238-7920
-                </a>
-              </div>
+                <span className="text-white font-medium">Llamar</span>
+              </a>
 
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <WhatsAppButton 
-                  variant="footer" 
-                  size="icon"
-                  className="flex-shrink-0"
-                  showIcon={true}
-                />
-                <span className="text-gray-300 text-sm text-center sm:text-left">WhatsApp</span>
-              </div>
+              <WhatsAppButton 
+                variant="footer-clean" 
+                className="px-6 py-3 rounded-xl"
+              >
+                <span className="text-white font-medium">WhatsApp</span>
+              </WhatsAppButton>
             </div>
           </div>
-        
+
+          {/* Bottom section */}
+          <div className="pt-8 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2 text-gray-400 text-sm">
+                <p>&copy; 2025 Klikylisto. Hecho con</p>
+                <Heart size={14} className="text-red-400 fill-current" />
+                <p>para cafeterías especiales.</p>
+              </div>
+              
+              {/* Scroll to top button */}
+              <button
+                onClick={scrollToTop}
+                className="group p-3 bg-amber-500/20 rounded-full hover:bg-amber-500/30 transition-all duration-300"
+                aria-label="Volver arriba"
+              >
+                <ArrowUp size={18} className="text-amber-300 group-hover:-translate-y-1 transition-transform" />
+              </button>
+            </div>
+          </div>
         </div>
       </Container>
     </footer>

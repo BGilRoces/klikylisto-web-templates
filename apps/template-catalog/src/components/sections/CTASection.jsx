@@ -66,7 +66,7 @@ const CTASection = () => {
   }
 
   return (
-    <section id="contact-form" className="py-8 relative overflow-hidden">
+    <section id="contact-form" className="py-10 relative overflow-hidden">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -88,7 +88,7 @@ const CTASection = () => {
             </div>
 
             {/* Contenido principal */}
-            <div className="relative px-6 md:px-8 py-6">
+            <div className="relative px-6 md:px-10 py-10">
               {/* Grid de 2 columnas */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 
@@ -158,9 +158,9 @@ const CTASection = () => {
                 >
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
                     {!isSubmitted ? (
-                      <form onSubmit={handleSubmit} className="space-y-4">
+                      <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                          <label className="block text-white font-medium mb-1.5">
+                          <label className="block text-white font-medium mb-2">
                             <User size={14} className="inline mr-2" />
                             Nombre completo
                           </label>
@@ -176,7 +176,7 @@ const CTASection = () => {
                         </div>
 
                         <div>
-                          <label className="block text-white font-medium mb-1.5">
+                          <label className="block text-white font-medium mb-2">
                             <Mail size={14} className="inline mr-2" />
                             Email
                           </label>
@@ -192,11 +192,11 @@ const CTASection = () => {
                         </div>
 
                         <div>
-                          <label className="block text-white font-medium mb-2">
+                          <label className="block text-white font-medium mb-2.5">
                             <Coffee size={14} className="inline mr-2" />
                             ¿Cuál template te gusta más?
                           </label>
-                          <div className="grid grid-cols-3 gap-2 mb-3">
+                          <div className="grid grid-cols-3 gap-2 mb-4">
                             {['Artesanal', 'Moderno', 'Boutique'].map((template, index) => (
                               <motion.button
                                 key={template}
@@ -217,7 +217,7 @@ const CTASection = () => {
                         </div>
 
                         <div>
-                          <label className="block text-white font-medium mb-1.5">
+                          <label className="block text-white font-medium mb-2">
                             <MessageSquare size={14} className="inline mr-2" />
                             Comentarios adicionales (opcional)
                           </label>

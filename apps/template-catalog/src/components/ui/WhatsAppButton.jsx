@@ -21,7 +21,8 @@ const WhatsAppButton = ({
     solid: "bg-green-500 text-white hover:bg-green-600",
     outline: "border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white",
     ghost: "text-green-500 hover:bg-green-500/10",
-    footer: "p-2 bg-green-500/20 rounded-lg hover:bg-green-500/30 transition-all duration-300"
+    footer: "p-2 bg-green-500/20 rounded-lg hover:bg-green-500/30 transition-all duration-300",
+    "footer-clean": "bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-slate-400/50 text-white font-medium"
   }
 
   // Tamaños
@@ -42,7 +43,15 @@ const WhatsAppButton = ({
       className={`${baseClasses} ${variantClass} ${sizeClass} ${className}`}
       title="Contactar por WhatsApp"
     >
-      {showIcon && <MessageCircle size={size === 'sm' ? 16 : size === 'lg' ? 20 : 16} />}
+      {showIcon && (
+        variant === "footer-clean" ? (
+          <div className="p-2 bg-green-500/20 rounded-xl">
+            <MessageCircle size={size === 'sm' ? 16 : size === 'lg' ? 20 : 18} className="text-white" />
+          </div>
+        ) : (
+          <MessageCircle size={size === 'sm' ? 16 : size === 'lg' ? 20 : 16} />
+        )
+      )}
       {children}
     </button>
   )
