@@ -2,8 +2,13 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Eye, ArrowRight, Coffee, Star, Heart, Leaf } from 'lucide-react'
 import Button from './Button'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
 const TemplateCard = ({ template, index }) => {
+  const { targetRef, hasIntersected } = useIntersectionObserver({
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  })
   const renderTemplatePreview = () => {
     switch (template.id) {
       case 'cafeteria-1':
@@ -138,9 +143,14 @@ const TemplateCard = ({ template, index }) => {
 
   return (
     <motion.div
+      ref={targetRef}
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: hasIntersected ? index * 0.1 : 0, 
+        ease: "easeOut" 
+      }}
       className="group relative h-full"
     >
       <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col border border-amber-100">

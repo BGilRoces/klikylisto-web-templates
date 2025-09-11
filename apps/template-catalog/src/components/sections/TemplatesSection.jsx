@@ -1,14 +1,21 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Container from '../layout/Container'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
 const TemplatesSection = ({ children }) => {
+  const { targetRef, hasIntersected } = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  })
+
   return (
-    <section id="templates-section" className="py-16">
+    <section ref={targetRef} id="templates-section" className="py-16">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold text-amber-900 mb-4">

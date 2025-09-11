@@ -88,17 +88,16 @@ const Header = () => {
             {/* CTA Buttons más compactos */}
             <div className="flex flex-col sm:flex-row gap-3 pt-3">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => document.getElementById('templates-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group relative px-6 py-3 bg-gradient-to-r from-amber-700 to-orange-900 text-white rounded-xl font-bold text-base shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                className="group relative px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-500 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="flex items-center gap-2">
                   <Coffee size={20} />
                   Ver Nuestros Diseños
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </motion.button>
               
               <motion.button
@@ -179,30 +178,30 @@ const Header = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-6 pt-6 border-t border-white/20"
+          className="mt-6 pt-6 border-t border-white/20 -mx-4 px-4"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center group">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-xl mb-3 group-hover:bg-white/20 transition-all duration-300">
-                <Globe size={24} className="text-amber-300" />
+              <div className="inline-flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg mb-2 group-hover:bg-white/20 transition-all duration-300">
+                <Globe size={20} className="text-amber-300" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">100% Responsive</h3>
+              <h3 className="text-base font-bold text-white mb-1">100% Responsive</h3>
               <p className="text-amber-200 text-sm">Perfecto en todos los dispositivos</p>
             </div>
             
             <div className="text-center group">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-xl mb-3 group-hover:bg-white/20 transition-all duration-300">
-                <Zap size={24} className="text-amber-300" />
+              <div className="inline-flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg mb-2 group-hover:bg-white/20 transition-all duration-300">
+                <Zap size={20} className="text-amber-300" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">Carga Ultra Rápida</h3>
+              <h3 className="text-base font-bold text-white mb-1">Carga Ultra Rápida</h3>
               <p className="text-amber-200 text-sm">Optimizado para máximo rendimiento</p>
             </div>
             
             <div className="text-center group">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-white/10 rounded-xl mb-3 group-hover:bg-white/20 transition-all duration-300">
-                <Star size={24} className="text-amber-300" />
+              <div className="inline-flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg mb-2 group-hover:bg-white/20 transition-all duration-300">
+                <Star size={20} className="text-amber-300" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">Diseño Premium</h3>
+              <h3 className="text-base font-bold text-white mb-1">Diseño Premium</h3>
               <p className="text-amber-200 text-sm">Hecho a medida para tu marca</p>
             </div>
           </div>

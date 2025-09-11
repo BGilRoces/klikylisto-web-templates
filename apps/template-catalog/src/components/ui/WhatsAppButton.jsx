@@ -27,7 +27,7 @@ const WhatsAppButton = ({
 
   // Tamaños
   const sizes = {
-    sm: "px-3 py-2 text-sm",
+    sm: "px-4 py-2 text-sm",
     default: "px-4 py-3",
     lg: "px-6 py-4 text-lg",
     icon: "p-2"
@@ -45,8 +45,8 @@ const WhatsAppButton = ({
     >
       {showIcon && (
         variant === "footer-clean" ? (
-          <div className="p-2 bg-green-500/20 rounded-xl">
-            <MessageCircle size={size === 'sm' ? 16 : size === 'lg' ? 20 : 18} className="text-white" />
+          <div className="p-1.5 bg-green-500/20 rounded-lg">
+            <MessageCircle size={14} className="text-green-300" />
           </div>
         ) : (
           <MessageCircle size={size === 'sm' ? 16 : size === 'lg' ? 20 : 16} />

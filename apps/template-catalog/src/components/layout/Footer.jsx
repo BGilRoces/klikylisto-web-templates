@@ -54,57 +54,53 @@ const Footer = () => {
           {/* Contact section */}
           <div className="space-y-6">
             {/* Contact options in a clean row */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <a 
-                href="mailto:klikylisto@gmail.com" 
-                className="group flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 hover:border-amber-300/50 transition-all duration-300"
+                href="mailto:klikylisto@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('mailto:klikylisto@gmail.com', '_blank');
+                }}
+                className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 hover:border-amber-300/50 transition-all duration-300"
               >
-                <div className="p-2 bg-amber-500/20 rounded-xl">
-                  <Mail size={18} className="text-amber-300" />
+                <div className="p-1.5 bg-amber-500/20 rounded-lg">
+                  <Mail size={14} className="text-amber-300" />
                 </div>
-                <span className="text-white font-medium">Email</span>
+                <span className="text-white font-medium text-sm">Email</span>
               </a>
               
               <a 
                 href="tel:+54 11 6238-7920" 
-                className="group flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 hover:border-green-300/50 transition-all duration-300"
+                className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 hover:border-green-300/50 transition-all duration-300"
               >
-                <div className="p-2 bg-green-500/20 rounded-xl">
-                  <Phone size={18} className="text-green-300" />
+                <div className="p-1.5 bg-green-500/20 rounded-lg">
+                  <Phone size={14} className="text-green-300" />
                 </div>
-                <span className="text-white font-medium">Llamar</span>
+                <span className="text-white font-medium text-sm">Llamar</span>
               </a>
 
               <WhatsAppButton 
                 variant="footer-clean" 
-                className="px-6 py-3 rounded-xl"
+                size="sm"
+                className="rounded-xl"
               >
-                <span className="text-white font-medium">WhatsApp</span>
+                <span className="text-white font-medium text-sm">WhatsApp</span>
               </WhatsAppButton>
-            </div>
-          </div>
-
-          {/* Bottom section */}
-          <div className="pt-8 border-t border-white/10">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
-                <p>&copy; 2025 Klikylisto. Hecho con</p>
-                <Heart size={14} className="text-red-400 fill-current" />
-                <p>para cafeterías especiales.</p>
-              </div>
-              
-              {/* Scroll to top button */}
-              <button
-                onClick={scrollToTop}
-                className="group p-3 bg-amber-500/20 rounded-full hover:bg-amber-500/30 transition-all duration-300"
-                aria-label="Volver arriba"
-              >
-                <ArrowUp size={18} className="text-amber-300 group-hover:-translate-y-1 transition-transform" />
-              </button>
             </div>
           </div>
         </div>
       </Container>
+
+      {/* Floating scroll to top button - fixed position */}
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 group p-3 bg-amber-500/20 backdrop-blur-sm rounded-full hover:bg-amber-500/30 transition-all duration-300 z-50 border border-amber-500/30"
+        aria-label="Volver arriba"
+      >
+        <ArrowUp size={18} className="text-amber-300 group-hover:-translate-y-1 transition-transform" />
+      </button>
     </footer>
   )
 }

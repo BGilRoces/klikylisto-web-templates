@@ -4,8 +4,14 @@ import { Coffee, Send, User, Mail, MessageSquare, CheckCircle, DollarSign, Alert
 import Container from '../layout/Container'
 import WhatsAppButton from '../ui/WhatsAppButton'
 import { sendContactEmail, validateEmailConfig } from '../../services/emailService'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
 const CTASection = () => {
+  const { targetRef, hasIntersected } = useIntersectionObserver({
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  })
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -66,12 +72,12 @@ const CTASection = () => {
   }
 
   return (
-    <section id="contact-form" className="py-10 relative overflow-hidden">
+    <section ref={targetRef} id="contact-form" className="py-24 relative overflow-hidden">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="relative"
         >
           {/* Background con gradiente más moderno */}
@@ -96,8 +102,8 @@ const CTASection = () => {
                 <div>
                   <motion.h3
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.1 }}
+                    animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6, delay: hasIntersected ? 0.2 : 0, ease: "easeOut" }}
                     className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
                   >
                     Creemos
@@ -108,8 +114,8 @@ const CTASection = () => {
                   <div className='flex flex-row'>
                     <motion.p
                       initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.2 }}
+                      animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                      transition={{ duration: 0.6, delay: hasIntersected ? 0.3 : 0, ease: "easeOut" }}
                       className="text-lg text-gray-300 mb-6 leading-relaxed"
                     >
                       Te ayudamos a crear la presencia digital perfecta.
@@ -122,8 +128,8 @@ const CTASection = () => {
                   {/* Features compactos */}
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.3 }}
+                    animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6, delay: hasIntersected ? 0.4 : 0, ease: "easeOut" }}
                     className="space-y-3"
                   >
                     <div className="flex items-center gap-3">
@@ -152,8 +158,8 @@ const CTASection = () => {
                 {/* Columna Derecha - Formulario */}
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.4 }}
+                  animate={hasIntersected ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                  transition={{ duration: 0.6, delay: hasIntersected ? 0.5 : 0, ease: "easeOut" }}
                   className="relative"
                 >
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
