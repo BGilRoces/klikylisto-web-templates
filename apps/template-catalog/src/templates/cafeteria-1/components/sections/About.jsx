@@ -8,7 +8,6 @@ import {
   Award,
   Coffee
 } from 'lucide-react';
-
 const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -41,144 +40,187 @@ const About = () => {
   ];
 
   return (
-    <section id="nosotros" ref={ref} className="py-20 bg-gradient-to-br from-amber-50 via-white to-orange-50">
-      <div className="container mx-auto px-4">
-        {/* Header Section */}
+    <section id="nosotros" ref={ref} className="py-20 bg-gradient-to-br from-amber-50 via-orange-50/60 to-yellow-50/80">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header Section - Más minimalista */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <span className="font-elegant text-amber-600 text-lg tracking-wider uppercase mb-4 block">
-            Conoce Nuestra Historia
-          </span>
-          <h2 className="font-display text-5xl md:text-6xl font-bold text-amber-900 mb-6">
-            Nosotros
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-amber-700 to-amber-400 mx-auto rounded-full"></div>
+          <motion.span 
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-block px-6 py-2 bg-slate-300/10 border border-orange-400 text-amber-800 text-md font-semibold rounded-full mb-6 shadow-lg"
+          >
+            ☕ Conoce Nuestra Historia
+          </motion.span>
         </motion.div>
 
-        {/* Main Story Section */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        {/* Main Story Section - Diseño más limpio */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
           >
-            <h3 className="font-heading text-3xl font-bold text-amber-900 mb-6">
-              Una Historia de Pasión y Tradición
-            </h3>
-            <p className="text-amber-700 text-lg leading-relaxed">
-              Café Luna nació en 1985 del sueño de María y Carlos Hernández, una pareja apasionada
-              por el café y la hospitalidad. Lo que comenzó como un pequeño local en el corazón
-              de la ciudad, se ha convertido en el punto de encuentro favorito de tres generaciones.
-            </p>
-            <p className="text-amber-700 text-lg leading-relaxed">
-              Nuestra filosofía siempre ha sido simple: servir el mejor café posible en un ambiente
-              acogedor donde cada persona se sienta como en casa. Trabajamos directamente con
-              productores locales, apoyando el comercio justo y la sustentabilidad.
-            </p>
-            <p className="text-amber-700 text-lg leading-relaxed">
-              Hoy, dirigidos por la segunda generación de la familia Hernández, seguimos
-              innovando mientras honramos nuestras tradiciones, creando experiencias únicas
-              que van más allá de una simple taza de café.
-            </p>
+            <div className="space-y-3">
+              <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-800 to-orange-800 bg-clip-text text-transparent leading-tight">
+                Una Historia de Pasión y Tradición
+              </h3>
+              <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"></div>
+            </div>
+            
+            <div className="space-y-6 text-amber-800 leading-relaxed">
+              <p className="text-lg">
+                Café Luna nació en 1985 del sueño de María y Carlos Hernández, una pareja apasionada
+                por el café y la hospitalidad. Lo que comenzó como un pequeño local en el corazón
+                de la ciudad, se ha convertido en el punto de encuentro favorito de tres generaciones.
+              </p>
+              <p className="text-lg">
+                Nuestra filosofía siempre ha sido simple: servir el mejor café posible en un ambiente
+                acogedor donde cada persona se sienta como en casa.
+              </p>
+            </div>
+            
+            {/* Features list */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full shadow-sm"></div>
+                <span className="text-amber-800 font-medium">Granos seleccionados de origen</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm"></div>
+                <span className="text-amber-800 font-medium">Tostado artesanal diario</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full shadow-sm"></div>
+                <span className="text-amber-800 font-medium">Comercio justo y sustentable</span>
+              </div>
+            </div>
             
             {/* Call to Action */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-8 px-8 py-4 bg-gradient-to-r from-amber-700 to-amber-800 text-white font-heading font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
-            >
-              Visitanos Hoy
-            </motion.button>
+            <div className="mt-16 pt-4">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="text-lg px-6 py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                onClick={() => document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Visitanos
+              </motion.button>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="relative"
           >
-            <div className="grid grid-cols-2 gap-4">
-              <img 
-                src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="Interior del café"
-                className="rounded-2xl shadow-xl col-span-2 h-64 object-cover"
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-                alt="Barista preparando café"
-                className="rounded-2xl shadow-xl h-32 object-cover"
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-                alt="Granos de café"
-                className="rounded-2xl shadow-xl h-32 object-cover"
-              />
-            </div>
-            
-            {/* Floating Award Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute -bottom-4 -left-4 bg-white p-6 rounded-2xl shadow-2xl border border-amber-100"
-            >
-              <div className="flex items-center space-x-3">
-                <div className="p-3 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full">
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="font-heading font-bold text-amber-900">Mejor café 2024</p>
-                  <p className="text-amber-700 text-sm">Guía Gastronómica</p>
-                </div>
+            {/* Grid de imágenes más limpio */}
+            <div className="relative">
+              <div className="grid grid-cols-12 grid-rows-8 gap-4 h-96">
+                <motion.img 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  alt="Interior del café"
+                  className="col-span-8 row-span-5 rounded-3xl object-cover w-full h-full shadow-2xl"
+                />
+                <motion.img 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                  alt="Barista preparando café"
+                  className="col-span-4 row-span-3 rounded-2xl object-cover w-full h-full shadow-xl"
+                />
+                <motion.img 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                  alt="Granos de café"
+                  className="col-span-4 row-span-2 rounded-2xl object-cover w-full h-full shadow-xl"
+                />
+                <motion.img 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                  alt="Taza de café artesanal"
+                  className="col-span-8 row-span-3 rounded-2xl object-cover w-full h-full shadow-xl"
+                />
               </div>
-            </motion.div>
+              
+              {/* Badge flotante más moderno */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 bg-gradient-to-br from-white to-amber-50 px-6 py-4 rounded-2xl shadow-2xl border border-amber-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl">
+                    <Award className="w-5 h-5 text-amber-700" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-amber-900 text-sm">Mejor café 2024</p>
+                    <p className="text-amber-700 text-xs">Guía Gastronómica</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section - Diseño más clean */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl shadow-lg border border-amber-200 p-8 md:p-12 mb-40"
         >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
-              className="text-center group"
-            >
-              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-amber-700 to-amber-800 rounded-full group-hover:scale-110 transition-transform duration-300">
-                <stat.icon className="w-8 h-8 text-white" />
-              </div>
-              <div className="font-heading text-3xl font-bold text-amber-900 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-amber-700 font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
+                className="text-center group"
+              >
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl group-hover:bg-gradient-to-br group-hover:from-amber-200 group-hover:to-orange-200 transition-all duration-300 shadow-sm">
+                  <stat.icon className="w-6 h-6 text-amber-700 group-hover:text-amber-800 transition-colors" />
+                </div>
+                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-800 to-orange-800 bg-clip-text text-transparent mb-1">
+                  {stat.number}
+                </div>
+                <div className="text-amber-700 text-sm font-semibold">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Values Section */}
+        {/* Values Section - Más minimalista */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6, delay: 1.1 }}
+          className="text-center mb-16"
         >
-          <h3 className="font-heading text-3xl font-bold text-amber-900 mb-4">
+          <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-800 to-orange-800 bg-clip-text text-transparent mb-4">
             Nuestros Valores
           </h3>
-          <p className="text-amber-700 text-lg max-w-2xl mx-auto">
+          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full mx-auto mb-4"></div>
+          <p className="text-amber-800 max-w-2xl mx-auto font-medium">
             Los principios que guían cada decisión y cada taza que servimos
           </p>
         </motion.div>
@@ -187,20 +229,22 @@ const About = () => {
           {values.map((value, index) => (
             <motion.div
               key={value.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.4 + index * 0.2 }}
-              className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2"
+              transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+              className="group"
             >
-              <div className="flex items-center justify-center w-16 h-16 mb-6 bg-gradient-to-br from-amber-100 to-amber-100 rounded-full group-hover:scale-110 transition-transform duration-300">
-                <value.icon className="w-8 h-8 text-amber-700" />
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-3xl border border-amber-200 hover:border-amber-300 transition-all duration-300 hover:shadow-lg h-full">
+                <div className="flex items-center justify-center w-14 h-14 mb-6 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl group-hover:bg-gradient-to-br group-hover:from-amber-200 group-hover:to-orange-200 transition-all duration-300 shadow-sm">
+                  <value.icon className="w-7 h-7 text-amber-700 group-hover:text-amber-800 transition-colors" />
+                </div>
+                <h4 className="text-xl font-bold bg-gradient-to-r from-amber-800 to-orange-800 bg-clip-text text-transparent mb-4">
+                  {value.title}
+                </h4>
+                <p className="text-amber-700 leading-relaxed font-medium">
+                  {value.description}
+                </p>
               </div>
-              <h4 className="font-heading text-xl font-bold text-amber-900 mb-4">
-                {value.title}
-              </h4>
-              <p className="text-amber-700 leading-relaxed">
-                {value.description}
-              </p>
             </motion.div>
           ))}
         </div>

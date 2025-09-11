@@ -7,7 +7,7 @@ const TemplateLayout = ({ children, templateInfo }) => {
     <div className="min-h-screen bg-gray-50">
       <Navigation templateInfo={templateInfo} />
 
-      <div className="pt-32">
+      <div className="pt-32 bg-gradient-to-b from-gray-300 to-gray-200">
         <BrowserFrame templateInfo={templateInfo}>
           {children}
         </BrowserFrame>
