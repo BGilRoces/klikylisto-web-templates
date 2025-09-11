@@ -8,4 +8,4 @@ export const EMAILJS_CONFIG = {
 }
 
 // Template para auto-respuesta (opcional)
-export const AUTORESPONSE_TEMPLATE_ID = 'template_orasu0r' // El ID del template de auto-respuesta que acabas de crear
+export const AUTORESPONSE_TEMPLATE_ID = 'template_790a9jx' // El ID del template de auto-respuesta que acabas de crear

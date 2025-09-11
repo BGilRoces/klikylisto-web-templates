@@ -46,64 +46,45 @@ const Footer = () => {
               </div>
             </div>
             
-            <p className="text-gray-300 leading-relaxed max-w-md">
-              Transformamos cafeterías en experiencias digitales extraordinarias.
+            <p className="text-gray-300 leading-relaxed">
+              Creamos experiencias digitales extraordinarias para cafeterías.
             </p>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4">Contacto</h4>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-amber-500/20 rounded-lg">
+            <h4 className="text-lg font-bold text-white mb-4 text-center">Contacto</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <div className="p-2 bg-amber-500/20 rounded-lg flex-shrink-0">
                   <Mail size={16} className="text-amber-300" />
                 </div>
-                <a href="mailto:klikylisto@gmail.com" className="text-gray-300 hover:text-amber-300 transition-colors">
+                <a href="mailto:klikylisto@gmail.com" className="text-gray-300 hover:text-amber-300 transition-colors text-sm text-center sm:text-left">
                   klikylisto@gmail.com
                 </a>
               </div>
               
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-500/20 rounded-lg">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <div className="p-2 bg-green-500/20 rounded-lg flex-shrink-0">
                   <Phone size={16} className="text-green-300" />
                 </div>
-                <a href="tel:+54 11 6238-7920" className="text-gray-300 hover:text-green-300 transition-colors">
+                <a href="tel:+54 11 6238-7920" className="text-gray-300 hover:text-green-300 transition-colors text-sm text-center sm:text-left">
                   +54 11 6238-7920
                 </a>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
                 <WhatsAppButton 
                   variant="footer" 
                   size="icon"
                   className="flex-shrink-0"
                   showIcon={true}
                 />
-                <span className="text-gray-300">WhatsApp</span>
+                <span className="text-gray-300 text-sm text-center sm:text-left">WhatsApp</span>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Bottom section */}
-        <div className="border-t border-white/10 pt-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <p>&copy; 2025 Klikylisto. Hecho con</p>
-              <Heart size={14} className="text-red-400 fill-current" />
-              <p>para cafeterías especiales.</p>
-            </div>
-            
-            {/* Scroll to top button */}
-            <button
-              onClick={scrollToTop}
-              className="group p-2 bg-amber-500/20 rounded-lg hover:bg-amber-500/30 transition-all duration-300"
-              aria-label="Volver arriba"
-            >
-              <ArrowUp size={16} className="text-amber-300 group-hover:-translate-y-1 transition-transform" />
-            </button>
-          </div>
+        
         </div>
       </Container>
     </footer>

@@ -66,7 +66,7 @@ const CTASection = () => {
   }
 
   return (
-    <section id="contact-form" className="py-12 relative overflow-hidden">
+    <section id="contact-form" className="py-8 relative overflow-hidden">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -88,9 +88,9 @@ const CTASection = () => {
             </div>
 
             {/* Contenido principal */}
-            <div className="relative px-8 md:px-12 py-8">
+            <div className="relative px-6 md:px-8 py-6">
               {/* Grid de 2 columnas */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 
                 {/* Columna Izquierda - Contenido */}
                 <div>
@@ -156,12 +156,12 @@ const CTASection = () => {
                   transition={{ delay: 1.4 }}
                   className="relative"
                 >
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20">
                     {!isSubmitted ? (
-                      <form onSubmit={handleSubmit} className="space-y-5">
+                      <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                          <label className="block text-white font-medium mb-2">
-                            <User size={16} className="inline mr-2" />
+                          <label className="block text-white font-medium mb-1.5">
+                            <User size={14} className="inline mr-2" />
                             Nombre completo
                           </label>
                           <input
@@ -170,14 +170,14 @@ const CTASection = () => {
                             value={formData.name}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none transition-colors"
+                            className="w-full px-3 py-2.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none transition-colors text-sm"
                             placeholder="Juan Pérez"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-white font-medium mb-2">
-                            <Mail size={16} className="inline mr-2" />
+                          <label className="block text-white font-medium mb-1.5">
+                            <Mail size={14} className="inline mr-2" />
                             Email
                           </label>
                           <input
@@ -186,17 +186,17 @@ const CTASection = () => {
                             value={formData.email}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none transition-colors"
+                            className="w-full px-3 py-2.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none transition-colors text-sm"
                             placeholder="tu@email.com"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-white font-medium mb-3">
-                            <Coffee size={16} className="inline mr-2" />
+                          <label className="block text-white font-medium mb-2">
+                            <Coffee size={14} className="inline mr-2" />
                             ¿Cuál template te gusta más?
                           </label>
-                          <div className="grid grid-cols-3 gap-3 mb-4">
+                          <div className="grid grid-cols-3 gap-2 mb-3">
                             {['Artesanal', 'Moderno', 'Boutique'].map((template, index) => (
                               <motion.button
                                 key={template}
@@ -204,7 +204,7 @@ const CTASection = () => {
                                 onClick={() => setFormData({...formData, template})}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className={`px-4 py-3 rounded-xl border-2 transition-all duration-300 text-sm font-medium ${
+                                className={`px-3 py-2 rounded-lg border-2 transition-all duration-300 text-sm font-semibold ${
                                   formData.template === template
                                     ? 'border-amber-400 bg-amber-400/20 text-amber-300'
                                     : 'border-white/20 bg-white/5 text-gray-300 hover:border-white/40 hover:bg-white/10'
@@ -217,72 +217,76 @@ const CTASection = () => {
                         </div>
 
                         <div>
-                          <label className="block text-white font-medium mb-2">
-                            <MessageSquare size={16} className="inline mr-2" />
+                          <label className="block text-white font-medium mb-1.5">
+                            <MessageSquare size={14} className="inline mr-2" />
                             Comentarios adicionales (opcional)
                           </label>
                           <textarea
                             name="message"
                             value={formData.message}
                             onChange={handleInputChange}
-                            rows={3}
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none transition-colors resize-none"
-                            placeholder="Cuéntanos algo especial sobre tu cafetería o algún requerimiento específico..."
+                            rows={2}
+                            className="w-full px-3 py-2.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none transition-colors resize-none text-sm"
+                            placeholder="Cuéntanos algo especial sobre tu cafetería..."
                           />
                         </div>
 
-                        <motion.button
-                          type="submit"
-                          disabled={isSubmitting}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="w-full px-6 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {isSubmitting ? (
-                            <div className="flex items-center justify-center gap-2">
-                              <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
-                              Enviando...
-                            </div>
-                          ) : (
-                            <div className="flex items-center justify-center gap-2">
-                              <Send size={20} />
-                              Enviar Email
-                            </div>
-                          )}
-                        </motion.button>
+                        {/* Botones de contacto lado a lado */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <motion.button
+                            type="submit"
+                            disabled={isSubmitting}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="px-4 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 rounded-xl font-bold text-sm shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {isSubmitting ? (
+                              <div className="flex items-center justify-center gap-2">
+                                <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
+                                <span className="hidden sm:inline">Enviando...</span>
+                                <span className="sm:hidden">...</span>
+                              </div>
+                            ) : (
+                              <div className="flex items-center justify-center gap-2">
+                                <Send size={16} />
+                                <span className="hidden sm:inline">Enviar Email</span>
+                                <span className="sm:hidden">Email</span>
+                              </div>
+                            )}
+                          </motion.button>
 
-                        {/* Separador */}
-                        <div className="flex items-center gap-4 my-4">
-                          <div className="flex-1 h-px bg-white/20"></div>
-                          <span className="text-white/60 text-sm font-medium">o</span>
-                          <div className="flex-1 h-px bg-white/20"></div>
+                          {/* Botón de WhatsApp */}
+                          <WhatsAppButton 
+                            variant="outline" 
+                            className="justify-center text-sm"
+                          >
+                            <span className="hidden sm:inline">WhatsApp</span>
+                            <span className="sm:hidden">WhatsApp</span>
+                          </WhatsAppButton>
                         </div>
 
-                        {/* Botón de WhatsApp */}
-                        <WhatsAppButton 
-                          variant="solid" 
-                          className="w-full justify-center"
-                        >
-                          Contactar por WhatsApp
-                        </WhatsAppButton>
+                        {/* Texto aclaratorio */}
+                        <p className="text-center text-xs text-gray-400 font-bold mt-2">
+                          Completá el formulario y envialo por email, o contactanos directamente por WhatsApp
+                        </p>
 
                         {/* Mostrar mensajes de error si los hay */}
                         {submitStatus.type === 'error' && (
-                          <div className="mt-4 p-3 bg-red-500/20 border border-red-500/30 rounded-xl">
+                          <div className="mt-3 p-2.5 bg-red-500/20 border border-red-500/30 rounded-xl">
                             <div className="flex items-center gap-2 text-red-300">
-                              <AlertCircle size={16} />
-                              <span className="text-sm">{submitStatus.message}</span>
+                              <AlertCircle size={14} />
+                              <span className="text-xs">{submitStatus.message}</span>
                             </div>
                           </div>
                         )}
                       </form>
                     ) : (
-                      <div className="text-center py-8">
-                        <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <CheckCircle size={32} className="text-green-400" />
+                      <div className="text-center py-6">
+                        <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <CheckCircle size={24} className="text-green-400" />
                         </div>
-                        <h4 className="text-xl font-bold text-white mb-2">¡Mensaje Enviado!</h4>
-                        <p className="text-gray-300">{submitStatus.message || 'Te contactaremos pronto para comenzar tu proyecto.'}</p>
+                        <h4 className="text-lg font-bold text-white mb-2">¡Mensaje Enviado!</h4>
+                        <p className="text-gray-300 text-sm">{submitStatus.message || 'Te contactaremos pronto para comenzar tu proyecto.'}</p>
                       </div>
                     )}
                   </div>

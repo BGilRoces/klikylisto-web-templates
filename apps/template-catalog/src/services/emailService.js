@@ -27,12 +27,16 @@ export const sendContactEmail = async (formData) => {
     console.log('Email enviado exitosamente:', response)
 
     // Opcional: Enviar auto-respuesta al cliente
-    if (AUTORESPONSE_TEMPLATE_ID) {
+    if (AUTORESPONSE_TEMPLATE_ID && AUTORESPONSE_TEMPLATE_ID !== 'tu_template_autoresponse_id_aqui') {
       const autoResponseParams = {
         to_name: formData.name,
         to_email: formData.email,
-        template_preference: formData.template,
+        template_preference: formData.template || 'No especificado',
+        reply_to: formData.email, // Email del cliente para la respuesta
+        from_name: 'KlikYListo', // Tu nombre/empresa
       }
+
+      console.log('Enviando auto-respuesta a:', formData.email)
 
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
@@ -40,7 +44,7 @@ export const sendContactEmail = async (formData) => {
         autoResponseParams
       )
 
-      console.log('Auto-respuesta enviada')
+      console.log('Auto-respuesta enviada al cliente')
     }
 
     return {
@@ -51,9 +55,24 @@ export const sendContactEmail = async (formData) => {
   } catch (error) {
     console.error('Error enviando email:', error)
     
+    // Manejo específico de errores de Gmail
+    let errorMessage = 'Error al enviar el email'
+    
+    if (error.text && error.text.includes('insufficient authentication')) {
+      errorMessage = 'Error de autenticación con Gmail. Por favor, reconecta el servicio en EmailJS Dashboard.'
+    } else if (error.text && error.text.includes('Daily Limit')) {
+      errorMessage = 'Límite diario de emails alcanzado. Intenta nuevamente mañana.'
+    } else if (error.text && error.text.includes('Invalid')) {
+      errorMessage = 'Configuración de EmailJS incorrecta. Verifica los IDs en la configuración.'
+    } else if (error.text) {
+      errorMessage = `Error: ${error.text}`
+    } else if (error.message) {
+      errorMessage = `Error: ${error.message}`
+    }
+    
     return {
       success: false,
-      message: 'Error al enviar el email: ' + error.text || error.message
+      message: errorMessage
     }
   }
 }
@@ -75,4 +94,38 @@ export const validateEmailConfig = () => {
   }
   
   return true
+}
+
+// Función de diagnóstico para probar la conexión
+export const testEmailConnection = async () => {
+  try {
+    validateEmailConfig()
+    
+    const testParams = {
+      from_name: 'Test Usuario',
+      from_email: 'test@ejemplo.com',
+      template_preference: 'Moderno',
+      message: 'Este es un email de prueba',
+      to_email: 'klikylisto@gmail.com',
+    }
+
+    const response = await emailjs.send(
+      EMAILJS_CONFIG.SERVICE_ID,
+      EMAILJS_CONFIG.TEMPLATE_ID,
+      testParams
+    )
+
+    return {
+      success: true,
+      message: 'Conexión exitosa',
+      response
+    }
+
+  } catch (error) {
+    return {
+      success: false,
+      message: `Error de conexión: ${error.text || error.message}`,
+      error
+    }
+  }
 }
