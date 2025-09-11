@@ -21,9 +21,7 @@ const BrowserFrame = ({ children, templateInfo }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md border border-gray-200">
-              {templateInfo?.description}
-            </span>
+            {/* Descripción eliminada */}
           </div>
         </div>
       </div>

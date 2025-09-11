@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Coffee, Monitor, Smartphone, Tablet, Star } from 'lucide-react'
 
 const Navigation = ({ templateInfo }) => {
   const { templateId } = useParams()
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY
+        
+        // Mostrar si está arriba o si está subiendo
+        if (currentScrollY < lastScrollY || currentScrollY < 5) {
+          setIsVisible(true)
+        } else if (currentScrollY > lastScrollY && currentScrollY > 20) {
+          setIsVisible(false)
+        }
+        
+        setLastScrollY(currentScrollY)
+      }
+    }
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar)
+      
+      return () => {
+        window.removeEventListener('scroll', controlNavbar)
+      }
+    }
+  }, [lastScrollY])
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200">
+    <div className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200 transition-transform duration-300 ${
+      isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'
+    }`}>
       <div className="flex items-center justify-between px-6 py-4">
         {/* Left - Brand & Back */}
         <div className="flex items-center gap-4">
