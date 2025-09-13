@@ -34,7 +34,7 @@ const FeaturedMenu = () => {
   ];
 
   return (
-    <section id="menu" ref={ref} className="py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section id="menu" ref={ref} className="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,17 +46,14 @@ const FeaturedMenu = () => {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-block px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full mb-6"
+            className="inline-block px-4 py-2 bg-slate-300/10 border border-orange-400 text-amber-800 text-sm font-medium rounded-full mb-6 shadow-lg"
           >
-            Menú Destacado
+            ☕ Menú Destacado
           </motion.span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-800 to-orange-700 bg-clip-text text-transparent mb-4">
             Nuestros Favoritos
           </h2>
-          <div className="w-16 h-0.5 bg-gray-900 mx-auto mb-6"></div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Descubre los sabores que han conquistado el corazón de nuestra comunidad
-          </p>
+          <div className="w-16 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -68,7 +65,7 @@ const FeaturedMenu = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden hover:border-gray-200 hover:shadow-xl transition-all duration-300">
+              <div className="bg-white rounded-3xl border border-amber-100 overflow-hidden hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-100/50 transition-all duration-300">
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={item.image}
@@ -77,24 +74,18 @@ const FeaturedMenu = () => {
                   />
                   {/* Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-medium rounded-full border border-gray-200">
+                    <span className="px-3 py-1 bg-white/95 backdrop-blur-sm text-amber-800 text-xs font-semibold rounded-full border border-amber-200 shadow-sm">
                       {item.badge}
-                    </span>
-                  </div>
-                  {/* Price badge */}
-                  <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-gray-900 text-white text-sm font-bold rounded-full">
-                      {item.price}
                     </span>
                   </div>
                 </div>
                 
                 <div className="p-8">
                   <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-amber-900 mb-2">
                       {item.name}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-amber-700 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -106,9 +97,9 @@ const FeaturedMenu = () => {
                         <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-                    <span className="text-gray-500 text-sm font-medium">4.9</span>
-                    <span className="text-gray-400 text-sm">•</span>
-                    <span className="text-gray-500 text-sm">Bestseller</span>
+                    <span className="text-amber-600 text-sm font-medium">4.9</span>
+                    <span className="text-amber-400 text-sm">•</span>
+                    <span className="text-amber-600 text-sm font-medium">Bestseller</span>
                   </div>
                 </div>
               </div>
