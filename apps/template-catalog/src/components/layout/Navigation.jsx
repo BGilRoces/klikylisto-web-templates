@@ -33,7 +33,7 @@ const Navigation = ({ templateInfo }) => {
   }, [lastScrollY])
 
   return (
-    <div className={`fixed top-0 left-0 right-0 z-50 bg-amber-900/15 backdrop-blur-md shadow-lg border-b border-amber-900/40 transition-transform duration-300 ${
+    <div className={`fixed top-0 left-0 right-0 z-50 bg-amber-900/10 backdrop-blur-md shadow-lg border-b border-amber-900/40 transition-transform duration-300 ${
       isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'
     }`}>
       <div className="flex items-center justify-between px-6 py-4">
