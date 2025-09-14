@@ -26,7 +26,7 @@ const Navigation = () => {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 w-full z-50 transition-all duration-500 bg-black/90 backdrop-blur-lg border-b border-coffee-400/30 py-3 shadow-xl shadow-black/40"
+        className="fixed top-0 w-full z-50 transition-all duration-500 bg-black/90 backdrop-blur-lg border-b border-amber-400/30 py-3 shadow-xl shadow-black/40"
       >
         <div className="w-full px-6 lg:px-8">
           <div className="flex justify-between items-center max-w-7xl mx-auto">
@@ -35,11 +35,11 @@ const Navigation = () => {
               className="flex items-center space-x-2 cursor-pointer hover:scale-105 transition-transform duration-200"
               onClick={() => scrollToSection('#home')}
             >
-              <div className="p-2 bg-gradient-to-r from-coffee-500 to-coffee-600 rounded-xl">
-                <Coffee className="w-6 h-6 text-white" />
+              <div className="p-2 bg-amber-400/10 border border-amber-400 rounded-xl">
+                <Coffee className="w-6 h-6 text-amber-400" />
               </div>
               <span className="text-2xl font-black text-white tracking-tight">
-                ROAST<span className="text-coffee-400">CRAFT</span>
+                ROAST<span className="text-amber-400">CRAFT</span>
               </span>
             </div>
             
@@ -49,10 +49,10 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="relative text-white/80 hover:text-white hover:-translate-y-1 transition-all duration-200 font-medium text-sm tracking-wide group"
+                  className="relative text-white/90 hover:text-white hover:-translate-y-1 transition-all duration-200 font-medium text-sm tracking-wide group"
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-coffee-400 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
             </div>
@@ -78,7 +78,7 @@ const Navigation = () => {
             className="fixed inset-0 z-40 lg:hidden"
           >
             <div className="absolute inset-0 bg-black/90 backdrop-blur-lg" onClick={() => setIsOpen(false)} />
-            <div className="relative bg-gradient-to-br from-gray-900 via-black to-coffee-900 min-h-screen pt-24 px-6">
+            <div className="relative bg-gradient-to-br from-gray-900 via-black to-amber-950 min-h-screen pt-24 px-6">
               <div className="max-w-sm mx-auto">
                 {navItems.map((item, index) => (
                   <motion.button

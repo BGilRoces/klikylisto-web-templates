@@ -86,7 +86,7 @@ const Footer = () => {
                 size="sm"
                 className="rounded-xl"
               >
-                <span className="text-white font-medium text-sm">WhatsApp</span>
+                <span className="text-white font-bold text-sm">WhatsApp</span>
               </WhatsAppButton>
             </div>
           </div>

@@ -91,7 +91,7 @@ const Header = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => document.getElementById('templates-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group relative px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-500 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group relative px-6 py-3 bg-gradient-to-r from-amber-900 to-orange-700 hover:from-amber-900 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <span className="flex items-center gap-2">
                   <Coffee size={20} />

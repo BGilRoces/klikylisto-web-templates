@@ -26,11 +26,11 @@ const CoffeeCollection = () => {
       });
 
   return (
-    <section id="beans" ref={ref} className="py-24 bg-gradient-to-br from-gray-900 via-black to-coffee-900 relative overflow-hidden">
+    <section id="beans" ref={ref} className="py-24 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-coffee-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-coffee-400/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="w-full px-6 lg:px-8 relative z-10">
@@ -46,14 +46,14 @@ const CoffeeCollection = () => {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 }}
-              className="inline-block px-6 py-3 bg-coffee-500/20 rounded-full text-coffee-300 font-semibold mb-6 backdrop-blur-sm border border-coffee-400/30 text-sm tracking-wide"
+              className="inline-block px-6 py-3 bg-amber-600/20 rounded-full text-amber-300 font-semibold mb-6 backdrop-blur-sm border border-amber-400/30 text-sm tracking-wide"
             >
               ☕ COLECCIÓN PREMIUM
             </motion.span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
               Orígenes
               <br />
-              <span className="bg-gradient-to-r from-coffee-300 via-coffee-400 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-400 bg-clip-text text-transparent">
                 del Café
               </span>
             </h2>
@@ -76,7 +76,7 @@ const CoffeeCollection = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-200 border-2 hover:scale-105 hover:-translate-y-1 ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-coffee-500 to-coffee-600 text-white border-coffee-500 shadow-lg shadow-coffee-500/25'
+                    ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white border-amber-600 shadow-lg shadow-amber-600/25'
                     : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20 hover:text-white hover:border-white/40 backdrop-blur-sm'
                 }`}
               >
@@ -119,7 +119,7 @@ const CoffeeCollection = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-center mt-20"
           >
-            <div className="bg-gradient-to-r from-coffee-500/20 to-coffee-600/20 backdrop-blur-sm border border-coffee-400/30 rounded-3xl p-12">
+            <div className="bg-gradient-to-r from-amber-600/20 to-amber-700/20 backdrop-blur-sm border border-amber-400/30 rounded-3xl p-12">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 ¿No Encuentras Tu Mezcla Perfecta?
               </h3>
@@ -128,7 +128,7 @@ const CoffeeCollection = () => {
                 Experimenta café creado exclusivamente para ti.
               </p>
               <button
-                className="bg-gradient-to-r from-coffee-500 to-coffee-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-coffee-500/25 hover:scale-105 hover:-translate-y-1 transition-all duration-200"
+                className="bg-gradient-to-r from-amber-900 to-amber-800 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-amber-600/25 hover:scale-105 hover:-translate-y-1 transition-all duration-200"
               >
                 Solicitar Mezcla Personalizada
               </button>

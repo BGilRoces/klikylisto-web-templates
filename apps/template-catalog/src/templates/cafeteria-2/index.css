@@ -131,12 +131,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8B4513;
+  background: rgb(245 158 11);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A0522D;
+  background: rgb(217 119 6);
 }
 
 /* Custom animations */
@@ -168,7 +168,7 @@ html {
 
 /* Gradient text utilities */
 .gradient-text {
-  background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F);
+  background: linear-gradient(135deg, rgb(245 158 11), rgb(217 119 6), rgb(251 191 36));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -183,26 +183,26 @@ html {
 
 /* Custom button hover effects */
 .btn-coffee {
-  background: linear-gradient(135deg, #8B4513, #A0522D);
+  background: linear-gradient(135deg, rgb(245 158 11), rgb(217 119 6));
   color: white;
   padding: 1rem 2rem;
   border-radius: 0.75rem;
   font-weight: 600;
   transition: all 0.3s ease;
   transform: scale(1);
-  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.25);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
 }
 
 .btn-coffee:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+  box-shadow: 0 20px 40px rgba(245, 158, 11, 0.4);
 }
 
 /* Loading spinner */
 .spinner {
-  border: 3px solid rgba(139, 69, 19, 0.3);
+  border: 3px solid rgba(245, 158, 11, 0.3);
   border-radius: 50%;
-  border-top: 3px solid #8B4513;
+  border-top: 3px solid rgb(245 158 11);
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;

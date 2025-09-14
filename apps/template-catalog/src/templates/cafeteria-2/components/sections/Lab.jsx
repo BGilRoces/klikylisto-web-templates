@@ -36,7 +36,7 @@ const Lab = () => {
   ];
 
   return (
-    <section id="lab" ref={ref} className="py-20 bg-gradient-to-br from-white via-gray-50 to-coffee-50">
+    <section id="lab" ref={ref} className="py-20 bg-gradient-to-br from-white via-gray-50 to-amber-50">
       <div className="w-full px-4 md:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -44,13 +44,13 @@ const Lab = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 bg-coffee-100 rounded-full text-coffee-700 font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-medium mb-4">
             Laboratorio de Innovación
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
             Futuro del
             <br />
-            <span className="bg-gradient-to-r from-coffee-600 to-coffee-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-700 to-amber-400 bg-clip-text text-transparent">
               Café
             </span>
           </h2>
@@ -70,7 +70,7 @@ const Lab = () => {
             >
               <div className="text-4xl mb-4">{innovation.icon}</div>
               <div className="mb-3">
-                <span className="inline-block px-3 py-1 bg-coffee-100 text-coffee-600 text-xs font-medium rounded-full">
+                <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded-full">
                   {innovation.tech}
                 </span>
               </div>
@@ -87,13 +87,13 @@ const Lab = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-coffee-500 to-coffee-600 rounded-2xl p-12 text-white">
+          <div className="bg-gradient-to-r from-black to-amber-950 rounded-2xl p-12 text-white">
             <h3 className="text-3xl font-bold mb-4">Experimenta el Futuro</h3>
             <p className="text-xl mb-8 opacity-90">
               Visita nuestra ubicación principal del laboratorio para presenciar la innovación del café en acción.
             </p>
             <button
-              className="bg-white text-coffee-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:scale-105 hover:-translate-y-1 transition-all duration-200"
+              className="bg-amber-500/30 border border-amber-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:scale-105 hover:-translate-y-1 transition-all duration-200"
             >
               Reservar Tour del Laboratorio
             </button>

@@ -48,7 +48,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" ref={ref} className="py-24 bg-gradient-to-br from-white via-gray-50 to-coffee-50 relative overflow-hidden">
+    <section id="experience" ref={ref} className="py-24 bg-gradient-to-br from-white via-gray-50 to-amber-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -69,14 +69,14 @@ const Experience = () => {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 }}
-              className="inline-block px-4 py-2 bg-coffee-100 rounded-full text-coffee-700 font-semibold mb-6 text-sm tracking-wide"
+              className="inline-block px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-semibold mb-6 text-sm tracking-wide"
             >
               LA EXPERIENCIA ROASTCRAFT
             </motion.span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
-              Donde la <span className="bg-gradient-to-r from-coffee-600 to-coffee-400 bg-clip-text text-transparent">Ciencia</span>
+              Donde la <span className="bg-gradient-to-r from-amber-700 to-amber-400 bg-clip-text text-transparent">Ciencia</span>
               <br />
-              Se Encuentra con el <span className="bg-gradient-to-r from-coffee-600 to-coffee-400 bg-clip-text text-transparent">Arte</span>
+              Se Encuentra con el <span className="bg-gradient-to-r from-amber-700 to-amber-400 bg-clip-text text-transparent">Arte</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Cada taza cuenta una historia de precisión, pasión y perfección. Desde la selección del grano hasta la preparación final, 
@@ -100,7 +100,7 @@ const Experience = () => {
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className="group flex items-start space-x-6 p-6 rounded-2xl bg-white/80 backdrop-blur-sm hover:bg-white hover:shadow-2xl hover:shadow-coffee-500/10 transition-all duration-300 cursor-pointer border border-gray-100"
+                  className="group flex items-start space-x-6 p-6 rounded-2xl bg-white/80 backdrop-blur-sm hover:bg-white hover:shadow-2xl hover:shadow-amber-600/10 transition-all duration-300 cursor-pointer border border-gray-100"
                 >
                   <div className={`p-4 rounded-2xl bg-gradient-to-r ${feature.color} transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
                     <feature.icon className="w-8 h-8 text-white" />
@@ -108,13 +108,13 @@ const Experience = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="font-bold text-xl text-gray-900">{feature.title}</h4>
-                      <span className="text-coffee-600 font-bold text-sm bg-coffee-50 px-3 py-1 rounded-full">
+                      <span className="text-amber-700 font-bold text-sm bg-amber-50 px-3 py-1 rounded-full">
                         {feature.stat}
                       </span>
                     </div>
                     <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-coffee-500 group-hover:translate-x-1 transition-all duration-300" />
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all duration-300" />
                 </motion.div>
               ))}
             </motion.div>
@@ -197,7 +197,7 @@ const Experience = () => {
                 className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
               >
                 <div className="text-4xl mb-3">{stat.icon}</div>
-                <div className="text-3xl md:text-4xl font-black text-coffee-600 mb-2">{stat.number}</div>
+                <div className="text-3xl md:text-4xl font-black text-amber-700 mb-2">{stat.number}</div>
                 <div className="text-gray-600 font-medium text-sm tracking-wide">{stat.label}</div>
               </motion.div>
             ))}

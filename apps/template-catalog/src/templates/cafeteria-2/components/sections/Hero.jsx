@@ -11,7 +11,7 @@ const Hero = () => {
     <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Video/Image */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-coffee-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-amber-950"></div>
         <div 
           className="absolute inset-0 opacity-30"
           style={{
@@ -29,7 +29,7 @@ const Hero = () => {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-coffee-400/30 rounded-full"
+            className="absolute w-1 h-1 bg-amber-400/30 rounded-full"
             animate={{
               y: [Math.random() * 800, -100],
               x: [Math.random() * 50 - 25, Math.random() * 50 - 25],
@@ -58,7 +58,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="mb-8"
         >
-          <span className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-coffee-300 font-medium border border-white/20 text-sm tracking-wide">
+          <span className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-amber-300 font-medium border border-white/20 text-sm tracking-wide">
             ✨ EXPERIENCIA DE CAFÉ PREMIUM
           </span>
         </motion.div>
@@ -72,23 +72,11 @@ const Hero = () => {
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight">
             <span className="block text-white">ROAST</span>
-            <span className="block bg-gradient-to-r from-coffee-300 via-coffee-400 to-amber-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-amber-300 via-amber-400 to-amber-400 bg-clip-text text-transparent">
               CRAFT
             </span>
           </h1>
         </motion.div>
-        
-        {/* Subtitle */}
-        <motion.p 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-xl md:text-2xl lg:text-3xl font-light mb-12 text-white/90 max-w-4xl mx-auto leading-relaxed"
-        >
-          Donde la <span className="text-coffee-300 font-medium">Ciencia</span> se encuentra con el <span className="text-coffee-300 font-medium">Arte</span>
-          <br className="hidden sm:block" />
-          Café de especialidad tostado con precisión para el conocedor moderno
-        </motion.p>
 
         {/* CTA Buttons */}
         <motion.div
@@ -125,7 +113,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
               className="text-center"
             >
-              <div className="text-2xl md:text-3xl font-bold text-coffee-300 mb-1">{stat.number}</div>
+              <div className="text-2xl md:text-3xl font-bold text-amber-300 mb-1">{stat.number}</div>
               <div className="text-white/70 text-sm font-medium tracking-wide">{stat.label}</div>
             </motion.div>
           ))}

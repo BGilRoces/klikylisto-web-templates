@@ -3,7 +3,7 @@ import { Star, MapPin, ShoppingCart, Heart } from 'lucide-react';
 
 const CoffeeCard = ({ coffee, index }) => {
   return (
-    <div className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:border-coffee-400/50 transition-all duration-300 cursor-pointer h-[420px] flex flex-col hover:shadow-xl hover:shadow-coffee-500/20 hover:-translate-y-2"
+    <div className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:border-amber-400/50 transition-all duration-300 cursor-pointer h-[420px] flex flex-col hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2"
     >
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
@@ -16,7 +16,7 @@ const CoffeeCard = ({ coffee, index }) => {
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-coffee-500/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
+          <span className="px-3 py-1 bg-amber-600/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
             {coffee.category === 'single' ? 'Origen Único' : 
              coffee.category === 'blend' ? 'Mezcla Exclusiva' : 
              coffee.category === 'limited' ? 'Edición Limitada' : coffee.category}
@@ -33,7 +33,7 @@ const CoffeeCard = ({ coffee, index }) => {
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-3">
-          <h3 className="font-bold text-lg text-white group-hover:text-coffee-300 transition-colors leading-tight line-clamp-2 flex-1 mr-2">
+          <h3 className="font-bold text-lg text-white group-hover:text-amber-300 transition-colors leading-tight line-clamp-2 flex-1 mr-2">
             {coffee.name}
           </h3>
           <div className="flex items-center space-x-1 text-amber-400 flex-shrink-0">
@@ -73,26 +73,18 @@ const CoffeeCard = ({ coffee, index }) => {
           </div>
           <div className="w-full bg-white/20 rounded-full h-2">
             <div 
-              className="bg-gradient-to-r from-coffee-300 to-coffee-500 h-2 rounded-full"
+              className="bg-gradient-to-r from-amber-300 to-amber-600 h-2 rounded-full"
               style={{ 
                 width: coffee.roast === 'Tueste Claro' || coffee.roast === 'Light' ? '33%' : 
-                       coffee.roast === 'Tueste Medio' || coffee.roast === 'Medium' ? '66%' : '100%' 
+                      coffee.roast === 'Tueste Medio' || coffee.roast === 'Medium' ? '66%' : '100%' 
               }}
             ></div>
-          </div>
-        </div>
-
-        {/* Price and Action */}
-        <div className="flex items-center justify-between mt-auto">
-          <div>
-            <span className="text-2xl font-bold text-coffee-300">${coffee.price}</span>
-            <span className="text-white/50 text-sm ml-1">/lb</span>
           </div>
         </div>
       </div>
 
       {/* Hover Glow Effect */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-coffee-500/0 via-coffee-400/0 to-coffee-300/0 group-hover:from-coffee-500/10 group-hover:via-coffee-400/5 group-hover:to-coffee-300/10 transition-all duration-500 pointer-events-none"></div>
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-600/0 via-amber-400/0 to-amber-300/0 group-hover:from-amber-600/10 group-hover:via-amber-400/5 group-hover:to-amber-300/10 transition-all duration-500 pointer-events-none"></div>
     </div>
   );
 };

@@ -213,7 +213,7 @@ const CTASection = () => {
                                 className={`px-3 py-2 rounded-lg border-2 transition-all duration-300 text-sm font-semibold ${
                                   formData.template === template
                                     ? 'border-amber-400 bg-amber-400/20 text-amber-300'
-                                    : 'border-white/20 bg-white/5 text-gray-300 hover:border-white/40 hover:bg-white/10'
+                                    : 'border-white/20 bg-white/5 text-white/90 hover:border-white/40 hover:bg-white/10'
                                 }`}
                               >
                                 {template}

@@ -16,7 +16,7 @@ const Footer = () => {
               transition={{ duration: 0.6 }}
               className="flex items-center space-x-2 mb-4"
             >
-              <div className="p-2 bg-gradient-to-r from-coffee-500 to-coffee-600 rounded-lg">
+              <div className="p-2 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg">
                 <Coffee className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-bold">ROASTCRAFT</span>
@@ -40,27 +40,27 @@ const Footer = () => {
             <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-white/70 hover:text-coffee-400 transition-colors">
+                <a href="#home" className="text-white/70 hover:text-amber-400 transition-colors">
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="#experience" className="text-white/70 hover:text-coffee-400 transition-colors">
+                <a href="#experience" className="text-white/70 hover:text-amber-400 transition-colors">
                   Experiencia
                 </a>
               </li>
               <li>
-                <a href="#collection" className="text-white/70 hover:text-coffee-400 transition-colors">
+                <a href="#collection" className="text-white/70 hover:text-amber-400 transition-colors">
                   Colección
                 </a>
               </li>
               <li>
-                <a href="#lab" className="text-white/70 hover:text-coffee-400 transition-colors">
+                <a href="#lab" className="text-white/70 hover:text-amber-400 transition-colors">
                   Laboratorio de Innovación
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-white/70 hover:text-coffee-400 transition-colors">
+                <a href="#contact" className="text-white/70 hover:text-amber-400 transition-colors">
                   Contacto
                 </a>
               </li>
