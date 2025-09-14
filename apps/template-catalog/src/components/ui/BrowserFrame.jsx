@@ -3,9 +3,9 @@ import { Coffee } from 'lucide-react'
 
 const BrowserFrame = ({ children, templateInfo }) => {
   return (
-    <div className="mx-6 mt-4 mb-8 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+    <div className="mx-6 mt-4 mb-8 bg-black/20 rounded-xl shadow-sm overflow-hidden border border-black/10">
       {/* Browser header clean */}
-      <div className="bg-gray-50 px-6 py-3 border-b border-gray-200">
+      <div className="bg-black/40 px-6 py-3 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
@@ -13,15 +13,12 @@ const BrowserFrame = ({ children, templateInfo }) => {
               <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
               <div className="w-3 h-3 bg-green-400 rounded-full"></div>
             </div>
-            <div className="bg-white px-4 py-2 rounded-md border border-gray-200 text-sm text-gray-700 font-mono">
+            <div className="bg-white/20 px-4 py-2 rounded-md border border-gray-200 text-sm text-gray-100 font-mono">
               <div className="flex items-center gap-2">
-                <Coffee size={12} className="text-gray-500" />
+                <Coffee size={12} className="text-gray-100"/>
                 klikylisto.com
               </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {/* Descripción eliminada */}
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="galeria" ref={ref} className="py-20 bg-amber-50">
+    <section id="galeria" ref={ref} className="bg-amber-900/5 py-20 border-y border-amber-900/20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -36,7 +36,7 @@ const Testimonials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-amber-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-4">
             Lo que dicen nuestros clientes
           </h2>
         </motion.div>
@@ -52,10 +52,10 @@ const Testimonials = () => {
             >
               <div className="flex mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-5 h-5 fill-amber-900 text-amber-900" />
                 ))}
               </div>
-              <p className="text-amber-700 mb-4 italic">
+              <p className="text-amber-900/70 mb-4 italic">
                 "{testimonial.text}"
               </p>
               <p className="font-semibold text-amber-900">

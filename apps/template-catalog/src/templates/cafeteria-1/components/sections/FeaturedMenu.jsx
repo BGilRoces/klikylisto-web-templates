@@ -34,7 +34,7 @@ const FeaturedMenu = () => {
   ];
 
   return (
-    <section id="menu" ref={ref} className="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+    <section id="menu" ref={ref} className="py-24 bg-transparent">
       <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,14 +46,14 @@ const FeaturedMenu = () => {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-block px-4 py-2 bg-slate-300/10 border border-orange-400 text-amber-800 text-sm font-medium rounded-full mb-6 shadow-lg"
+            className="inline-block px-4 py-2 bg-amber-900/10 border border-amber-900/30 text-amber-900 text-sm font-medium rounded-full mb-6 shadow-lg"
           >
             ☕ Menú Destacado
           </motion.span>
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-800 to-orange-700 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-4">
             Nuestros Favoritos
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-600 to-orange-600 mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-amber-900 mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -65,7 +65,7 @@ const FeaturedMenu = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-white rounded-3xl border border-amber-100 overflow-hidden hover:border-amber-200 hover:shadow-2xl hover:shadow-amber-100/50 transition-all duration-300">
+              <div className="bg-white rounded-3xl border border-stone-200 overflow-hidden hover:border-stone-300 hover:shadow-2xl hover:shadow-stone-100/50 transition-all duration-300">
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={item.image}
@@ -74,7 +74,7 @@ const FeaturedMenu = () => {
                   />
                   {/* Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-white/95 backdrop-blur-sm text-amber-800 text-xs font-semibold rounded-full border border-amber-200 shadow-sm">
+                    <span className="px-3 py-1 bg-white/95 backdrop-blur-sm text-amber-900 text-xs font-semibold rounded-full border border-amber-900/30 shadow-sm">
                       {item.badge}
                     </span>
                   </div>
@@ -85,7 +85,7 @@ const FeaturedMenu = () => {
                     <h3 className="text-xl font-bold text-amber-900 mb-2">
                       {item.name}
                     </h3>
-                    <p className="text-amber-700 leading-relaxed">
+                    <p className="text-amber-900/70 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -94,12 +94,12 @@ const FeaturedMenu = () => {
                   <div className="flex items-center gap-2">
                     <div className="flex items-center">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        <Star key={i} className="w-4 h-4 fill-amber-900 text-amber-900" />
                       ))}
                     </div>
-                    <span className="text-amber-600 text-sm font-medium">4.9</span>
-                    <span className="text-amber-400 text-sm">•</span>
-                    <span className="text-amber-600 text-sm font-medium">Bestseller</span>
+                    <span className="text-amber-900/70 text-sm font-medium">4.9</span>
+                    <span className="text-amber-900 text-sm">•</span>
+                    <span className="text-amber-900/70 text-sm font-medium">Bestseller</span>
                   </div>
                 </div>
               </div>

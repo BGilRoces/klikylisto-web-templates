@@ -13,7 +13,7 @@ import {
 // Componente principal App
 function App() {
   return (
-    <div className="min-h-screen font-body">
+    <div className="min-h-screen font-body bg-amber-900/5">
       <Navigation />
       <Hero />
       <About />

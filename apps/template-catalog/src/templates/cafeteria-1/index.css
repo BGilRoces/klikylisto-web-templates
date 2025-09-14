@@ -12,10 +12,14 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-amber-700 hover:bg-amber-800 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+    @apply bg-amber-900 hover:bg-amber-900/90 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
   }
   
   .btn-secondary {
-    @apply bg-amber-100 hover:bg-amber-200 text-amber-900 px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+    @apply bg-amber-900/10 hover:bg-amber-900/20 text-amber-900 px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+  }
+  
+  .btn-accent {
+    @apply bg-amber-900 hover:bg-amber-900/90 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg;
   }
 }

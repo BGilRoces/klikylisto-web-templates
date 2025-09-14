@@ -15,8 +15,8 @@ const Hero = () => {
       
       {/* Elementos decorativos flotantes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-amber-300/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-amber-200/20 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-2 h-2 bg-amber-900/30 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-amber-900/30 rounded-full animate-pulse delay-1000"></div>
         <div className="absolute bottom-40 left-20 w-1 h-1 bg-white/40 rounded-full animate-pulse delay-2000"></div>
       </div>
 
@@ -31,7 +31,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-amber-100 mb-4"
+          className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white mb-4"
         >
           ✨ Desde 1985 • Tradición y Calidad
         </motion.div>*/}
@@ -42,14 +42,14 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
         >
-          Café <span className="bg-gradient-to-r from-amber-200 via-amber-100 to-yellow-200 bg-clip-text text-transparent">Luna</span>
+          Café <span className="text-amber-200">Luna</span>
         </motion.h1>
         
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg md:text-xl font-light mb-6 max-w-2xl mx-auto text-gray-100 leading-relaxed"
+          className="text-lg md:text-xl font-light mb-6 max-w-2xl mx-auto text-white leading-relaxed"
         >
           Donde cada taza cuenta una historia y cada momento se convierte en un recuerdo especial
         </motion.p>
@@ -63,10 +63,10 @@ const Hero = () => {
           <motion.button 
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative overflow-hidden bg-gradient-to-r from-amber-600 via-amber-700 to-orange-600 hover:from-amber-500 hover:via-amber-600 hover:to-orange-500 text-white px-4 py-2 text-lg font-bold rounded-lg transition-all duration-500 shadow-xl hover:shadow-amber-500/40 border-2 border-amber-400/30"
+            className="group relative overflow-hidden bg-amber-900 border-2 border-white/20 hover:bg-amber-900/90 text-white px-4 py-2 text-lg font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border border-amber-900/70"
             onClick={() => document.querySelector('#menu')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            <div className="absolute inset-0 bg-white/10 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             <span className="relative flex items-center gap-2">
               ✨ Menú
             </span>
