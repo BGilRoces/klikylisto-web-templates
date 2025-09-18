@@ -50,18 +50,7 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center text-white px-4 lg:px-6 w-full max-w-7xl mx-auto">{/* Reducido el padding lateral */}
-        {/* Premium Badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <span className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-amber-300 font-medium border border-white/20 text-sm tracking-wide">
-            ✨ EXPERIENCIA DE CAFÉ PREMIUM
-          </span>
-        </motion.div>
+      <div className="relative z-10 text-center text-white px-4 lg:px-6 w-full max-w-7xl mx-auto">
 
         {/* Main Title */}
         <motion.div

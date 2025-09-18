@@ -4,28 +4,28 @@ import { Coffee, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-12">
+    <footer className="bg-gradient-to-b from-amber-950 via-stone-900 to-black text-white py-10">
       <div className="w-full px-4 md:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-6 lg:gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center space-x-2 mb-4"
+              className="flex items-center space-x-3 mb-4"
             >
-              <div className="p-2 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg">
-                <Coffee className="w-6 h-6 text-white" />
+              <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl shadow-lg">
+                <Coffee className="w-7 h-7 text-white" />
               </div>
-              <span className="text-2xl font-bold">ROASTCRAFT</span>
+              <span className="text-3xl font-bold bg-gradient-to-r from-white to-amber-100 bg-clip-text text-transparent">ROASTCRAFT</span>
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-white/70 mb-6 max-w-md"
+              className="text-gray-300 mb-4 max-w-md leading-relaxed"
             >
               Creando el futuro del café a través del tostado de precisión, métodos innovadores de preparación y un compromiso inquebrantable con la calidad.
             </motion.p>
@@ -40,27 +40,27 @@ const Footer = () => {
             <h4 className="font-bold text-white mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-white/70 hover:text-amber-400 transition-colors">
+                <a href="#home" className="text-gray-300 hover:text-amber-400 transition-all duration-200 hover:translate-x-1 inline-block">
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="#experience" className="text-white/70 hover:text-amber-400 transition-colors">
+                <a href="#experience" className="text-gray-300 hover:text-amber-400 transition-all duration-200 hover:translate-x-1 inline-block">
                   Experiencia
                 </a>
               </li>
               <li>
-                <a href="#collection" className="text-white/70 hover:text-amber-400 transition-colors">
+                <a href="#collection" className="text-gray-300 hover:text-amber-400 transition-all duration-200 hover:translate-x-1 inline-block">
                   Colección
                 </a>
               </li>
               <li>
-                <a href="#lab" className="text-white/70 hover:text-amber-400 transition-colors">
+                <a href="#lab" className="text-gray-300 hover:text-amber-400 transition-all duration-200 hover:translate-x-1 inline-block">
                   Laboratorio de Innovación
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-white/70 hover:text-amber-400 transition-colors">
+                <a href="#contact" className="text-gray-300 hover:text-amber-400 transition-all duration-200 hover:translate-x-1 inline-block">
                   Contacto
                 </a>
               </li>
@@ -75,33 +75,38 @@ const Footer = () => {
           >
             <h4 className="font-bold text-white mb-4">Arte del Café</h4>
             <ul className="space-y-2">
-              <li>
-                <span className="text-white/70">Origen Único</span>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                <span className="text-gray-300">Origen Único</span>
               </li>
-              <li>
-                <span className="text-white/70">Mezclas Exclusivas</span>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                <span className="text-gray-300">Mezclas Exclusivas</span>
               </li>
-              <li>
-                <span className="text-white/70">Ediciones Limitadas</span>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                <span className="text-gray-300">Ediciones Limitadas</span>
               </li>
-              <li>
-                <span className="text-white/70">Guías de Preparación</span>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                <span className="text-gray-300">Guías de Preparación</span>
               </li>
-              <li>
-                <span className="text-white/70">Proceso de Tostado</span>
+              <li className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                <span className="text-gray-300">Proceso de Tostado</span>
               </li>
             </ul>
           </motion.div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 pt-8">
+        <div className="border-t border-gradient-to-r from-transparent via-white/20 to-transparent pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-white/50 text-sm mb-4 md:mb-0"
+              className="text-gray-400 text-base mb-4 md:mb-0"
             >
               © 2024 RoastCraft. Todos los derechos reservados.
             </motion.p>
@@ -110,10 +115,10 @@ const Footer = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center space-x-2 text-white/50 text-sm"
+              className="flex items-center space-x-2 text-gray-400 text-base"
             >
               <span>Hecho con</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
+              <Heart className="w-5 h-5 text-red-500 fill-current animate-pulse" />
               <span>para los amantes del café</span>
             </motion.div>
           </div>

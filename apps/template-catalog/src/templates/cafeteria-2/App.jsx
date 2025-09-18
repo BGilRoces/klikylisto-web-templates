@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="min-h-screen w-full bg-black overflow-x-hidden">
+    <div className="min-h-screen w-full bg-white overflow-x-hidden">
       <Navigation />
       <Hero />
       <Experience />

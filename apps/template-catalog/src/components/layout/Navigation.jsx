@@ -12,10 +12,10 @@ const Navigation = ({ templateInfo }) => {
       if (typeof window !== 'undefined') {
         const currentScrollY = window.scrollY
         
-        // Mostrar si está arriba o si está subiendo
-        if (currentScrollY < lastScrollY || currentScrollY < 5) {
+        // Solo mostrar cuando esté cerca del top (primeros 100px)
+        if (currentScrollY < 100) {
           setIsVisible(true)
-        } else if (currentScrollY > lastScrollY && currentScrollY > 20) {
+        } else {
           setIsVisible(false)
         }
         
