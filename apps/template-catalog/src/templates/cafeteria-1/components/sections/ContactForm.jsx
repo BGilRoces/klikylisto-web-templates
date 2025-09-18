@@ -50,18 +50,18 @@ const ContactForm = () => {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-stone-50">
+    <section id="contact" className="py-16 bg-stone-50">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-stone-900 mb-4"
+            className="text-3xl lg:text-4xl font-bold text-stone-900 mb-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -70,7 +70,7 @@ const ContactForm = () => {
             Contacto
           </motion.h2>
           <motion.p
-            className="text-xl text-stone-600 max-w-2xl mx-auto"
+            className="text-lg text-stone-600 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -81,10 +81,10 @@ const ContactForm = () => {
         </motion.div>
 
         {/* Main Content - Two equal columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Contact Info */}
           <motion.div 
-            className="space-y-8 h-full"
+            className="space-y-5 h-full"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -93,7 +93,7 @@ const ContactForm = () => {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
-                className="bg-white rounded-2xl p-6 shadow-md border border-stone-200 hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-xl p-5 shadow-md border border-stone-200 hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -126,11 +126,11 @@ const ContactForm = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white rounded-2xl p-8 shadow-md border border-stone-200 flex-1 flex flex-col">
-              <h3 className="text-2xl font-semibold text-stone-900 mb-6">Envíanos un mensaje</h3>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-stone-200 flex-1 flex flex-col">
+              <h3 className="text-xl font-semibold text-stone-900 mb-5">Envíanos un mensaje</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -186,7 +186,7 @@ const ContactForm = () => {
                     id="message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full flex-1 min-h-[120px] px-4 py-3 bg-stone-50 border border-stone-300 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all duration-300 resize-none"
+                    className="w-full flex-1 min-h-[100px] px-4 py-3 bg-stone-50 border border-stone-300 rounded-xl text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all duration-300 resize-none"
                     placeholder="Cuéntanos cómo podemos ayudarte..."
                     required
                   />
@@ -223,19 +223,19 @@ const ContactForm = () => {
 
         {/* Map Section - Full width below */}
         <motion.div
-          className="mt-16"
+          className="mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white rounded-2xl p-8 shadow-md border border-stone-200">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-semibold text-stone-900 mb-2">Encuéntranos</h3>
+          <div className="bg-white rounded-xl p-6 shadow-md border border-stone-200">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold text-stone-900 mb-2">Encuéntranos</h3>
               <p className="text-stone-600">Visítanos en el corazón de la ciudad</p>
             </div>
             
-            <div className="bg-stone-100 rounded-xl overflow-hidden h-96 shadow-inner">
+            <div className="bg-stone-100 rounded-xl overflow-hidden h-80 shadow-inner">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6845876831583!2d-99.13677632527373!3d19.433701981887896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92f5a4c8c7d%3A0x6f2d8a6e8a8a8a8a!2sZócalo%2C%20Centro%2C%20Cuauhtémoc%2C%2006000%20Ciudad%20de%20México%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1634567890123!5m2!1ses-419!2smx"
                 width="100%"

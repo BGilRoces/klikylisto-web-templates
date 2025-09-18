@@ -1,166 +1,67 @@
-import { motion } from 'framer-motion'
-import { Coffee, Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react'
+import React from 'react';
+import { Coffee, Heart, ChevronUp } from 'lucide-react';
 
 const Footer = () => {
-  const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' }
-  ]
-
-  const quickLinks = [
-    { name: 'Inicio', href: '#home' },
-    { name: 'Menú', href: '#menu' },
-    { name: 'Nosotros', href: '#about' },
-    { name: 'Contacto', href: '#contact' }
-  ]
-
   return (
-    <footer className="bg-stone-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center space-x-2 mb-6">
-              <Coffee className="w-8 h-8 text-amber-400" />
-              <span className="text-2xl font-bold">Aroma</span>
+    <footer className="relative bg-amber-900 text-white py-6 overflow-hidden border-t border-amber-900/70">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-2 left-10">
+          <Coffee className="w-4 h-4" />
+        </div>
+        <div className="absolute top-4 right-16">
+          <Coffee className="w-3 h-3" />
+        </div>
+        <div className="absolute bottom-2 left-1/3">
+          <Coffee className="w-3 h-3" />
+        </div>
+        <div className="absolute bottom-3 right-10">
+          <Coffee className="w-4 h-4" />
+        </div>
+      </div>
+      
+      <div className="relative container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative">
+          {/* Logo section */}
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-amber-900/80 rounded-full border border-white/50">
+              <Coffee className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <span className="font-display text-lg font-bold text-white">Café Luna</span>
+              <p className="text-xs text-white/80 font-light">Desde 1985</p>
+            </div>
+          </div>
+          
+          {/* Copyright section with scroll button */}
+          <div className="text-center md:text-right flex flex-col md:flex-row items-center gap-4">
+            <div>
+              <p className="text-sm text-white/80 flex items-center gap-1 justify-center md:justify-end">
+                Hecho con <Heart className="w-3 h-3 fill-white text-white" /> para los amantes del café
+              </p>
+              <p className="text-xs text-white/70 mt-1">
+                © 2024 Café Luna. Todos los derechos reservados.
+              </p>
             </div>
             
-            <p className="text-stone-400 leading-relaxed mb-6">
-              Más que café, una experiencia que despierta todos tus sentidos. 
-              Únete a nuestra comunidad cafetera artesanal.
-            </p>
-
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center hover:bg-amber-700 transition-colors duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-semibold mb-6 text-amber-400">Enlaces</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <motion.li
-                  key={link.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <a
-                    href={link.href}
-                    className="text-stone-400 hover:text-amber-400 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-semibold mb-6 text-amber-400">Contacto</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-amber-400 mt-1 flex-shrink-0" />
-                <div className="text-stone-400">
-                  <p>Av. Café 123</p>
-                  <p>Centro Histórico, CDMX</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                <span className="text-stone-400">+52 55 1234 5678</span>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                <span className="text-stone-400">hola@aromacafe.mx</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Hours */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-semibold mb-6 text-amber-400">Horarios</h3>
-            <div className="space-y-2 text-stone-400">
-              <div className="flex justify-between">
-                <span>Lun - Vie</span>
-                <span>7:00 AM - 10:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Sábado</span>
-                <span>8:00 AM - 11:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Domingo</span>
-                <span>8:00 AM - 9:00 PM</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom Bar */}
-        <motion.div
-          className="border-t border-stone-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-stone-400 text-sm mb-4 md:mb-0">
-            © 2024 Aroma Café. Todos los derechos reservados.
-          </p>
-          
-          <div className="flex space-x-6 text-sm text-stone-400">
-            <a href="#" className="hover:text-amber-400 transition-colors duration-200">
-              Política de Privacidad
-            </a>
-            <a href="#" className="hover:text-amber-400 transition-colors duration-200">
-              Términos de Servicio
-            </a>
+            {/* Scroll to top button */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="p-2 bg-amber-900/80 hover:bg-amber-900/90 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group"
+              aria-label="Volver al inicio"
+            >
+              <ChevronUp className="w-4 h-4 text-white group-hover:animate-bounce" />
+            </button>
           </div>
-        </motion.div>
+        </div>
+        
+        {/* Decorative line */}
+        <div className="mt-4 pt-4 border-t border-white/20">
+          <div className="w-16 h-0.5 bg-amber-900 mx-auto rounded-full"></div>
+        </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

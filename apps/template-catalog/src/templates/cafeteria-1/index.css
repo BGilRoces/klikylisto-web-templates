@@ -1,25 +1,54 @@
-﻿@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c8611d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a54b1a;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes coffee-steam {
+  0% {
+    opacity: 0.3;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-20px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.2);
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-amber-900 hover:bg-amber-900/90 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
-  }
-  
-  .btn-secondary {
-    @apply bg-amber-900/10 hover:bg-amber-900/20 text-amber-900 px-6 py-3 rounded-lg font-medium transition-colors duration-200;
-  }
-  
-  .btn-accent {
-    @apply bg-amber-900 hover:bg-amber-900/90 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg;
-  }
+.coffee-steam {
+  animation: coffee-steam 2s ease-in-out infinite;
+}
+
+.coffee-steam:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.coffee-steam:nth-child(3) {
+  animation-delay: 1s;
 }

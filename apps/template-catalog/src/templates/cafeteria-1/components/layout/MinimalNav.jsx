@@ -68,18 +68,6 @@ const MinimalNav = ({ scrollY, onMenuClick }) => {
               </motion.a>
             ))}
           </motion.div>
-
-          {/* CTA Button */}
-          <motion.button
-            className="bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800 transition-colors duration-200"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Reservar
-          </motion.button>
         </div>
       </div>
     </motion.nav>
