@@ -49,10 +49,9 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="relative text-white/90 hover:text-white hover:-translate-y-1 transition-all duration-200 font-medium text-sm tracking-wide group"
+                  className="text-white/90 hover:text-white hover:-translate-y-1 transition-all duration-300 font-medium text-sm tracking-wide py-2 border-b-2 border-transparent hover:border-amber-400"
                 >
                   {item.name}
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
             </div>
