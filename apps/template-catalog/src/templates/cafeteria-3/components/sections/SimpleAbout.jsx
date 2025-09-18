@@ -26,28 +26,20 @@ const SimpleAbout = () => {
   ]
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="py-16 bg-stone-50">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.p
-            className="text-amber-700 font-medium mb-4 tracking-wider"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            NUESTRA HISTORIA
-          </motion.p>
+
           
           <motion.h2
-            className="text-4xl lg:text-6xl font-light text-stone-900 mb-6"
+            className="text-3xl lg:text-5xl font-light text-stone-900 mb-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -59,7 +51,7 @@ const SimpleAbout = () => {
           </motion.h2>
 
           <motion.p
-            className="text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -71,59 +63,55 @@ const SimpleAbout = () => {
         </motion.div>
 
         {/* Values Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
-              className="text-center group"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-center bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <motion.div
-                className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-200 transition-colors duration-300"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <value.icon className="w-8 h-8 text-amber-700" />
-              </motion.div>
+              <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <value.icon className="w-7 h-7 text-amber-700" />
+              </div>
               
-              <h3 className="text-xl font-semibold text-stone-900 mb-3">{value.title}</h3>
-              <p className="text-stone-600 leading-relaxed">{value.description}</p>
+              <h3 className="text-lg font-semibold text-stone-900 mb-2">{value.title}</h3>
+              <p className="text-stone-600 leading-relaxed text-sm">{value.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Stats Section */}
         <motion.div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+          className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          {[
-            { number: '10K+', label: 'Tazas servidas' },
-            { number: '500+', label: 'Clientes felices' },
-            { number: '5', label: 'Años de experiencia' },
-            { number: '15+', label: 'Variedades de café' }
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            {[
+              { number: '10K+', label: 'Tazas servidas' },
+              { number: '500+', label: 'Clientes felices' },
+              { number: '5', label: 'Años de experiencia' },
+              { number: '15+', label: 'Variedades de café' }
+            ].map((stat, index) => (
               <motion.div
-                className="text-4xl lg:text-5xl font-bold text-amber-700 mb-2"
-                whileHover={{ scale: 1.1 }}
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                {stat.number}
+                <div className="text-3xl lg:text-4xl font-bold text-amber-700 mb-1">
+                  {stat.number}
+                </div>
+                <div className="text-stone-600 font-medium text-sm">{stat.label}</div>
               </motion.div>
-              <div className="text-stone-600 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

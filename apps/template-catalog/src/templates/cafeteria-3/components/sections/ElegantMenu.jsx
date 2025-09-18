@@ -85,7 +85,7 @@ const ElegantMenu = ({ onMenuClick }) => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white rounded-xl p-4 shadow-lg">
+          <div className="bg-white rounded-xl p-4 shadow-lg flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <motion.button
                 key={category.id}
