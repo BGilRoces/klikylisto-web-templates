@@ -4,7 +4,7 @@ import { ArrowDown, Play } from 'lucide-react'
 
 const CleanHero = ({ onMenuClick }) => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-stone-50 to-amber-50">
+    <section id="home" className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-stone-50 to-amber-50 py-8 sm:py-16">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
@@ -15,10 +15,10 @@ const CleanHero = ({ onMenuClick }) => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center relative z-10">
         {/* Text Content */}
         <motion.div
-          className="text-center lg:text-left"
+          className="text-center lg:text-left order-2 lg:order-1"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -33,7 +33,7 @@ const CleanHero = ({ onMenuClick }) => {
           </motion.p>
 
           <motion.h1
-            className="text-5xl lg:text-7xl font-light text-stone-900 mb-6 leading-tight"
+            className="text-4xl sm:text-5xl lg:text-7xl font-light text-stone-900 mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -44,7 +44,7 @@ const CleanHero = ({ onMenuClick }) => {
           </motion.h1>
 
           <motion.p
-            className="text-xl text-stone-600 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed"
+            className="text-lg sm:text-xl text-stone-600 mb-6 sm:mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
@@ -80,13 +80,13 @@ const CleanHero = ({ onMenuClick }) => {
 
         {/* Image/Visual Content */}
         <motion.div
-          className="relative"
+          className="relative order-1 lg:order-2"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
           {/* Coffee Cup Illustration */}
-          <div className="relative mx-auto w-96 h-96 flex items-center justify-center">
+          <div className="relative mx-auto w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 flex items-center justify-center">
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-amber-200 to-amber-400 rounded-full opacity-20"
               animate={{ rotate: 360 }}
@@ -94,10 +94,10 @@ const CleanHero = ({ onMenuClick }) => {
             />
             
             <motion.svg
-              width="300"
-              height="300"
+              width="200"
+              height="200"
               viewBox="0 0 300 300"
-              className="relative z-10"
+              className="relative z-10 sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}

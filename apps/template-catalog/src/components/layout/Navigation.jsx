@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Coffee, Monitor, Smartphone, Tablet, Star } from 'lucide-react'
 
-const Navigation = ({ templateInfo }) => {
+const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
   const { templateId } = useParams()
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
@@ -79,13 +79,37 @@ const Navigation = ({ templateInfo }) => {
         {/* Right - Actions clean */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 bg-white/20 rounded-lg p-1 border border-amber-900/40">
-            <button className="p-2 bg-white/30 rounded-md shadow-sm hover:shadow-md transition-all border border-amber-900/40 hover:from-amber-100 hover:to-orange-100" title="Vista Desktop">
-              <Monitor size={16} className="text-amber-800" />
+            <button 
+              onClick={() => setViewportSize('desktop')}
+              className={`p-2 rounded-md shadow-sm hover:shadow-md transition-all border border-amber-900/40 ${
+                viewportSize === 'desktop' 
+                  ? 'bg-white/50 text-amber-900' 
+                  : 'bg-white/30 text-amber-700 hover:bg-white/40 hover:text-amber-900'
+              }`} 
+              title="Vista Desktop"
+            >
+              <Monitor size={16} />
             </button>
-            <button className="p-2 hover:bg-white/30 rounded-md transition-all text-amber-700 hover:text-amber-900" title="Vista Tablet">
+            <button 
+              onClick={() => setViewportSize('tablet')}
+              className={`p-2 rounded-md transition-all ${
+                viewportSize === 'tablet'
+                  ? 'bg-white/50 text-amber-900 shadow-sm'
+                  : 'hover:bg-white/30 text-amber-700 hover:text-amber-900'
+              }`} 
+              title="Vista Tablet"
+            >
               <Tablet size={16} />
             </button>
-            <button className="p-2 hover:bg-white/30 rounded-md transition-all text-amber-700 hover:text-amber-900" title="Vista Móvil">
+            <button 
+              onClick={() => setViewportSize('mobile')}
+              className={`p-2 rounded-md transition-all ${
+                viewportSize === 'mobile'
+                  ? 'bg-white/50 text-amber-900 shadow-sm'
+                  : 'hover:bg-white/30 text-amber-700 hover:text-amber-900'
+              }`} 
+              title="Vista Móvil"
+            >
               <Smartphone size={16} />
             </button>
           </div>
