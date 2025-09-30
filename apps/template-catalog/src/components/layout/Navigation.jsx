@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, Coffee, Monitor, Smartphone, Tablet, Star } from 'lucide-react'
+import { ArrowLeft, Coffee, Monitor, Smartphone, Tablet, Star, Menu } from 'lucide-react'
 
 const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
   const { templateId } = useParams()
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [mobilePanelOpen, setMobilePanelOpen] = useState(false)
+  const mobilePanelRef = useRef(null)
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -31,6 +33,25 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
       }
     }
   }, [lastScrollY])
+
+  // Close mobile panel when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (mobilePanelRef.current && !mobilePanelRef.current.contains(e.target)) {
+        setMobilePanelOpen(false)
+      }
+    }
+
+    if (mobilePanelOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('touchstart', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [mobilePanelOpen])
 
   return (
     <div className={`fixed top-0 left-0 right-0 z-50 bg-amber-900/10 backdrop-blur-md shadow-lg border-b border-amber-900/40 transition-transform duration-300 ${
@@ -58,8 +79,8 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
             </div>
         </div>
 
-        {/* Center - Template info clean */}
-        <div className="flex items-center gap-4 bg-white/20 px-6 py-3 rounded-xl border border-amber-900/40 shadow-sm">
+        {/* Center - Template info clean (hidden on small screens to save space) */}
+        <div className="hidden sm:flex items-center gap-4 bg-white/20 px-6 py-3 rounded-xl border border-amber-900/40 shadow-sm">
           <div className="p-2 bg-white/40 rounded-lg shadow-sm border border-amber-900/40">
             <Coffee size={20} className="text-amber-800" />
           </div>
@@ -77,8 +98,9 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
         </div>
 
         {/* Right - Actions clean */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-white/20 rounded-lg p-1 border border-amber-900/40">
+        <div className="flex items-center gap-1">
+          {/* Desktop + tablet: show inline buttons */}
+          <div className="hidden sm:flex items-center gap-1 bg-white/20 rounded-lg p-1 border border-amber-900/40">
             <button 
               onClick={() => setViewportSize('desktop')}
               className={`p-2 rounded-md shadow-sm hover:shadow-md transition-all border border-amber-900/40 ${
@@ -112,6 +134,37 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
             >
               <Smartphone size={16} />
             </button>
+          </div>
+
+          {/* Mobile: compact menu button */}
+          <div className="sm:hidden relative" ref={mobilePanelRef}>
+            <button
+              onClick={() => setMobilePanelOpen(v => !v)}
+              className="p-2 rounded-md bg-white/30 text-amber-700 hover:bg-white/40 transition-all"
+              aria-label="Abrir opciones"
+            >
+              <Menu size={18} />
+            </button>
+
+            {mobilePanelOpen && (
+              <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-lg border border-black/10 p-3 text-sm z-50">
+                <div className="font-semibold text-amber-900 mb-2">{templateInfo?.name || 'Template'}</div>
+                <div className="flex flex-col gap-2">
+                  <button onClick={() => { setViewportSize('mobile'); setMobilePanelOpen(false) }} className={`w-full flex items-center px-3 py-2 rounded ${viewportSize === 'mobile' ? 'bg-amber-100 text-amber-900' : 'hover:bg-gray-50'}`}>
+                    <Smartphone size={16} className="mr-2 text-amber-700" />
+                    <span>Móvil</span>
+                  </button>
+                  <button onClick={() => { setViewportSize('tablet'); setMobilePanelOpen(false) }} className={`w-full flex items-center px-3 py-2 rounded ${viewportSize === 'tablet' ? 'bg-amber-100 text-amber-900' : 'hover:bg-gray-50'}`}>
+                    <Tablet size={16} className="mr-2 text-amber-700" />
+                    <span>Tablet</span>
+                  </button>
+                  <button onClick={() => { setViewportSize('desktop'); setMobilePanelOpen(false) }} className={`w-full flex items-center px-3 py-2 rounded ${viewportSize === 'desktop' ? 'bg-amber-100 text-amber-900' : 'hover:bg-gray-50'}`}>
+                    <Monitor size={16} className="mr-2 text-amber-700" />
+                    <span>Desktop</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -8,10 +8,10 @@ const MenuPage = ({ onBack }) => {
 
   const categories = [
     { id: 'all', name: 'Ver Todos', icon: Coffee },
-    { id: 'hot', name: 'Bebidas Calientes', icon: Coffee },
-    { id: 'cold', name: 'Bebidas Frías', icon: Snowflake },
-    { id: 'specialty', name: 'Cafés Especiales', icon: Star },
-    { id: 'desserts', name: 'Postres & Snacks', icon: Heart }
+    { id: 'hot', name: 'Calientes', icon: Coffee },
+    { id: 'cold', name: 'Fríos', icon: Snowflake },
+    { id: 'specialty', name: 'Especiales', icon: Star },
+    { id: 'desserts', name: 'Postres', icon: Heart }
   ]
 
   const menuItems = {
@@ -193,10 +193,8 @@ const MenuPage = ({ onBack }) => {
     ]
   }
 
-  // Función para obtener todos los items o los de una categoría específica
   const getDisplayItems = () => {
     if (activeCategory === 'all') {
-      // Combinar todos los items de todas las categorías
       return Object.entries(menuItems).flatMap(([categoryKey, items]) => 
         items.map(item => ({ ...item, category: categoryKey }))
       )
@@ -204,137 +202,176 @@ const MenuPage = ({ onBack }) => {
     return menuItems[activeCategory] || []
   }
 
-  const getCategoryName = (categoryKey) => {
+  const getCategoryInfo = (categoryKey) => {
     const categoryMap = {
-      hot: 'Bebidas Calientes',
-      cold: 'Bebidas Frías',
-      specialty: 'Cafés Especiales',
-      desserts: 'Postres & Snacks'
+      all: {
+        name: 'Ver Todos',
+        icon: Coffee,
+        optionActive: 'bg-amber-800 text-white shadow-md',
+        optionInactive: 'text-stone-700',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-stone-200 text-stone-800 px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      hot: {
+        name: 'Calientes',
+        icon: Coffee,
+        optionActive: 'bg-amber-800 text-white shadow-md',
+        optionInactive: 'text-amber-900 hover:text-amber-700',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-amber-800 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      cold: {
+        name: 'Fríos',
+        icon: Snowflake,
+        optionActive: 'bg-sky-600 text-white shadow-md',
+        optionInactive: 'text-sky-800 hover:text-sky-600',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-sky-600 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      specialty: {
+        name: 'Especiales',
+        icon: Star,
+        optionActive: 'bg-yellow-600 text-white shadow-md',
+        optionInactive: 'text-yellow-600 hover:text-yellow-600',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-yellow-600 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      desserts: {
+        name: 'Postres',
+        icon: Heart,
+        optionActive: 'bg-stone-700 text-white shadow-md',
+        optionInactive: 'text-stone-800 hover:text-stone-700',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-stone-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      }
     }
-    return categoryMap[categoryKey] || ''
+
+    return categoryMap[categoryKey] || categoryMap.all
   }
+
+  // categories are displayed centered (no scroll) to match ElegantMenu styles
 
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+      <div className="bg-white shadow-sm border-b border-amber-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <div className="flex items-center justify-between">
             <motion.button
               onClick={onBack}
-              className="flex items-center gap-3 text-stone-600 hover:text-amber-700 transition-colors duration-200"
-              whileHover={{ x: -5 }}
+              className="flex items-center gap-2 text-stone-600 hover:text-amber-700 transition-colors duration-200 font-medium"
+              whileHover={{ x: -3 }}
               whileTap={{ scale: 0.95 }}
             >
               <ArrowLeft className="w-5 h-5" />
-              <span className="font-medium">Volver</span>
+              <span className="hidden sm:inline">Volver</span>
             </motion.button>
 
-            <div className="flex items-center gap-3">
-              <Coffee className="w-8 h-8 text-amber-700" />
-              <h1 className="text-2xl font-bold text-stone-900">Menú Completo</h1>
+            <div className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
+              <Coffee className="w-5 h-5 sm:w-6 sm:h-6 text-amber-700" />
+              <h1 className="text-lg sm:text-2xl font-bold text-stone-900">Menú Completo</h1>
             </div>
 
-            <div className="w-20"></div> {/* Spacer for centering */}
+            <div className="w-20"></div>
           </div>
         </div>
       </div>
 
-      {/* Category Tabs */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+      {/* Category Tabs (centered, matching ElegantMenu styles) */}
+      <div className="bg-white border-b border-stone-200 sticky top-0 z-10 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-center">
-            <div className="flex bg-stone-100 rounded-xl p-2 gap-2 overflow-x-auto">
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
-                    activeCategory === category.id
-                      ? 'bg-amber-700 text-white shadow-md'
-                      : 'text-stone-600 hover:text-amber-700 hover:bg-white'
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <category.icon className="w-4 h-4" />
-                  {category.name}
-                </motion.button>
-              ))}
+            <div className="bg-amber-50 border border-amber-100 rounded-xl p-3 shadow-lg flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => {
+                const info = getCategoryInfo(category.id)
+                const isActive = activeCategory === category.id
+
+                return (
+                  <motion.button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 text-sm sm:text-base ${
+                      isActive ? info.optionActive : info.optionInactive
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <category.icon className="w-4 h-4" />
+                    {category.name}
+                  </motion.button>
+                )
+              })}
             </div>
           </div>
         </div>
       </div>
 
       {/* Menu Items */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         <motion.div
           key={activeCategory}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {getDisplayItems().map((item, index) => (
-            <motion.div
-              key={`${item.category || activeCategory}-${item.id}`}
-              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 group"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-            >
-              {/* Category badge (only shown in "Ver Todos") */}
-              {activeCategory === 'all' && (
-                <div className="mb-4">
-                  <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded-full">
-                    {getCategoryName(item.category)}
-                  </span>
-                </div>
-              )}
-
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold text-stone-900 group-hover:text-amber-700 transition-colors duration-300">
-                  {item.name}
-                </h3>
-                <span className="text-2xl font-bold text-amber-700">${item.price.toFixed(2)}</span>
-              </div>
-              
-              <p className="text-stone-600 leading-relaxed mb-6">{item.description}</p>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-sm font-semibold text-stone-700 mb-2">Ingredientes:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {item.ingredients.map((ingredient, idx) => (
-                      <span 
-                        key={idx}
-                        className="px-3 py-1 bg-stone-100 text-stone-600 text-xs rounded-full"
-                      >
-                        {ingredient}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+          {getDisplayItems().map((item, index) => {
+            const categoryInfo = getCategoryInfo(item.category)
+            const CategoryIcon = categoryInfo.icon
+            
+            return (
+              <motion.div
+                key={`${item.category || activeCategory}-${item.id}`}
+                className="bg-white rounded-xl overflow-hidden shadow-lg border border-amber-200 relative group cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+              >
+                {/* Decorative top border */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-600 to-amber-800" />
                 
-                <div>
-                  <h4 className="text-sm font-semibold text-stone-700 mb-2">Tamaños disponibles:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {item.size.map((size, idx) => (
-                      <span 
-                        key={idx}
-                        className="px-3 py-1 bg-amber-50 text-amber-700 text-xs rounded-full border border-amber-200"
-                      >
-                        {size}
-                      </span>
-                    ))}
+                {/* Content */}
+                <div className="p-4 sm:p-5">
+                  {/* Header with category badge and price */}
+                  <div className="flex items-start justify-between mb-3">
+                    {activeCategory === 'all' && (
+                      <div className={getCategoryInfo(item.category).badgeClass}>
+                        <CategoryIcon className="w-3.5 h-3.5" />
+                        <span>{categoryInfo.name}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg sm:text-xl font-bold text-amber-700 mb-2 leading-tight">
+                    {item.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                    {item.description}
+                  </p>
+
+                  {/* Bottom accent */}
+                  <div className="flex items-center gap-2 pt-3 mt-3">
+                    <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-amber-500/10 to-amber-500/5 group-hover:from-amber-500/10 group-hover:via-amber-500/15 group-hover:to-amber-500/10 transition-all duration-500 pointer-events-none rounded-xl" />
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   )
 }

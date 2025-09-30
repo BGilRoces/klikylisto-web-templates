@@ -4,7 +4,7 @@ import { ArrowDown, Play } from 'lucide-react'
 
 const CleanHero = ({ onMenuClick }) => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-stone-50 to-amber-50 py-8 sm:py-16">
+  <section id="home" className="min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-br from-stone-50 to-amber-50 py-8 sm:py-16">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
@@ -170,9 +170,9 @@ const CleanHero = ({ onMenuClick }) => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - centered relative to the content */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="w-full flex justify-center mt-8 relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2 }}

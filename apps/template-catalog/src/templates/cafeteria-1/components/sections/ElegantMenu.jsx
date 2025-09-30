@@ -15,33 +15,74 @@ const ElegantMenu = ({ onMenuClick }) => {
 
   const menuItems = {
     hot: [
-      { name: 'Espresso', price: '$3.50', description: 'Intenso y aromático, la base de todo buen café' },
-      { name: 'Cappuccino', price: '$4.20', description: 'Equilibrio perfecto entre espresso y leche vaporizada' },
-      { name: 'Latte', price: '$4.80', description: 'Suave y cremoso con arte en leche' },
-      { name: 'Americano', price: '$3.80', description: 'Espresso alargado con agua caliente' },
-      { name: 'Flat White', price: '$4.50', description: 'Intensidad del espresso con microespuma sedosa' },
-      { name: 'Mocha', price: '$5.20', description: 'La combinación perfecta de café y chocolate' }
+      { name: 'Espresso', description: 'Intenso y aromático, la base de todo buen café' },
+      { name: 'Cappuccino', description: 'Equilibrio perfecto entre espresso y leche vaporizada' },
+      { name: 'Latte', description: 'Suave y cremoso con arte en leche' },
+      { name: 'Americano', description: 'Espresso alargado con agua caliente' },
+      { name: 'Flat White', description: 'Intensidad del espresso con microespuma sedosa' },
+      { name: 'Mocha', description: 'La combinación perfecta de café y chocolate' }
     ],
     cold: [
-      { name: 'Cold Brew', price: '$4.50', description: 'Extracción fría durante 24 horas, suave y refrescante' },
-      { name: 'Iced Latte', price: '$4.80', description: 'Nuestro latte clásico servido sobre hielo' },
-      { name: 'Frappé', price: '$5.50', description: 'Bebida helada y cremosa perfecta para el verano' },
-      { name: 'Affogato', price: '$6.20', description: 'Helado de vainilla "ahogado" en espresso caliente' },
-      { name: 'Iced Americano', price: '$3.80', description: 'Americano servido sobre hielo con un toque cítrico' }
+      { name: 'Cold Brew', description: 'Extracción fría durante 24 horas, suave y refrescante' },
+      { name: 'Iced Latte', description: 'Nuestro latte clásico servido sobre hielo' },
+      { name: 'Frappé', description: 'Bebida helada y cremosa perfecta para el verano' },
+      { name: 'Affogato', description: 'Helado de vainilla "ahogado" en espresso caliente' },
+      { name: 'Iced Americano', description: 'Americano servido sobre hielo con un toque cítrico' }
     ],
     specialty: [
-      { name: 'Ethiopian Yirgacheffe', price: '$7.50', description: 'Notas florales y cítricas, cultivado en las montañas de Etiopía' },
-      { name: 'Colombian Huila', price: '$6.80', description: 'Sabor balanceado con notas de caramelo y nuez' },
-      { name: 'Jamaican Blue Mountain', price: '$12.00', description: 'Uno de los cafés más exclusivos del mundo' },
-      { name: 'Hawaiian Kona', price: '$10.50', description: 'Suave y refinado, cultivado en suelo volcánico' }
+      { name: 'Ethiopian Yirgacheffe', description: 'Notas florales y cítricas, cultivado en las montañas de Etiopía' },
+      { name: 'Colombian Huila', description: 'Sabor balanceado con notas de caramelo y nuez' },
+      { name: 'Jamaican Blue Mountain', description: 'Uno de los cafés más exclusivos del mundo' },
+      { name: 'Hawaiian Kona', description: 'Suave y refinado, cultivado en suelo volcánico' }
     ],
     desserts: [
-      { name: 'Tiramisú', price: '$6.50', description: 'Clásico italiano con café espresso y mascarpone' },
-      { name: 'Cheesecake de Café', price: '$5.80', description: 'Cremoso cheesecake con infusión de café' },
-      { name: 'Brownie de Chocolate', price: '$4.50', description: 'Húmedo brownie acompañado de helado de vainilla' },
-      { name: 'Galletas Artesanales', price: '$3.20', description: 'Variedad de galletas horneadas diariamente' }
+      { name: 'Tiramisú', description: 'Clásico italiano con café espresso y mascarpone' },
+      { name: 'Cheesecake de Café', description: 'Cremoso cheesecake con infusión de café' },
+      { name: 'Brownie de Chocolate', description: 'Húmedo brownie acompañado de helado de vainilla' },
+      { name: 'Galletas Artesanales', description: 'Variedad de galletas horneadas diariamente' }
     ]
   }
+
+  const getCategoryInfo = (categoryKey) => {
+    const categoryMap = {
+      hot: {
+        name: 'Calientes',
+        icon: Coffee,
+        optionActive: 'bg-amber-800 text-white shadow-md',
+        optionInactive: 'text-amber-900 hover:text-amber-700',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-amber-800 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      cold: {
+        name: 'Fríos',
+        icon: Snowflake,
+        optionActive: 'bg-sky-600 text-white shadow-md',
+        optionInactive: 'text-sky-800 hover:text-sky-600',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-sky-600 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      specialty: {
+        name: 'Especiales',
+        icon: Star,
+        optionActive: 'bg-yellow-600 text-white shadow-md',
+        optionInactive: 'text-yellow-800 hover:text-yellow-600',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-yellow-600 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      },
+      desserts: {
+        name: 'Postres',
+        icon: Heart,
+        optionActive: 'bg-stone-700 text-white shadow-md',
+        optionInactive: 'text-stone-800 hover:text-stone-700',
+        badgeClass:
+          'inline-flex items-center gap-1.5 bg-stone-700 text-white px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide'
+      }
+    }
+
+    return categoryMap[categoryKey] || categoryMap.hot
+  }
+
+  const currentCategory = categories.find((c) => c.id === activeCategory)
 
   return (
     <section id="menu" className="py-20 bg-stone-50">
@@ -85,30 +126,31 @@ const ElegantMenu = ({ onMenuClick }) => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white rounded-xl p-4 shadow-lg flex flex-wrap gap-2 justify-center">
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
-                  activeCategory === category.id
-                    ? 'bg-amber-700 text-white shadow-md'
-                    : 'text-stone-600 hover:text-amber-700'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <category.icon className="w-4 h-4" />
-                {category.name}
-              </motion.button>
-            ))}
-          </div>
+            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 shadow-lg flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => {
+                const info = getCategoryInfo(category.id)
+                const isActive = activeCategory === category.id
+
+                return (
+                  <motion.button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${isActive ? info.optionActive : info.optionInactive}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <category.icon className="w-4 h-4" />
+                    {category.name}
+                  </motion.button>
+                )
+              })}
+            </div>
         </motion.div>
 
         {/* Menu Items */}
         <motion.div
           key={activeCategory}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -116,27 +158,52 @@ const ElegantMenu = ({ onMenuClick }) => {
           {menuItems[activeCategory].map((item, index) => (
             <motion.div
               key={item.name}
-              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 group"
+              className="bg-white rounded-xl overflow-hidden shadow-lg border border-amber-200 relative group cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -6, scale: 1.02 }}
             >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold text-stone-900 group-hover:text-amber-700 transition-colors duration-300">
+              {/* Decorative top border - always visible */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-600 to-amber-800" />
+              
+              {/* Content */}
+              <div className="p-4 sm:p-5">
+                {/* Header with badge */}
+                <div className="flex items-start justify-between mb-3">
+                  {currentCategory && (
+                    <div className={getCategoryInfo(currentCategory.id).badgeClass}>
+                      <currentCategory.icon className="w-3.5 h-3.5" />
+                      <span>{currentCategory.name}</span>
+                    </div>
+                  )}
+                  
+                  <motion.div
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    whileHover={{ rotate: 180 }}
+                  >
+                    <Star className="w-5 h-5 text-amber-600 fill-amber-600" />
+                  </motion.div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg sm:text-xl font-bold text-amber-700 mb-2 leading-tight">
                   {item.name}
                 </h3>
-                <span className="text-2xl font-bold text-amber-700">{item.price}</span>
+
+                {/* Description */}
+                <p className="text-stone-600 text-sm leading-relaxed line-clamp-2">
+                  {item.description}
+                </p>
+
+                {/* Bottom accent line - always visible */}
+                <div className="flex items-center gap-2 pt-3 mt-3 border-t border-amber-100">
+                  <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+                </div>
               </div>
-              
-              <p className="text-stone-600 leading-relaxed">{item.description}</p>
-              
-              <motion.button
-                className="mt-4 text-amber-700 font-medium hover:text-amber-800 transition-colors duration-200"
-                whileHover={{ x: 5 }}
-              >
-                Agregar al pedido →
-              </motion.button>
+
+              {/* Hover glow effect - always visible but intensifies on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-amber-500/10 to-amber-500/5 group-hover:from-amber-500/10 group-hover:via-amber-500/15 group-hover:to-amber-500/10 transition-all duration-500 pointer-events-none rounded-xl" />
             </motion.div>
           ))}
         </motion.div>

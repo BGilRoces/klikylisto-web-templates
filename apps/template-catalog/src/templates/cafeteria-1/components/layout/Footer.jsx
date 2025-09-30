@@ -18,13 +18,14 @@ const Footer = () => {
   return (
     <footer className="bg-stone-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 divide-y divide-stone-800 md:divide-y-0 md:divide-x md:divide-stone-800">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="py-6 md:py-0 md:px-6"
           >
             <div className="flex items-center space-x-2 mb-6">
               <Coffee className="w-8 h-8 text-amber-400" />
@@ -61,6 +62,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
+            className='hidden lg:block py-6 md:py-0 md:px-6'
           >
             <h3 className="text-xl font-semibold mb-6 text-amber-400">Enlaces</h3>
             <ul className="space-y-3">
@@ -89,6 +91,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="py-6 md:py-0 md:px-6"
           >
             <h3 className="text-xl font-semibold mb-6 text-amber-400">Contacto</h3>
             <div className="space-y-4">
@@ -118,6 +121,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
+            className='hidden lg:block py-6 md:py-0 md:px-6'
           >
             <h3 className="text-xl font-semibold mb-6 text-amber-400">Horarios</h3>
             <div className="space-y-2 text-stone-400">

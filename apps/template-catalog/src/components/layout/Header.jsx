@@ -93,7 +93,7 @@ const Header = () => {
                 onClick={() => document.getElementById('templates-section')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative px-6 py-3 bg-gradient-to-r from-amber-900 to-orange-700 hover:from-amber-900 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center justify-center gap-2">
                   <Coffee size={20} />
                   Ver Nuestros Diseños
                   <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
