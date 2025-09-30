@@ -80,7 +80,7 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
         </div>
 
         {/* Center - Template info clean (hidden on small screens to save space) */}
-        <div className="hidden sm:flex items-center gap-4 bg-white/20 px-6 py-3 rounded-xl border border-amber-900/40 shadow-sm">
+        <div className="hidden lg:flex items-center gap-4 bg-white/20 px-6 py-3 rounded-xl border border-amber-900/40 shadow-sm">
           <div className="p-2 bg-white/40 rounded-lg shadow-sm border border-amber-900/40">
             <Coffee size={20} className="text-amber-800" />
           </div>
@@ -134,37 +134,6 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
             >
               <Smartphone size={16} />
             </button>
-          </div>
-
-          {/* Mobile: compact menu button */}
-          <div className="sm:hidden relative" ref={mobilePanelRef}>
-            <button
-              onClick={() => setMobilePanelOpen(v => !v)}
-              className="p-2 rounded-md bg-white/30 text-amber-700 hover:bg-white/40 transition-all"
-              aria-label="Abrir opciones"
-            >
-              <Menu size={18} />
-            </button>
-
-            {mobilePanelOpen && (
-              <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-lg border border-black/10 p-3 text-sm z-50">
-                <div className="font-semibold text-amber-900 mb-2">{templateInfo?.name || 'Template'}</div>
-                <div className="flex flex-col gap-2">
-                  <button onClick={() => { setViewportSize('mobile'); setMobilePanelOpen(false) }} className={`w-full flex items-center px-3 py-2 rounded ${viewportSize === 'mobile' ? 'bg-amber-100 text-amber-900' : 'hover:bg-gray-50'}`}>
-                    <Smartphone size={16} className="mr-2 text-amber-700" />
-                    <span>Móvil</span>
-                  </button>
-                  <button onClick={() => { setViewportSize('tablet'); setMobilePanelOpen(false) }} className={`w-full flex items-center px-3 py-2 rounded ${viewportSize === 'tablet' ? 'bg-amber-100 text-amber-900' : 'hover:bg-gray-50'}`}>
-                    <Tablet size={16} className="mr-2 text-amber-700" />
-                    <span>Tablet</span>
-                  </button>
-                  <button onClick={() => { setViewportSize('desktop'); setMobilePanelOpen(false) }} className={`w-full flex items-center px-3 py-2 rounded ${viewportSize === 'desktop' ? 'bg-amber-100 text-amber-900' : 'hover:bg-gray-50'}`}>
-                    <Monitor size={16} className="mr-2 text-amber-700" />
-                    <span>Desktop</span>
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
