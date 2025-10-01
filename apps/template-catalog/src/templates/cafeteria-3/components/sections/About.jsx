@@ -1,192 +1,205 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Award, Users, Leaf } from 'lucide-react'
+import { Trophy, Globe, Clock, Users, Coffee, Sparkles, Award, Shield } from 'lucide-react'
 
 const About = () => {
-  const features = [
+  const achievements = [
     {
-      icon: Heart,
-      title: "Pasiónaaaaa",
-      description: "Cada grano es seleccionado cuidadosamente y tostado con amor para crear la experiencia perfecta."
+      icon: Coffee,
+      number: "10K+",
+      title: "Tazas servidas",
+      description: "Cada una perfecta"
+    },
+    {
+      icon: Users,
+      number: "2K+",
+      title: "Clientes felices", 
+      description: "Sonrisas garantizadas"
     },
     {
       icon: Award,
-      title: "Calidad Premium",
-      description: "Trabajamos solo con los mejores proveedores para garantizar la más alta calidad en cada taza."
+      number: "15+",
+      title: "Premios ganados",
+      description: "Reconocimiento mundial"
+    },
+    {
+      icon: Trophy,
+      number: "4.9",
+      title: "Calificación",
+      description: "Excelencia comprobada"
+    }
+  ]
+
+  const values = [
+    {
+      icon: Sparkles,
+      title: "Pasión",
+      description: "Cada grano cuenta una historia de dedicación y amor por el café perfecto."
+    },
+    {
+      icon: Award,
+      title: "Excelencia", 
+      description: "La calidad no es negociable, solo lo mejor llega a tu taza."
     },
     {
       icon: Users,
       title: "Comunidad",
-      description: "Somos más que una cafetería, somos un punto de encuentro para amantes del buen café."
+      description: "Creamos conexiones auténticas a través del café premium."
     },
     {
-      icon: Leaf,
+      icon: Shield,
       title: "Sostenibilidad",
-      description: "Comprometidos con prácticas sustentables y comercio justo con nuestros productores."
+      description: "Comprometidos con el medio ambiente y el comercio justo."
     }
   ]
 
   return (
-    <section id="about" className="py-20 bg-white relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-40 h-40 border border-coffee-300 rounded-full"></div>
-        <div className="absolute bottom-20 right-20 w-32 h-32 border border-coffee-300 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 border border-coffee-300 rounded-full"></div>
+    <section id="about" className="py-6 bg-gradient-to-br from-amber-900 via-orange-950 to-amber-900 relative overflow-hidden">
+      {/* Premium background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-orange-600/20 to-amber-500/15 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-56 h-56 bg-gradient-to-tl from-orange-400/25 to-amber-500/20 rounded-full blur-3xl"></div>
+        
+        {/* Floating particles */}
+        {Array.from({ length: 8 }, (_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-orange-400/40 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -15, 0],
+              opacity: [0.4, 0.8, 0.4],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2
+            }}
+          />
+        ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Compact Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.span
-            className="text-coffee-500 font-medium tracking-wider text-sm uppercase"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-orange-500/20 to-amber-600/20 backdrop-blur-xl rounded-full border border-orange-300/30 mb-4 shadow-xl shadow-orange-500/20"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
           >
-            Nuestra Historia
-          </motion.span>
+            <span className="text-orange-200 font-bold tracking-widest text-sm uppercase">Nuestra Historia</span>
+          </motion.div>
+          
           <motion.h2
-            className="text-4xl md:text-5xl font-display font-bold text-coffee-900 mt-4 mb-6"
+            className="text-2xl md:text-3xl font-display font-black mb-3 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Donde Nace la
-            <span className="text-coffee-600"> Magia</span>
+            <span className="bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent">
+              Desde 2018, hemos estado redefiniendo la
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-orange-300 via-amber-400 to-orange-300 bg-clip-text text-transparent">
+              experiencia del café, creando un espacio donde la
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-orange-300 via-amber-400 to-orange-300 bg-clip-text text-transparent">
+              innovación se encuentra con la tradición.
+            </span>
           </motion.h2>
-          <motion.p
-            className="text-xl text-coffee-700 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            Desde 2020, hemos sido pioneros en crear experiencias de café únicas, 
-            combinando técnicas artesanales tradicionales con innovación moderna para 
-            despertar todos tus sentidos.
-          </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Story */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative">
-              {/* Main image placeholder - you can replace with actual image */}
-              <motion.div
-                className="w-full h-96 bg-gradient-to-br from-coffee-200 to-coffee-400 rounded-2xl shadow-2xl relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Coffee plantation silhouette effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-coffee-800 to-transparent"></div>
-                <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-coffee-700 rounded-full opacity-60"></div>
-                <div className="absolute top-1/3 right-1/3 w-6 h-6 bg-coffee-600 rounded-full opacity-70"></div>
-                <div className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-coffee-800 rounded-full opacity-50"></div>
-                
-                {/* Overlay text */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    className="text-center text-white"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <div className="text-6xl font-display font-bold mb-2">2020</div>
-                    <div className="text-lg font-medium">Año de Fundación</div>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* Floating stats */}
-              <motion.div
-                className="absolute -top-8 -right-8 bg-white rounded-2xl shadow-xl p-6 border border-coffee-100"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-3xl font-bold text-coffee-600">1000+</div>
-                <div className="text-coffee-700 font-medium">Tazas Servidas</div>
-                <div className="text-coffee-700 font-medium">Diariamente</div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-8 -left-8 bg-coffee-600 text-white rounded-2xl shadow-xl p-6"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-3xl font-bold">25+</div>
-                <div className="font-medium">Variedades</div>
-                <div className="font-medium">de Café</div>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Right side - Features */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="flex items-start space-x-4 group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ x: 10 }}
-              >
-                <motion.div
-                  className="flex-shrink-0 w-16 h-16 bg-coffee-100 rounded-2xl flex items-center justify-center group-hover:bg-coffee-600 transition-colors duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <feature.icon className="h-8 w-8 text-coffee-600 group-hover:text-white transition-colors duration-300" />
-                </motion.div>
-                <div>
-                  <h3 className="text-xl font-display font-semibold text-coffee-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-coffee-700 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Bottom CTA */}
+        {/* Compact Achievements Grid */}
         <motion.div
-          className="text-center mt-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <motion.button
-            className="bg-coffee-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-coffee-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Conoce Nuestro Proceso
-          </motion.button>
+          {achievements.map((achievement, index) => (
+            <motion.div
+              key={achievement.title}
+              className="group relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -3 }}
+            >
+              <div className="relative bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-orange-300/30 shadow-xl shadow-orange-500/10 group-hover:shadow-orange-500/20 transition-all duration-300 h-full text-center">
+                <motion.div
+                  className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center mb-3 mx-auto shadow-lg"
+                  whileHover={{ scale: 1.05, rotate: 3 }}
+                >
+                  <achievement.icon className="w-5 h-5 text-white" />
+                </motion.div>
+                
+                <motion.div
+                  className="text-2xl font-black text-orange-300 mb-1"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
+                >
+                  {achievement.number}
+                </motion.div>
+                
+                <h3 className="text-sm font-bold text-white mb-1">
+                  {achievement.title}
+                </h3>
+                
+                <p className="text-orange-100/70 text-xs">
+                  {achievement.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Compact Values Section */}
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-3"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          {values.map((value, index) => (
+            <motion.div
+              key={value.title}
+              className="group relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -2 }}
+            >
+              <div className="relative bg-white/5 backdrop-blur-md p-3 rounded-xl border border-orange-300/20 group-hover:bg-white/10 transition-all duration-300 h-full">
+                <div className="w-8 h-8 bg-gradient-to-br from-orange-400/20 to-amber-500/20 rounded-lg flex items-center justify-center mb-3">
+                  <value.icon className="w-4 h-4 text-orange-300" />
+                </div>
+                
+                <h4 className="text-white font-semibold mb-2 text-sm">
+                  {value.title}
+                </h4>
+                
+                <p className="text-orange-100/60 text-xs leading-relaxed">
+                  {value.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
