@@ -9,7 +9,6 @@ const Navigation = () => {
     { name: 'Inicio', href: '#home' },
     { name: 'Experiencia', href: '#experience' },
     { name: 'Colección', href: '#beans' },
-    { name: 'Innovación', href: '#lab' },
     { name: 'Contacto', href: '#contact' }
   ];
 

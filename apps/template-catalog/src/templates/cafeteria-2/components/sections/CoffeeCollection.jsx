@@ -93,7 +93,8 @@ const CoffeeCollection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              // Mobile: horizontal scroll snap to show one card at a time
+              className="flex gap-8 overflow-x-auto snap-x snap-mandatory touch-pan-x items-start pb-6 md:pb-0 px-4 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-8"
             >
               {filteredCoffees.map((coffee, index) => (
                 <motion.div
@@ -101,6 +102,7 @@ const CoffeeCollection = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="snap-center flex-shrink-0 w-[85%] sm:w-[70%] md:w-auto"
                 >
                   <CoffeeCard 
                     coffee={coffee} 

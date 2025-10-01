@@ -66,60 +66,27 @@ const Footer = () => {
               </li>
             </ul>
           </motion.div>
-
-          {/* Coffee Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h4 className="font-bold text-white mb-4">Arte del Café</h4>
-            <ul className="space-y-2">
-              <li className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                <span className="text-gray-300">Origen Único</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                <span className="text-gray-300">Mezclas Exclusivas</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                <span className="text-gray-300">Ediciones Limitadas</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                <span className="text-gray-300">Guías de Preparación</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
-                <span className="text-gray-300">Proceso de Tostado</span>
-              </li>
-            </ul>
-          </motion.div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gradient-to-r from-transparent via-white/20 to-transparent pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-white/20 pt-2">
+          <div className="flex flex-col md:flex-row items-center">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-gray-400 text-base mb-4 md:mb-0"
+              className="text-gray-400 text-base text-sm mb-2 md:mb-0"
             >
-              © 2024 RoastCraft. Todos los derechos reservados.
+              © 2024 KlikYListo. Todos los derechos reservados.
             </motion.p>
             
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center space-x-2 text-gray-400 text-base"
+              className="flex items-center space-x-2 text-gray-400 text-base text-sm"
             >
-              <span>Hecho con</span>
-              <Heart className="w-5 h-5 text-red-500 fill-current animate-pulse" />
-              <span>para los amantes del café</span>
+              <span>klikylisto@gmail.com</span>
             </motion.div>
           </div>
         </div>

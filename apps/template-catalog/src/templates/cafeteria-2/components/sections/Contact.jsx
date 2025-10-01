@@ -30,18 +30,18 @@ const Contact = () => {
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="relative overflow-hidden bg-white/80 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-amber-200/60 shadow-xl shadow-amber-100/20">
+            <div className="relative overflow-hidden p-4 md:p-8 lg:p-12 md:bg-white/80 md:backdrop-blur-md md:rounded-3xl md:border md:border-amber-200/60 md:shadow-xl md:shadow-amber-100/20">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-amber-300/15 to-orange-200/10 rounded-full -translate-y-20 translate-x-20"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-300/15 to-amber-200/10 rounded-full translate-y-16 -translate-x-16"></div>
             
-            <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="relative z-10 grid sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 sm:col-span-1"
           >
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
@@ -109,7 +109,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white/70 backdrop-blur-md p-8 rounded-2xl border border-amber-200/40 shadow-lg"
+            className="bg-white/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-amber-200/40 shadow-lg sm:col-span-2"
           >
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Envíanos un mensaje</h3>
             <form className="space-y-5">
