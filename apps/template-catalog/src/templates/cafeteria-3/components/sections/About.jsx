@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Trophy, Globe, Clock, Users, Coffee, Sparkles, Award, Shield } from 'lucide-react'
+import { Trophy, Users, Coffee, Award, Shield, Heart, Leaf, Star } from 'lucide-react'
 
 const About = () => {
   const achievements = [
@@ -24,7 +24,7 @@ const About = () => {
       description: "Reconocimiento mundial"
     },
     {
-      icon: Trophy,
+      icon: Star,
       number: "4.9",
       title: "Calificación",
       description: "Excelencia comprobada"
@@ -33,7 +33,7 @@ const About = () => {
 
   const values = [
     {
-      icon: Sparkles,
+      icon: Heart,
       title: "Pasión",
       description: "Cada grano cuenta una historia de dedicación y amor por el café perfecto."
     },
@@ -43,164 +43,89 @@ const About = () => {
       description: "La calidad no es negociable, solo lo mejor llega a tu taza."
     },
     {
-      icon: Users,
-      title: "Comunidad",
-      description: "Creamos conexiones auténticas a través del café premium."
+      icon: Leaf,
+      title: "Sostenibilidad",
+      description: "Comercio justo y prácticas responsables con el medio ambiente."
     },
     {
       icon: Shield,
-      title: "Sostenibilidad",
-      description: "Comprometidos con el medio ambiente y el comercio justo."
+      title: "Confianza",
+      description: "Transparencia y consistencia que nuestros clientes valoran."
     }
   ]
 
   return (
-    <section id="about" className="py-6 bg-gradient-to-br from-amber-900 via-orange-950 to-amber-900 relative overflow-hidden">
-      {/* Premium background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-orange-600/20 to-amber-500/15 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-56 h-56 bg-gradient-to-tl from-orange-400/25 to-amber-500/20 rounded-full blur-3xl"></div>
-        
-        {/* Floating particles */}
-        {Array.from({ length: 8 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-orange-400/40 rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -15, 0],
-              opacity: [0.4, 0.8, 0.4],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2
-            }}
-          />
-        ))}
+    <section id="about" className="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-400 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-400 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Compact Header */}
+        {/* Header */}
         <motion.div
-          className="text-center mb-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-orange-500/20 to-amber-600/20 backdrop-blur-xl rounded-full border border-orange-300/30 mb-4 shadow-xl shadow-orange-500/20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <span className="text-orange-200 font-bold tracking-widest text-sm uppercase">Nuestra Historia</span>
-          </motion.div>
-          
-          <motion.h2
-            className="text-2xl md:text-3xl font-display font-black mb-3 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <span className="bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent">
-              Desde 2018, hemos estado redefiniendo la
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-amber-200 mb-4">
+            <Coffee className="w-4 h-4 text-amber-600" />
+            <span className="text-sm font-medium text-amber-900">Nuestra Historia</span>
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-display font-black text-neutral-900 mb-4">
+            Más que café, una
+            <span className="block mt-2 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+              experiencia única
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-orange-300 via-amber-400 to-orange-300 bg-clip-text text-transparent">
-              experiencia del café, creando un espacio donde la
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-orange-300 via-amber-400 to-orange-300 bg-clip-text text-transparent">
-              innovación se encuentra con la tradición.
-            </span>
-          </motion.h2>
+          </h2>
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+            Desde 2010, hemos estado perfeccionando el arte del café. Cada taza es el resultado 
+            de años de experiencia, pasión y dedicación.
+          </p>
         </motion.div>
 
-        {/* Compact Achievements Grid */}
-        <motion.div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {achievements.map((achievement, index) => (
             <motion.div
               key={achievement.title}
-              className="group relative"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -3 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-amber-200/50 hover:border-amber-300 transition-all duration-300 hover:shadow-xl hover:shadow-amber-200/50"
             >
-              <div className="relative bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-orange-300/30 shadow-xl shadow-orange-500/10 group-hover:shadow-orange-500/20 transition-all duration-300 h-full text-center">
-                <motion.div
-                  className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center mb-3 mx-auto shadow-lg"
-                  whileHover={{ scale: 1.05, rotate: 3 }}
-                >
-                  <achievement.icon className="w-5 h-5 text-white" />
-                </motion.div>
-                
-                <motion.div
-                  className="text-2xl font-black text-orange-300 mb-1"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
-                >
-                  {achievement.number}
-                </motion.div>
-                
-                <h3 className="text-sm font-bold text-white mb-1">
-                  {achievement.title}
-                </h3>
-                
-                <p className="text-orange-100/70 text-xs">
-                  {achievement.description}
-                </p>
+              <achievement.icon className="w-10 h-10 text-amber-600 mb-4" strokeWidth={1.5} />
+              <div className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-1">
+                {achievement.number}
               </div>
+              <div className="text-sm text-neutral-600 font-medium">{achievement.title}</div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Compact Values Section */}
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-3"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
+        {/* Values Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
-              className="group relative"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -2 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+              className="group bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-amber-200/50 hover:border-amber-300 transition-all duration-300 hover:shadow-xl hover:shadow-amber-200/50"
             >
-              <div className="relative bg-white/5 backdrop-blur-md p-3 rounded-xl border border-orange-300/20 group-hover:bg-white/10 transition-all duration-300 h-full">
-                <div className="w-8 h-8 bg-gradient-to-br from-orange-400/20 to-amber-500/20 rounded-lg flex items-center justify-center mb-3">
-                  <value.icon className="w-4 h-4 text-orange-300" />
-                </div>
-                
-                <h4 className="text-white font-semibold mb-2 text-sm">
-                  {value.title}
-                </h4>
-                
-                <p className="text-orange-100/60 text-xs leading-relaxed">
-                  {value.description}
-                </p>
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <value.icon className="w-6 h-6 text-white" strokeWidth={2} />
               </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-2">{value.title}</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">{value.description}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
