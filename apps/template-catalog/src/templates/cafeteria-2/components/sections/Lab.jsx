@@ -79,30 +79,6 @@ const Lab = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-16"
-        >
-          <div className="relative overflow-hidden bg-white/70 backdrop-blur-sm rounded-2xl p-12 border border-amber-200/50 shadow-lg">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-amber-200/20 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-orange-200/20 to-transparent rounded-full translate-y-12 -translate-x-12"></div>
-            
-            <div className="relative z-10">
-              <h3 className="text-3xl font-bold mb-4 text-amber-900">Experimenta el Futuro</h3>
-              <p className="text-xl mb-8 text-amber-700/80">
-                Visita nuestra ubicación principal del laboratorio para presenciar la innovación del café en acción.
-              </p>
-              <button className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:scale-105 hover:-translate-y-1 transition-all duration-200">
-                Reservar Tour del Laboratorio
-              </button>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

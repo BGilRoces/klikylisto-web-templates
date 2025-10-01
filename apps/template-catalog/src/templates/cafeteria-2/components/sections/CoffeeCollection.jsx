@@ -26,7 +26,7 @@ const CoffeeCollection = () => {
       });
 
   return (
-    <section id="beans" ref={ref} className="py-24 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
+    <section id="beans" ref={ref} className="py-16 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl"></div>
@@ -40,7 +40,7 @@ const CoffeeCollection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <motion.span 
               initial={{ opacity: 0 }}
@@ -57,7 +57,7 @@ const CoffeeCollection = () => {
                 del Café
               </span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               Descubre nuestra selección cuidadosamente curada de granos de café premium de las mejores regiones productoras del mundo.
               Cada origen cuenta una historia única de terroir, tradición y sabor excepcional.
             </p>
@@ -74,7 +74,7 @@ const CoffeeCollection = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-200 border-2 hover:scale-105 hover:-translate-y-1 ${
+                className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition-all duration-200 border-2 hover:scale-105 hover:-translate-y-1 text-sm sm:text-base ${
                   selectedCategory === category
                     ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white border-amber-600 shadow-lg shadow-amber-600/25'
                     : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20 hover:text-white hover:border-white/40 backdrop-blur-sm'
@@ -112,28 +112,6 @@ const CoffeeCollection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-center mt-20"
-          >
-            <div className="bg-gradient-to-r from-amber-600/20 to-amber-700/20 backdrop-blur-sm border border-amber-400/30 rounded-3xl p-12">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                ¿No Encuentras Tu Mezcla Perfecta?
-              </h3>
-              <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-                Nuestros maestros tostadores pueden crear una mezcla personalizada adaptada a tus preferencias exactas de sabor. 
-                Experimenta café creado exclusivamente para ti.
-              </p>
-              <button
-                className="bg-gradient-to-r from-amber-900 to-amber-800 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-amber-600/25 hover:scale-105 hover:-translate-y-1 transition-all duration-200"
-              >
-                Solicitar Mezcla Personalizada
-              </button>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

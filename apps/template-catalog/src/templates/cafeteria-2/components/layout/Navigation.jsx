@@ -76,8 +76,8 @@ const Navigation = () => {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-black/90 backdrop-blur-lg" onClick={() => setIsOpen(false)} />
-            <div className="relative bg-gradient-to-br from-gray-900 via-black to-amber-950 min-h-screen pt-24 px-6">
+            <div className="absolute inset-0" onClick={() => setIsOpen(false)} />
+            <div className="relative bg-gradient-to-br from-gray-900 via-black to-amber-950 py-6 min-h-screen px-6 mt-12 rounded-b-xl shadow-2xl">
               <div className="max-w-sm mx-auto">
                 {navItems.map((item, index) => (
                   <motion.button
@@ -86,7 +86,7 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left text-white/80 hover:text-white py-4 text-lg font-medium border-b border-white/10 last:border-b-0 hover:pl-4 transition-all duration-300"
+                    className="block w-full text-left text-white/80 hover:text-white py-4 text-lg font-medium border-b border-amber-400/20 last:border-b-0 hover:pl-4 transition-all duration-300"
                   >
                     {item.name}
                   </motion.button>
