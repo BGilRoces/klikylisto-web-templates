@@ -17,7 +17,7 @@ const Contact = () => {
   const contactMethods = [
     {
       icon: MapPin,
-      title: "Ubicación Premium",
+      title: "Ubicación",
       primary: "Av. Gourmet 123, Plaza Premium",
       secondary: "Centro Empresarial, Madrid",
       action: "Ver en Mapa",
@@ -33,8 +33,8 @@ const Contact = () => {
     },
     {
       icon: Mail,
-      title: "Email Premium",
-      primary: "hola@aroma.premium",
+      title: "Email",
+      primary: "hola@aroma.email",
       secondary: "Respuesta en 2 horas",
       action: "Enviar Email",
       gradient: "from-blue-500 to-indigo-600"
@@ -182,28 +182,32 @@ const Contact = () => {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ y: -8 }}
             >
-              <div className="relative bg-white/10 backdrop-blur-xl p-3 rounded-3xl border border-amber-300/30 shadow-2xl shadow-amber-500/10 group-hover:shadow-amber-500/20 transition-all duration-500 h-full">
-                <motion.div
-                  className={`w-10 h-10 bg-gradient-to-br ${method.gradient} rounded-2xl flex items-center justify-center mb-3 shadow-xl`}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <method.icon className="w-6 h-6 text-white" />
-                </motion.div>
-                
-                <h3 className="text-lg font-bold text-white mb-3">
-                  {method.title}
-                </h3>
-                
-                <p className="text-amber-200 font-semibold mb-1">
-                  {method.primary}
-                </p>
-                
-                <p className="text-amber-100/70 text-sm mb-4">
-                  {method.secondary}
-                </p>
+              <div className="relative bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-amber-300/30 shadow-2xl shadow-amber-500/10 group-hover:shadow-amber-500/20 transition-all duration-500 h-full flex flex-col">
+                <div className="flex gap-4 items-start flex-1">
+                  <motion.div
+                    className={`w-14 h-14 flex-shrink-0 bg-gradient-to-br ${method.gradient} rounded-xl flex items-center justify-center shadow-xl`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    <method.icon className="w-6 h-6 text-white" />
+                  </motion.div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-bold text-white mb-1">
+                      {method.title}
+                    </h3>
+                    
+                    <p className="text-amber-200 font-semibold text-sm mb-0.5 truncate">
+                      {method.primary}
+                    </p>
+                    
+                    <p className="text-amber-100/70 text-xs truncate">
+                      {method.secondary}
+                    </p>
+                  </div>
+                </div>
                 
                 <motion.button
-                  className="w-full bg-white/10 hover:bg-white/20 text-amber-200 py-2 px-4 rounded-xl font-medium transition-all duration-300 border border-amber-300/30 hover:border-amber-300/50"
+                  className="w-full mt-3 bg-white/10 hover:bg-white/20 text-amber-200 py-2 px-3 rounded-lg text-xs font-medium transition-all duration-300 border border-amber-300/30 hover:border-amber-300/50"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -225,7 +229,7 @@ const Contact = () => {
           >
             <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-amber-300/30 shadow-2xl shadow-amber-500/10">
               <h3 className="text-lg font-display font-bold text-white mb-3">
-                Envíanos un <span className="text-amber-400">Mensaje Premium</span>
+                Envíanos un <span className="text-amber-400">Mensaje</span>
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -321,7 +325,7 @@ const Contact = () => {
                   ) : (
                     <div className="flex items-center justify-center gap-3">
                       <Send className="w-5 h-5" />
-                      Enviar Mensaje Premium
+                      Enviar Mensaje
                     </div>
                   )}
                 </motion.button>
@@ -338,17 +342,17 @@ const Contact = () => {
             className="space-y-3"
           >
             {/* Hours */}
-            <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-amber-300/30 shadow-2xl shadow-amber-500/10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-xl">
-                  <Clock className="w-8 h-8 text-white" />
+            <div className="relative bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-amber-300/30 shadow-2xl shadow-amber-500/10">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-xl">
+                  <Clock className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-white">
-                  Horarios Premium
+                <h3 className="text-xl font-display font-bold text-white">
+                  Horarios
                 </h3>
               </div>
               
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
                   { day: 'Lunes - Viernes', hours: '6:00 AM - 10:00 PM', special: 'Rush matutino: 7-9 AM' },
                   { day: 'Sábados', hours: '7:00 AM - 11:00 PM', special: 'Catas especiales: 4-6 PM' },
@@ -356,33 +360,33 @@ const Contact = () => {
                 ].map((schedule, index) => (
                   <motion.div
                     key={schedule.day}
-                    className="flex justify-between items-start p-4 bg-white/5 rounded-2xl border border-amber-300/20"
+                    className="flex justify-between items-start p-3 bg-white/5 rounded-xl border border-amber-300/20"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
                     <div>
-                      <div className="text-amber-200 font-semibold">{schedule.day}</div>
-                      <div className="text-amber-100/70 text-sm">{schedule.special}</div>
+                      <div className="text-amber-200 font-semibold text-sm">{schedule.day}</div>
+                      <div className="text-amber-100/70 text-xs">{schedule.special}</div>
                     </div>
-                    <div className="text-white font-bold">{schedule.hours}</div>
+                    <div className="text-white font-bold text-sm">{schedule.hours}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
             {/* Why Choose Us */}
-            <div className="relative bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-amber-300/30 shadow-2xl shadow-amber-500/10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-xl">
-                  <Star className="w-8 h-8 text-white" />
+            <div className="relative bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-amber-300/30 shadow-2xl shadow-amber-500/10">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-xl">
+                  <Star className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-white">
+                <h3 className="text-xl font-display font-bold text-white">
                   ¿Por Qué Elegirnos?
                 </h3>
               </div>
               
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
                   'Respuesta garantizada en menos de 2 horas',
                   'Experiencias personalizadas únicas',
@@ -392,13 +396,13 @@ const Contact = () => {
                 ].map((benefit, index) => (
                   <motion.div
                     key={benefit}
-                    className="flex items-center gap-3"
+                    className="flex items-center gap-2"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
-                    <span className="text-amber-100/90">{benefit}</span>
+                    <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0"></div>
+                    <span className="text-amber-100/90 text-sm">{benefit}</span>
                   </motion.div>
                 ))}
               </div>

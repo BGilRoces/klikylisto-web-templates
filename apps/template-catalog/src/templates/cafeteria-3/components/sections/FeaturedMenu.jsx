@@ -40,83 +40,35 @@ const FeaturedMenu = () => {
   ];
 
   return (
-    <section id="menu" ref={ref} className="py-6 bg-gradient-to-br from-slate-50 via-white to-amber-50/20 relative overflow-hidden">
-      {/* Premium background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-32 right-20 w-96 h-96 bg-gradient-to-br from-amber-200/30 to-orange-300/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-16 w-80 h-80 bg-gradient-to-tl from-amber-300/25 to-yellow-400/15 rounded-full blur-3xl"></div>
-        
-        {/* Floating geometric elements */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-6 h-6 bg-amber-400/60 rounded-full"
-          animate={{
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-            opacity: [0.6, 1, 0.6]
-          }}
-          transition={{ duration: 6, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/3 w-4 h-4 bg-orange-500/50 rounded-full"
-          animate={{
-            x: [0, 20, 0],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
+    <section id="menu" ref={ref} className="py-20 bg-white relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 right-10 w-96 h-96 bg-amber-400 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-orange-400 rounded-full blur-3xl"></div>
       </div>
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-4"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-100/90 to-orange-100/80 backdrop-blur-md rounded-full border border-amber-300/50 mb-10 shadow-xl shadow-amber-200/30"
-          >
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              ☕
-            </motion.div>
-            <span className="text-amber-800 font-bold tracking-widest text-sm uppercase">Menú Premium</span>
-            <motion.div
-              animate={{ rotate: [360, 0] }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            >
-              ✨
-            </motion.div>
-          </motion.div>
-          
-          <motion.h2 
-            className="text-5xl md:text-7xl font-display font-black mb-8 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <span className="bg-gradient-to-r from-slate-800 via-amber-900 to-slate-800 bg-clip-text text-transparent">
-              Nuestras
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 rounded-full border border-amber-200 mb-4">
+            <Star className="w-4 h-4 text-amber-600 fill-amber-600" />
+            <span className="text-sm font-medium text-amber-900">Menú Destacado</span>
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-display font-black text-neutral-900 mb-4">
+            Nuestras especialidades
+            <span className="block mt-2 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+              favoritas
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-amber-600 bg-clip-text text-transparent">
-              Creaciones
-            </span>
-          </motion.h2>
-          
-          <motion.div
-            className="w-24 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 mx-auto rounded-full shadow-lg shadow-amber-400/50"
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1, delay: 0.6 }}
-          />
+          </h2>
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            Cada creación es una obra de arte, elaborada con ingredientes seleccionados.
+          </p>
         </motion.div>
 
-        <div           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {menuItems.map((item, index) => (
             <motion.div
               key={index}
