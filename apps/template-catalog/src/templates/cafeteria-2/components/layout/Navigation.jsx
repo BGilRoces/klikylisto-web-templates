@@ -10,14 +10,21 @@ const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
   const navItems = [
     { name: 'Inicio', href: '#home' },
     { name: 'Experiencia', href: '#experience' },
-    { name: 'Colección', href: '#beans' },
+    { name: 'Tienda', href: '#tienda' },
     { name: 'Contacto', href: '#contact' }
   ];
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 80; // Altura del navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setIsOpen(false);
   };

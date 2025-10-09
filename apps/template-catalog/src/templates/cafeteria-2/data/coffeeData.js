@@ -52,12 +52,115 @@ export const coffeeData = [
     image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     rating: 5.0,
     featured: true
+  },
+  {
+    id: 5,
+    name: "Keniano AA",
+    origin: "Región Nyeri, Kenia",
+    category: "single",
+    process: "Lavado",
+    notes: ["Frutas Rojas", "Vino", "Complejo"],
+    price: 30,
+    roast: "Tueste Claro",
+    altitude: "1,500-2,100m",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.8
+  },
+  {
+    id: 6,
+    name: "Sumatra Mandheling",
+    origin: "Sumatra, Indonesia",
+    category: "single",
+    process: "Semihúmedo",
+    notes: ["Tierra", "Especias", "Herbáceo"],
+    price: 27,
+    roast: "Tueste Oscuro",
+    altitude: "1,100-1,600m",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.6
+  },
+  {
+    id: 7,
+    name: "Mezcla Espresso Intenso",
+    origin: "Italia + Brasil",
+    category: "blend",
+    process: "Mixto",
+    notes: ["Cacao", "Avellana", "Cremoso"],
+    price: 25,
+    roast: "Tueste Oscuro",
+    altitude: "Varios",
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.7
+  },
+  {
+    id: 8,
+    name: "Costa Rica Tarrazú",
+    origin: "Tarrazú, Costa Rica",
+    category: "single",
+    process: "Honey",
+    notes: ["Miel", "Almendra", "Cítrico"],
+    price: 29,
+    roast: "Tueste Medio",
+    altitude: "1,200-1,900m",
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.8
+  },
+  {
+    id: 9,
+    name: "Mezcla Desayuno",
+    origin: "Colombia + Etiopía",
+    category: "blend",
+    notes: ["Suave", "Frutal", "Brillante"],
+    price: 23,
+    roast: "Tueste Claro-Medio",
+    altitude: "Varios",
+    image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.6
+  },
+  {
+    id: 10,
+    name: "Hawaiian Kona",
+    origin: "Isla Grande, Hawái",
+    category: "limited",
+    process: "Lavado",
+    notes: ["Dulce", "Mantecoso", "Floral"],
+    price: 70,
+    roast: "Tueste Medio",
+    altitude: "150-900m",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.9,
+    featured: true
+  },
+  {
+    id: 11,
+    name: "Guatemala Antigua",
+    origin: "Antigua, Guatemala",
+    category: "single",
+    process: "Lavado",
+    notes: ["Chocolate", "Floral", "Especias"],
+    price: 28,
+    roast: "Tueste Medio",
+    altitude: "1,500-1,700m",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.7
+  },
+  {
+    id: 12,
+    name: "Mezcla Dulce Nocturna",
+    origin: "Brasil + Colombia + Honduras",
+    category: "blend",
+    notes: ["Caramelo", "Vainilla", "Chocolate"],
+    price: 24,
+    roast: "Tueste Medio-Oscuro",
+    altitude: "Varios",
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rating: 4.8
   }
 ];
 
 export const categories = [
   { id: 'all', name: 'Todos los Orígenes', count: 12 },
-  { id: 'single', name: 'Origen Único', count: 6 },
+  { id: 'single', name: 'Origen Único', count: 7 },
   { id: 'blend', name: 'Mezclas Exclusivas', count: 4 },
-  { id: 'limited', name: 'Edición Limitada', count: 2 }
+  { id: 'limited', name: 'Edición Limitada', count: 3 }
 ];

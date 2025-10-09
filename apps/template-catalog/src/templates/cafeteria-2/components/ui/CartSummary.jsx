@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, X, Trash2 } from 'lucide-react';
 

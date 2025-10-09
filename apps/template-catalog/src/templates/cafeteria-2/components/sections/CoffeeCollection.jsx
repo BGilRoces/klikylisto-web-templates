@@ -14,10 +14,33 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
+  const containerRef = useRef(null);
   
-  // Siempre mostrar solo 1 item a la vez
+  // Detectar cuántos items mostrar según el ancho del contenedor
   useEffect(() => {
-    setItemsPerView(1);
+    const updateItemsPerView = () => {
+      // Intentar obtener el ancho del contenedor real
+      const container = containerRef.current;
+      const width = container ? container.offsetWidth : window.innerWidth;
+      
+      if (width >= 900) setItemsPerView(3); // md: 3 cards (desktop pequeño)
+      else if (width >= 600) setItemsPerView(2); // sm: 2 cards (tablet)
+      else setItemsPerView(1); // xs: 1 card (mobile)
+    };
+    
+    updateItemsPerView();
+    
+    // Usar ResizeObserver para detectar cambios en el contenedor
+    const container = containerRef.current;
+    if (container) {
+      const resizeObserver = new ResizeObserver(updateItemsPerView);
+      resizeObserver.observe(container);
+      return () => resizeObserver.disconnect();
+    }
+    
+    // Fallback a window resize
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
   }, []);
   
   // Reset index cuando cambia la categoría
@@ -42,37 +65,41 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
   
   const handlePrev = () => {
     setCurrentIndex(prev => {
-      // Si estoy en el primero, voy al último
+      // Si estoy en el primero, voy al último posible
       if (prev === 0) {
-        return filteredCoffees.length - 1;
+        return maxIndex;
       }
-      return prev - 1;
+      // Retroceder por itemsPerView, pero no menos de 0
+      const newIndex = prev - itemsPerView;
+      return Math.max(0, newIndex);
     });
   };
   
   const handleNext = () => {
     setCurrentIndex(prev => {
-      // Si estoy en el último, voy al primero
-      if (prev >= filteredCoffees.length - 1) {
+      // Si estoy en el último o cerca, voy al primero
+      if (prev >= maxIndex) {
         return 0;
       }
-      return prev + 1;
+      // Avanzar por itemsPerView, pero no más del máximo
+      const newIndex = prev + itemsPerView;
+      return Math.min(maxIndex, newIndex);
     });
   };
   
-  // Siempre se puede navegar en modo infinito
-  const canGoPrev = filteredCoffees.length > 1;
-  const canGoNext = filteredCoffees.length > 1;
+  // Siempre se puede navegar en modo infinito si hay más items que los visibles
+  const canGoPrev = filteredCoffees.length > itemsPerView;
+  const canGoNext = filteredCoffees.length > itemsPerView;
 
   return (
-    <section id="beans" ref={ref} className="py-16 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
+    <section id="tienda" ref={ref} className="py-16 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="w-full px-6 lg:px-8 relative z-10">
+      <div ref={containerRef} className="w-full px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -87,18 +114,18 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
               transition={{ delay: 0.2 }}
               className="inline-block px-6 py-3 bg-amber-600/20 rounded-full text-amber-300 font-semibold mb-6 backdrop-blur-sm border border-amber-400/30 text-sm tracking-wide"
             >
-              ☕ COLECCIÓN PREMIUM
+              🛒 TIENDA PREMIUM
             </motion.span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-              Orígenes
+              Nuestra
               <br />
               <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-400 bg-clip-text text-transparent">
-                del Café
+                Selección
               </span>
             </h2>
             <p className="text-base sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Descubre nuestra selección cuidadosamente curada de granos de café premium de las mejores regiones productoras del mundo.
-              Cada origen cuenta una historia única de terroir, tradición y sabor excepcional.
+              Explora nuestra colección de cafés premium cuidadosamente seleccionados. 
+              Agrega tus favoritos al carrito y descubre sabores excepcionales de todo el mundo.
             </p>
           </motion.div>
 
@@ -153,7 +180,7 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
             </button>
 
             {/* Carousel Container */}
-            <div className="overflow-hidden flex justify-center">
+            <div className="overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${selectedCategory}-${currentIndex}`}
@@ -161,25 +188,28 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
-                  className="w-full max-w-md"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10"
                 >
-                  {filteredCoffees.slice(currentIndex, currentIndex + 1).map((coffee, index) => {
+                  {filteredCoffees.slice(currentIndex, currentIndex + itemsPerView).map((coffee, index) => {
                     const cartItem = cart.find(item => item.id === coffee.id);
                     return (
                       <motion.div
                         key={coffee.id}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="flex justify-center"
                       >
-                        <CoffeeCard 
-                          coffee={coffee} 
-                          index={index} 
-                          inView={inView}
-                          addToCart={addToCart}
-                          cartItem={cartItem}
-                          updateQuantity={updateQuantity}
-                        />
+                        <div className="w-full">
+                          <CoffeeCard 
+                            coffee={coffee} 
+                            index={index} 
+                            inView={inView}
+                            addToCart={addToCart}
+                            cartItem={cartItem}
+                            updateQuantity={updateQuantity}
+                          />
+                        </div>
                       </motion.div>
                     );
                   })}
@@ -188,9 +218,9 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
             </div>
 
             {/* Dots Indicator */}
-            {filteredCoffees.length > 1 && (
+            {filteredCoffees.length > itemsPerView && (
               <div className="flex justify-center gap-2 mt-8">
-                {filteredCoffees.map((_, idx) => (
+                {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
