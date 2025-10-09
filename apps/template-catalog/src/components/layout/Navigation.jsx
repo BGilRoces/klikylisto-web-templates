@@ -114,10 +114,10 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
             </button>
             <button 
               onClick={() => setViewportSize('tablet')}
-              className={`p-2 rounded-md transition-all ${
+              className={`p-2 rounded-md transition-all border border-amber-900/40 shadow-sm hover:shadow-md ${
                 viewportSize === 'tablet'
-                  ? 'bg-white/50 text-amber-900 shadow-sm'
-                  : 'hover:bg-white/30 text-amber-700 hover:text-amber-900'
+                  ? 'bg-white/50 text-amber-900'
+                  : 'bg-white/30 text-amber-700 hover:bg-white/40 hover:text-amber-900'
               }`} 
               title="Vista Tablet"
             >
@@ -125,15 +125,74 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
             </button>
             <button 
               onClick={() => setViewportSize('mobile')}
-              className={`p-2 rounded-md transition-all ${
+              className={`p-2 rounded-md transition-all border border-amber-900/40 shadow-sm hover:shadow-md ${
                 viewportSize === 'mobile'
-                  ? 'bg-white/50 text-amber-900 shadow-sm'
-                  : 'hover:bg-white/30 text-amber-700 hover:text-amber-900'
+                  ? 'bg-white/50 text-amber-900'
+                  : 'bg-white/30 text-amber-700 hover:bg-white/40 hover:text-amber-900'
               }`} 
               title="Vista Móvil"
             >
               <Smartphone size={16} />
             </button>
+          </div>
+
+          {/* Mobile: show menu button */}
+          <div className="sm:hidden relative" ref={mobilePanelRef}>
+            <button 
+              onClick={() => setMobilePanelOpen(!mobilePanelOpen)}
+              className="p-2 bg-white/20 rounded-lg border border-amber-900/40 text-amber-900 hover:bg-white/30 transition-all"
+              title="Cambiar vista"
+            >
+              <Menu size={20} />
+            </button>
+
+            {/* Mobile panel dropdown */}
+            {mobilePanelOpen && (
+              <div className="absolute right-0 top-12 bg-white/95 backdrop-blur-md rounded-lg border border-amber-900/40 shadow-lg p-2 min-w-[140px] z-50">
+                <button 
+                  onClick={() => {
+                    setViewportSize('desktop')
+                    setMobilePanelOpen(false)
+                  }}
+                  className={`w-full flex items-center gap-2 px-3 py-2 rounded-md transition-all ${
+                    viewportSize === 'desktop'
+                      ? 'bg-amber-100 text-amber-900'
+                      : 'hover:bg-amber-50 text-amber-700'
+                  }`}
+                >
+                  <Monitor size={16} />
+                  <span className="text-sm font-medium">Desktop</span>
+                </button>
+                <button 
+                  onClick={() => {
+                    setViewportSize('tablet')
+                    setMobilePanelOpen(false)
+                  }}
+                  className={`w-full flex items-center gap-2 px-3 py-2 rounded-md transition-all ${
+                    viewportSize === 'tablet'
+                      ? 'bg-amber-100 text-amber-900'
+                      : 'hover:bg-amber-50 text-amber-700'
+                  }`}
+                >
+                  <Tablet size={16} />
+                  <span className="text-sm font-medium">Tablet</span>
+                </button>
+                <button 
+                  onClick={() => {
+                    setViewportSize('mobile')
+                    setMobilePanelOpen(false)
+                  }}
+                  className={`w-full flex items-center gap-2 px-3 py-2 rounded-md transition-all ${
+                    viewportSize === 'mobile'
+                      ? 'bg-amber-100 text-amber-900'
+                      : 'hover:bg-amber-50 text-amber-700'
+                  }`}
+                >
+                  <Smartphone size={16} />
+                  <span className="text-sm font-medium">Mobile</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
