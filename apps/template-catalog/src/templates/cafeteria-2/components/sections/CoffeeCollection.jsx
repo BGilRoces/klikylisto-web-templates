@@ -92,7 +92,7 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
   const canGoNext = filteredCoffees.length > itemsPerView;
 
   return (
-    <section id="tienda" ref={ref} className="py-16 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
+    <section id="tienda" ref={ref} className="py-16 md:py-12 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl"></div>
@@ -106,24 +106,24 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-8"
+            className="text-center mb-8 md:mb-6"
           >
             <motion.span 
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 }}
-              className="inline-block px-6 py-3 bg-amber-600/20 rounded-full text-amber-300 font-semibold mb-6 backdrop-blur-sm border border-amber-400/30 text-sm tracking-wide"
+              className="inline-block px-6 py-3 md:px-4 md:py-2 bg-amber-600/20 rounded-full text-amber-300 font-semibold mb-6 md:mb-4 backdrop-blur-sm border border-amber-400/30 text-sm md:text-xs tracking-wide"
             >
               🛒 TIENDA PREMIUM
             </motion.span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl font-black text-white mb-6 md:mb-4 leading-tight">
               Nuestra
               <br />
               <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-400 bg-clip-text text-transparent">
                 Selección
               </span>
             </h2>
-            <p className="text-base sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl md:text-base text-white/80 max-w-3xl mx-auto leading-relaxed">
               Explora nuestra colección de cafés premium cuidadosamente seleccionados. 
               Agrega tus favoritos al carrito y descubre sabores excepcionales de todo el mundo.
             </p>
@@ -134,13 +134,13 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
+            className="flex flex-wrap justify-center gap-4 md:gap-3 mb-16 md:mb-10"
           >
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition-all duration-200 border-2 hover:scale-105 hover:-translate-y-1 text-sm sm:text-base ${
+                className={`px-4 py-2 sm:px-6 sm:py-3 md:px-4 md:py-2 rounded-full font-semibold transition-all duration-200 border-2 hover:scale-105 hover:-translate-y-1 text-sm sm:text-base md:text-sm ${
                   selectedCategory === category
                     ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white border-amber-600 shadow-lg shadow-amber-600/25'
                     : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20 hover:text-white hover:border-white/40 backdrop-blur-sm'
@@ -152,7 +152,7 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
           </motion.div>
 
           {/* Coffee Carousel */}
-          <div className="relative px-4 sm:px-8">
+          <div className="relative px-4 sm:px-8 md:px-6">
             {/* Left Arrow */}
             <button
               onClick={handlePrev}
@@ -163,7 +163,7 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
                   : 'text-gray-500 cursor-not-allowed opacity-40 border-gray-600/20'
               }`}
             >
-              <ChevronLeft size={30} strokeWidth={2.5} />
+              <ChevronLeft size={30} strokeWidth={2.5} className="md:w-6 md:h-6" />
             </button>
 
             {/* Right Arrow */}
@@ -176,7 +176,7 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
                   : 'text-gray-500 cursor-not-allowed opacity-40 border-gray-600/20'
               }`}
             >
-              <ChevronRight size={30} strokeWidth={2.5} />
+              <ChevronRight size={30} strokeWidth={2.5} className="md:w-6 md:h-6" />
             </button>
 
             {/* Carousel Container */}
@@ -188,7 +188,7 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 md:gap-5"
                 >
                   {filteredCoffees.slice(currentIndex, currentIndex + itemsPerView).map((coffee, index) => {
                     const cartItem = cart.find(item => item.id === coffee.id);
@@ -219,15 +219,15 @@ const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, set
 
             {/* Dots Indicator */}
             {filteredCoffees.length > itemsPerView && (
-              <div className="flex justify-center gap-2 mt-8">
+              <div className="flex justify-center gap-2 mt-8 md:mt-6">
                 {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
+                    className={`h-2 md:h-1.5 rounded-full transition-all duration-300 ${
                       idx === currentIndex 
-                        ? 'w-8 bg-amber-500' 
-                        : 'w-2 bg-white/30 hover:bg-white/50'
+                        ? 'w-8 md:w-6 bg-amber-500' 
+                        : 'w-2 md:w-1.5 bg-white/30 hover:bg-white/50'
                     }`}
                   />
                 ))}

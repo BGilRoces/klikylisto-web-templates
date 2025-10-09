@@ -100,9 +100,9 @@ const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
               </button>
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-white p-2 hover:scale-110 transition-transform duration-200"
+                className="text-white p-2 md:p-1.5 hover:scale-110 transition-transform duration-200"
               >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                {isOpen ? <X size={24} className="md:w-5 md:h-5" /> : <Menu size={24} className="md:w-5 md:h-5" />}
               </button>
             </div>
           </div>

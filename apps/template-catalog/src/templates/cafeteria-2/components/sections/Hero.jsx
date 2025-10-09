@@ -57,9 +57,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-8"
+          className="mb-6 md:mb-7"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight">
+          <h1 className="text-7xl font-black leading-none tracking-tight">
             <span className="block text-white">ROAST</span>
             <span className="block bg-gradient-to-r from-amber-300 via-amber-400 to-amber-400 bg-clip-text text-transparent">
               CRAFT
@@ -72,12 +72,12 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+          className="flex flex-col sm:flex-row gap-6 md:gap-4 justify-center items-center mb-16 md:mb-12"
         >
           <button 
-            className="group border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm hover:bg-white/10 hover:border-white/50 hover:scale-105 hover:-translate-y-1 transition-all duration-200 flex items-center space-x-3"
+            className="group border-2 border-white/30 text-white px-8 py-4 md:px-6 md:py-3 rounded-full font-semibold text-lg md:text-base backdrop-blur-sm hover:bg-white/10 hover:border-white/50 hover:scale-105 hover:-translate-y-1 transition-all duration-200 flex items-center space-x-3 md:space-x-2"
           >
-            <Play size={20} className="group-hover:scale-110 transition-transform duration-200" />
+            <Play size={20} className="md:w-4 md:h-4 group-hover:scale-110 transition-transform duration-200" />
             <span>Ver Nuestro Proceso</span>
           </button>
         </motion.div>
@@ -87,7 +87,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-5 max-w-3xl mx-auto"
         >
           {[
             { number: "12", label: "Países de Origen" },
@@ -102,8 +102,8 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
               className="text-center"
             >
-              <div className="text-2xl md:text-3xl font-bold text-amber-300 mb-1">{stat.number}</div>
-              <div className="text-white/70 text-sm font-medium tracking-wide">{stat.label}</div>
+              <div className="text-2xl md:text-xl lg:text-2xl font-bold text-amber-300 mb-1">{stat.number}</div>
+              <div className="text-white/70 text-sm md:text-xs font-medium tracking-wide">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -114,7 +114,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 md:bottom-6 left-1/2 transform -translate-x-1/2"
       >
         <motion.button
           onClick={scrollToNext}
@@ -122,7 +122,7 @@ const Hero = () => {
           transition={{ duration: 2, repeat: Infinity }}
           className="text-white/60 hover:text-white/80 cursor-pointer transition-colors p-2"
         >
-          <ChevronDown size={32} />
+          <ChevronDown size={32} className="md:w-6 md:h-6" />
         </motion.button>
       </motion.div>
     </section>
