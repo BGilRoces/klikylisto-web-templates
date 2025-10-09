@@ -1,9 +1,15 @@
-import React from 'react';
-import { Star, MapPin, ShoppingCart, Heart } from 'lucide-react';
+import React, { useState } from 'react';
+import { Star, MapPin, ShoppingCart, Heart, Plus, Minus } from 'lucide-react';
 
-const CoffeeCard = ({ coffee, index }) => {
+const CoffeeCard = ({ coffee, index, addToCart, cartItem, updateQuantity }) => {
+  const [liked, setLiked] = useState(false);
+  
+  // Generar precio basado en el café
+  const price = coffee.price || (15 + (index * 3));
+  const coffeeWithPrice = { ...coffee, price };
+  
   return (
-    <div className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:border-amber-400/50 transition-all duration-300 cursor-pointer h-[420px] flex flex-col hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2"
+    <div className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:border-amber-400/50 transition-all duration-300 h-[550px] flex flex-col hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2"
     >
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
@@ -22,6 +28,20 @@ const CoffeeCard = ({ coffee, index }) => {
              coffee.category === 'limited' ? 'Edición Limitada' : coffee.category}
           </span>
         </div>
+
+        {/* Like Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setLiked(!liked);
+          }}
+          className="absolute top-4 right-4 p-2 bg-black/40 backdrop-blur-sm rounded-full hover:bg-black/60 transition-all duration-200 hover:scale-110"
+        >
+          <Heart 
+            size={18} 
+            className={`transition-all duration-200 ${liked ? 'fill-red-500 text-red-500' : 'text-white'}`}
+          />
+        </button>
 
         {/* Origin */}
         <div className="absolute bottom-4 left-4 flex items-center space-x-2 text-white">
@@ -64,7 +84,7 @@ const CoffeeCard = ({ coffee, index }) => {
         </div>
 
         {/* Roast Level */}
-        <div className="mb-4 flex-1">
+        <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs text-white/50 uppercase tracking-wide font-medium">
               Nivel de Tueste
@@ -80,6 +100,58 @@ const CoffeeCard = ({ coffee, index }) => {
               }}
             ></div>
           </div>
+        </div>
+
+        {/* Price & Cart Actions */}
+        <div className="mt-auto pt-4 border-t border-white/10">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <p className="text-xs text-white/50 mb-1">Precio por 250g</p>
+              <p className="text-2xl font-bold text-white">
+                ${price}
+                <span className="text-sm text-white/60">.00</span>
+              </p>
+            </div>
+          </div>
+
+          {/* Add to Cart / Quantity Controls */}
+          {!cartItem ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart(coffeeWithPrice);
+              }}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl hover:from-amber-700 hover:to-amber-800 transition-all duration-200 shadow-lg shadow-amber-600/30 hover:shadow-amber-600/50 hover:scale-105"
+            >
+              <ShoppingCart size={18} />
+              <span>Agregar al Carrito</span>
+            </button>
+          ) : (
+            <div className="flex items-center justify-between gap-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateQuantity(coffee.id, cartItem.quantity - 1);
+                }}
+                className="p-3 bg-red-600/80 hover:bg-red-700 text-white rounded-xl transition-all duration-200 hover:scale-105"
+              >
+                <Minus size={18} />
+              </button>
+              <div className="flex-1 text-center">
+                <p className="text-white font-bold text-lg">{cartItem.quantity}</p>
+                <p className="text-white/60 text-xs">En el carrito</p>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateQuantity(coffee.id, cartItem.quantity + 1);
+                }}
+                className="p-3 bg-green-600/80 hover:bg-green-700 text-white rounded-xl transition-all duration-200 hover:scale-105"
+              >
+                <Plus size={18} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

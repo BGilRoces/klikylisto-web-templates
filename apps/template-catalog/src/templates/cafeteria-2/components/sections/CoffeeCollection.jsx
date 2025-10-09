@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import CoffeeCard from '../ui/CoffeeCard';
 import { coffeeData as coffees, categories as coffeeCategories } from '../../data/coffeeData';
 
-const CoffeeCollection = () => {
+const CoffeeCollection = ({ addToCart, cart, updateQuantity, removeFromCart, setShowCheckoutModal }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
   
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(1);
+  
+  // Siempre mostrar solo 1 item a la vez
+  useEffect(() => {
+    setItemsPerView(1);
+  }, []);
+  
+  // Reset index cuando cambia la categoría
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [selectedCategory]);
   
   const categories = ['Todos', 'Origen Único', 'Mezclas Exclusivas', 'Edición Limitada'];
   
@@ -24,6 +37,32 @@ const CoffeeCollection = () => {
         };
         return coffee.category === categoryMap[selectedCategory];
       });
+
+  const maxIndex = Math.max(0, filteredCoffees.length - itemsPerView);
+  
+  const handlePrev = () => {
+    setCurrentIndex(prev => {
+      // Si estoy en el primero, voy al último
+      if (prev === 0) {
+        return filteredCoffees.length - 1;
+      }
+      return prev - 1;
+    });
+  };
+  
+  const handleNext = () => {
+    setCurrentIndex(prev => {
+      // Si estoy en el último, voy al primero
+      if (prev >= filteredCoffees.length - 1) {
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
+  
+  // Siempre se puede navegar en modo infinito
+  const canGoPrev = filteredCoffees.length > 1;
+  const canGoNext = filteredCoffees.length > 1;
 
   return (
     <section id="beans" ref={ref} className="py-16 bg-gradient-to-br from-gray-900 via-black to-amber-950 relative overflow-hidden">
@@ -85,34 +124,86 @@ const CoffeeCollection = () => {
             ))}
           </motion.div>
 
-          {/* Coffee Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedCategory}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              // Mobile: horizontal scroll snap to show one card at a time
-              className="flex gap-8 overflow-x-auto snap-x snap-mandatory touch-pan-x items-start pb-6 md:pb-0 px-4 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-8"
+          {/* Coffee Carousel */}
+          <div className="relative px-4 sm:px-8">
+            {/* Left Arrow */}
+            <button
+              onClick={handlePrev}
+              disabled={!canGoPrev}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-50 rounded-full shadow-xl transition-all duration-300 ${
+                canGoPrev 
+                  ? 'hover:border text-white hover:scale-110 cursor-pointer border-amber-400/50 hover:shadow-2xl hover:shadow-amber-600/30' 
+                  : 'text-gray-500 cursor-not-allowed opacity-40 border-gray-600/20'
+              }`}
             >
-              {filteredCoffees.map((coffee, index) => (
+              <ChevronLeft size={30} strokeWidth={2.5} />
+            </button>
+
+            {/* Right Arrow */}
+            <button
+              onClick={handleNext}
+              disabled={!canGoNext}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-50 rounded-full shadow-xl transition-all duration-300 ${
+                canGoNext 
+                  ? 'hover:border text-white hover:scale-110 cursor-pointer border-amber-400/50 hover:shadow-2xl hover:shadow-amber-600/30' 
+                  : 'text-gray-500 cursor-not-allowed opacity-40 border-gray-600/20'
+              }`}
+            >
+              <ChevronRight size={30} strokeWidth={2.5} />
+            </button>
+
+            {/* Carousel Container */}
+            <div className="overflow-hidden flex justify-center">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={coffee.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="snap-center flex-shrink-0 w-[85%] sm:w-[70%] md:w-auto"
+                  key={`${selectedCategory}-${currentIndex}`}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className="w-full max-w-md"
                 >
-                  <CoffeeCard 
-                    coffee={coffee} 
-                    index={index} 
-                    inView={inView}
-                  />
+                  {filteredCoffees.slice(currentIndex, currentIndex + 1).map((coffee, index) => {
+                    const cartItem = cart.find(item => item.id === coffee.id);
+                    return (
+                      <motion.div
+                        key={coffee.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <CoffeeCard 
+                          coffee={coffee} 
+                          index={index} 
+                          inView={inView}
+                          addToCart={addToCart}
+                          cartItem={cartItem}
+                          updateQuantity={updateQuantity}
+                        />
+                      </motion.div>
+                    );
+                  })}
                 </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              </AnimatePresence>
+            </div>
+
+            {/* Dots Indicator */}
+            {filteredCoffees.length > 1 && (
+              <div className="flex justify-center gap-2 mt-8">
+                {filteredCoffees.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      idx === currentIndex 
+                        ? 'w-8 bg-amber-500' 
+                        : 'w-2 bg-white/30 hover:bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
 
         </div>
       </div>

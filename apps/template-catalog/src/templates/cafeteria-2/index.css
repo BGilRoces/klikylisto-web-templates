@@ -40,6 +40,16 @@
     transition: transform 0.3s ease;
   }
 
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Smooth hover scale without blur */
   .hover-scale {
     transform: scale(1) translateZ(0);

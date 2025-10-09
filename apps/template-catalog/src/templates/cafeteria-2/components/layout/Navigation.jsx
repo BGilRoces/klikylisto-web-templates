@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Coffee } from 'lucide-react';
+import { Menu, X, Coffee, ShoppingCart } from 'lucide-react';
 
-const Navigation = () => {
+const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const navItems = [
     { name: 'Inicio', href: '#home' },
@@ -53,15 +55,49 @@ const Navigation = () => {
                   {item.name}
                 </button>
               ))}
+              
+              {/* Cart Icon */}
+              <button
+                onClick={() => setCartOpen && setCartOpen(true)}
+                className="relative p-2 bg-amber-400/10 border border-amber-400/50 rounded-xl hover:bg-amber-400/20 transition-all duration-200 hover:scale-110"
+              >
+                <ShoppingCart className="w-5 h-5 text-amber-400" />
+                {cartItemsCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-lg"
+                  >
+                    {cartItemsCount}
+                  </motion.span>
+                )}
+              </button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-white p-2 hover:scale-110 transition-transform duration-200"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile Menu Button & Cart */}
+            <div className="lg:hidden flex items-center gap-2">
+              <button
+                onClick={() => setCartOpen && setCartOpen(true)}
+                className="relative p-2 bg-amber-400/10 border border-amber-400/50 rounded-xl hover:bg-amber-400/20 transition-all duration-200"
+              >
+                <ShoppingCart className="w-5 h-5 text-amber-400" />
+                {cartItemsCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-lg"
+                  >
+                    {cartItemsCount}
+                  </motion.span>
+                )}
+              </button>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-white p-2 hover:scale-110 transition-transform duration-200"
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
