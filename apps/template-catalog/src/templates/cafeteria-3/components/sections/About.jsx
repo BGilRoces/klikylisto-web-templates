@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Instagram, Heart, MessageCircle, Share2, Play, TrendingUp, Users } from 'lucide-react'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Instagram, Heart, MessageCircle, Share2, Play, TrendingUp, Users, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const About = () => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
   const instagramStats = [
     { icon: Users, value: "50K+", label: "Seguidores" },
     { icon: Heart, value: "2.5M", label: "Me gusta" },
@@ -41,6 +43,14 @@ const About = () => {
       title: "Recetas Secretas"
     }
   ]
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % reels.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + reels.length) % reels.length)
+  }
 
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 relative overflow-hidden">
@@ -102,8 +112,95 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Instagram Reels Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {/* Instagram Reels - Carousel on mobile, Grid on desktop */}
+        
+        {/* Mobile Carousel */}
+        <div className="md:hidden relative mb-12 px-16">
+          <div className="relative aspect-[9/16] max-w-xs mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.a
+                key={currentSlide}
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.3 }}
+                className="group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer block"
+              >
+                {/* Reel Thumbnail */}
+                <img
+                  src={reels[currentSlide].thumbnail}
+                  alt={reels[currentSlide].title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/50">
+                    <Play className="w-8 h-8 text-white fill-white ml-1" />
+                  </div>
+                </div>
+
+                {/* Reel Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="text-white font-semibold text-sm mb-2">{reels[currentSlide].title}</p>
+                  <div className="flex items-center gap-4 text-white text-xs">
+                    <div className="flex items-center gap-1">
+                      <Play className="w-3 h-3" />
+                      <span>{reels[currentSlide].views}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Heart className="w-3 h-3" />
+                      <span>{reels[currentSlide].likes}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Instagram Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-full">
+                    <Instagram className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+              </motion.a>
+            </AnimatePresence>
+
+            {/* Dots Indicator */}
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+              {reels.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide ? 'bg-amber-500 w-6' : 'bg-neutral-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Carousel Controls - Outside */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+          >
+            <ChevronLeft className="w-6 h-6 text-neutral-800" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+          >
+            <ChevronRight className="w-6 h-6 text-neutral-800" />
+          </button>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {reels.map((reel, index) => (
             <motion.a
               key={reel.id}

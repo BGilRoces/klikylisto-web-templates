@@ -88,7 +88,7 @@ const Navigation = () => {
           </motion.div>
 
           {/* Premium Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden lg:flex items-center space-x-10">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -133,7 +133,7 @@ const Navigation = () => {
 
           {/* Premium Mobile menu button */}
           <motion.button
-            className={`md:hidden p-3 rounded-2xl transition-all duration-300 backdrop-blur-md border ${
+            className={`lg:hidden p-3 rounded-2xl transition-all duration-300 backdrop-blur-md border ${
               scrolled 
                 ? 'bg-white/80 border-amber-200/50 text-slate-700 hover:bg-amber-50 shadow-lg' 
                 : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
@@ -153,7 +153,7 @@ const Navigation = () => {
 
         {/* Premium Mobile Navigation */}
         <motion.div
-          className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}
+          className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}
           initial={{ opacity: 0, height: 0 }}
           animate={{ 
             opacity: isOpen ? 1 : 0, 

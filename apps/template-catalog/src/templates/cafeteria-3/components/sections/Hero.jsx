@@ -64,13 +64,94 @@ const Hero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left content */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          {/* Coffee visual - Shows first on mobile, second on desktop */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative w-full order-1 lg:order-2"
+          >
+            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[600px]">
+              {/* Glowing effect */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-full blur-3xl" />
+              </motion.div>
+              
+              {/* Coffee icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  animate={{
+                    y: [0, -20, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Coffee className="w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 text-amber-500/30" strokeWidth={1} />
+                  
+                  {/* Steam effect */}
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-8 bg-gradient-to-t from-amber-400/40 to-transparent rounded-full"
+                      style={{
+                        left: `${40 + i * 10}%`,
+                        top: '20%',
+                      }}
+                      animate={{
+                        y: [-10, -40],
+                        opacity: [0.6, 0],
+                        scale: [1, 1.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.4,
+                        ease: "easeOut"
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Decorative rings */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] border border-amber-500/10 rounded-full" />
+              </motion.div>
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] lg:w-[400px] lg:h-[400px] border border-orange-500/10 rounded-full" />
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Text content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 order-2 lg:order-1"
           >
 
             {/* Main heading */}
@@ -105,100 +186,19 @@ const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-12 pt-8 border-t border-white/10">
-              <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">10K+</div>
-                <div className="text-sm text-neutral-400 mt-1">Tazas servidas</div>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-8 lg:gap-12 pt-8 border-t border-white/10">
+              <div className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">10K+</div>
+                <div className="text-xs lg:text-sm text-neutral-400 mt-1">Tazas servidas</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">15+</div>
-                <div className="text-sm text-neutral-400 mt-1">Años de experiencia</div>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">15+</div>
+                <div className="text-xs lg:text-sm text-neutral-400 mt-1">Años de experiencia</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">4.9</div>
-                <div className="text-sm text-neutral-400 mt-1">Calificación</div>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">4.9</div>
+                <div className="text-xs lg:text-sm text-neutral-400 mt-1">Calificación</div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Right content - Coffee visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative w-full h-[600px]">
-              {/* Glowing effect */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <div className="w-96 h-96 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-full blur-3xl" />
-              </motion.div>
-              
-              {/* Coffee icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{
-                    y: [0, -20, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <Coffee className="w-64 h-64 text-amber-500/30" strokeWidth={1} />
-                  
-                  {/* Steam effect */}
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-8 bg-gradient-to-t from-amber-400/40 to-transparent rounded-full"
-                      style={{
-                        left: `${40 + i * 10}%`,
-                        top: '20%',
-                      }}
-                      animate={{
-                        y: [-10, -40],
-                        opacity: [0.6, 0],
-                        scale: [1, 1.5],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: i * 0.4,
-                        ease: "easeOut"
-                      }}
-                    />
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Decorative rings */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-[500px] h-[500px] border border-amber-500/10 rounded-full" />
-              </motion.div>
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-[400px] h-[400px] border border-orange-500/10 rounded-full" />
-              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -91,7 +91,7 @@ const SimpleAbout = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
             {[
               { number: '10K+', label: 'Tazas servidas' },
               { number: '500+', label: 'Clientes felices' },
@@ -100,6 +100,7 @@ const SimpleAbout = () => {
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
+                className="text-center min-w-[120px]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}

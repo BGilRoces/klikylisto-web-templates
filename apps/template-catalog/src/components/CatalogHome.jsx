@@ -3,6 +3,7 @@ import Header from './layout/Header'
 import Footer from './layout/Footer'
 import TemplatesSection from './sections/TemplatesSection'
 import CTASection from './sections/CTASection'
+import ShowcaseSection from './sections/ShowcaseSection'
 import TemplateCard from './ui/TemplateCard'
 
 const CatalogHome = ({ templates }) => {
@@ -15,6 +16,8 @@ const CatalogHome = ({ templates }) => {
           <TemplateCard key={template.id} template={template} index={index} />
         ))}
       </TemplatesSection>
+
+      <ShowcaseSection />
 
       <CTASection />
 

@@ -59,7 +59,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-6 md:mb-7"
         >
-          <h1 className="text-7xl font-black leading-none tracking-tight">
+          <h1 className="text-7xl md:text-9xl font-black leading-none tracking-tight">
             <span className="block text-white">ROAST</span>
             <span className="block bg-gradient-to-r from-amber-300 via-amber-400 to-amber-400 bg-clip-text text-transparent">
               CRAFT

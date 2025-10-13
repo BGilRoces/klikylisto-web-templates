@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
-import { motion } from 'framer-motion'
-import { Coffee } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Coffee, Menu, X } from 'lucide-react'
+import { useState } from 'react'
 
-const MinimalNav = ({ scrollY, onMenuClick }) => {
+const MinimalNav = ({ onMenuClick }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  
   const navItems = [
     { name: 'Inicio', href: '#home', action: null },
     { name: 'Nosotros', href: '#about', action: null },
@@ -16,16 +19,12 @@ const MinimalNav = ({ scrollY, onMenuClick }) => {
       e.preventDefault()
       item.action()
     }
+    setIsOpen(false)
   }
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        backgroundColor: scrollY > 50 ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
-        backdropFilter: scrollY > 50 ? 'blur(10px)' : 'none',
-        borderBottom: scrollY > 50 ? '1px solid rgba(0, 0, 0, 0.1)' : 'none'
-      }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-stone-200 transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -41,9 +40,9 @@ const MinimalNav = ({ scrollY, onMenuClick }) => {
             <span className="text-2xl font-bold text-stone-900">Aroma</span>
           </motion.div>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation Links */}
           <motion.div
-            className="hidden md:flex items-center space-x-8"
+            className="hidden lg:flex items-center space-x-8"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -68,7 +67,47 @@ const MinimalNav = ({ scrollY, onMenuClick }) => {
               </motion.a>
             ))}
           </motion.div>
+
+          {/* Hamburger Menu Button */}
+          <motion.button
+            className="lg:hidden text-stone-700 hover:text-amber-700 transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </motion.button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden overflow-hidden"
+            >
+              <div className="py-4 space-y-3">
+                {navItems.map((item) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => handleItemClick(item, e)}
+                    className="block text-stone-700 hover:text-amber-700 font-medium transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-amber-50 cursor-pointer"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   )
