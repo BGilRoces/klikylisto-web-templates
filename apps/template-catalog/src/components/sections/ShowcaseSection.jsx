@@ -29,9 +29,13 @@ const ShowcaseSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
+          <h2 className="text-5xl font-bold text-white mb-4">
+            <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+              Último Proyecto
+            </span>
+          </h2>
           
-
-          <p className="text-base text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base text-gray-300 max-w-2xl mx-auto">
             Sitio web completo para Bertha Café - Una experiencia digital que combina elegancia, funcionalidad y rendimiento.
           </p>
         </motion.div>
@@ -69,25 +73,13 @@ const ShowcaseSection = () => {
                       loading="lazy"
                       decoding="async"
                     />
-                    {/* subtle overlay CTA */}
-                    <div className="absolute inset-0 flex items-end justify-center pb-8 pointer-events-none">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto">
-                        <motion.div
-                          className="inline-flex items-center gap-2 bg-white/8 backdrop-blur-md border border-white/10 rounded-full px-5 py-2 text-white"
-                          whileHover={{ scale: 1.03 }}
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          <span className="text-sm font-semibold">Ver Sitio Web</span>
-                        </motion.div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
                 {/* Mobile mockup - positioned at bottom left, doesn't cover desktop view */}
                 <div className="absolute -left-8 -bottom-24 w-40 sm:w-44 md:w-48 lg:w-52 transform -rotate-6 transition-transform duration-500 group-hover:-rotate-3">
                   {/* Phone frame with realistic bezel */}
-                  <div className="relative bg-gradient-to-br from-gray-200 to-gray-300 rounded-[1.5rem] p-2 shadow-2xl">
+                  <div className="relative bg-gradient-to-br from-gray-600 to-gray-700 rounded-[1.5rem] p-2 shadow-2xl">
                     {/* Phone screen area */}
                     <div className="relative bg-black rounded-[1.3rem] overflow-hidden aspect-[9/19.5]">
                       {/* Top notch/speaker */}
@@ -112,6 +104,27 @@ const ShowcaseSection = () => {
                 <div className="absolute inset-0 -z-10 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-2xl blur-2xl opacity-100 transition-opacity duration-500"></div>
               </div>
             </a>
+
+            {/* CTA Button - positioned below mockups */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8 flex justify-center"
+            >
+              <motion.a
+                href="https://berthacafe.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#8b9374] text-white px-8 py-4 rounded-full font-bold text-base shadow-xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Visitar Bertha Café</span>
+                <ExternalLink className="w-5 h-5" />
+              </motion.a>
+            </motion.div>
           </motion.div>
 
           {/* Right: Features */}
@@ -123,8 +136,7 @@ const ShowcaseSection = () => {
             className="space-y-6"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-2">Bertha Café</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              <p className="text-gray-200 text-md leading-relaxed mb-4">
                 Un sitio web moderno y funcional diseñado para destacar la identidad única de la cafetería, 
                 facilitando la experiencia del cliente desde la navegación hasta la compra.
               </p>
@@ -151,19 +163,6 @@ const ShowcaseSection = () => {
                 </motion.div>
               ))}
             </div>
-
-            {/* CTA */}
-            <motion.a
-              href="https://berthacafe.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-sm shadow-xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>Visitar Bertha Café</span>
-              <ExternalLink className="w-4 h-4" />
-            </motion.a>
           </motion.div>
         </div>
       </div>
