@@ -111,13 +111,13 @@ const ShowcaseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 flex justify-center"
+              className="mt-20 sm:mt-8 flex justify-center relative z-20"
             >
               <motion.a
                 href="https://berthacafe.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#8b9374] text-white px-8 py-4 rounded-full font-bold text-base shadow-xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300"
+                className="relative z-30 inline-flex items-center gap-2 bg-[#8b9374] text-white px-8 py-4 rounded-full font-bold text-base shadow-xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
