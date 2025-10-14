@@ -200,7 +200,7 @@ const CTASection = () => {
                         <div>
                           <label className="block text-white font-medium mb-2.5">
                             <Coffee size={14} className="inline mr-2" />
-                            ¿Cuál template te gusta más?
+                            ¿Cuál template te gusta más? <span className='text-gray-300'>(opcional)</span>
                           </label>
                           <div className="grid grid-cols-3 gap-2 mb-4">
                             {['Artesanal', 'Moderno', 'Boutique'].map((template, index) => (
@@ -225,7 +225,7 @@ const CTASection = () => {
                         <div>
                           <label className="block text-white font-medium mb-2">
                             <MessageSquare size={14} className="inline mr-2" />
-                            Comentarios adicionales (opcional)
+                            Comentarios adicionales <span className='text-gray-300'>(opcional)</span>
                           </label>
                           <textarea
                             name="message"
