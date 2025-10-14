@@ -5,7 +5,6 @@ import TemplatesSection from './sections/TemplatesSection'
 import CTASection from './sections/CTASection'
 import ShowcaseSection from './sections/ShowcaseSection'
 import TemplateCard from './ui/TemplateCard'
-import WhyChooseUsSection from './sections/WhyChooseUsSection'
 
 const CatalogHome = ({ templates }) => {
   return (
@@ -19,8 +18,6 @@ const CatalogHome = ({ templates }) => {
       </TemplatesSection>
 
       <ShowcaseSection />
-
-      <WhyChooseUsSection />
 
       <CTASection />
 

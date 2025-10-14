@@ -1,10 +1,43 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Coffee, Send, User, Mail, MessageSquare, CheckCircle, DollarSign, AlertCircle } from 'lucide-react'
+import { Coffee, Send, User, Mail, MessageSquare, CheckCircle, DollarSign, AlertCircle, Smartphone, Zap, Wrench, Palette, Sparkles } from 'lucide-react'
 import Container from '../layout/Container'
 import WhatsAppButton from '../ui/WhatsAppButton'
 import { sendContactEmail, validateEmailConfig } from '../../services/emailService'
 import useIntersectionObserver from '../../hooks/useIntersectionObserver'
+
+const features = [
+  {
+    Icon: Smartphone,
+    title: 'Diseño Responsive',
+    desc: 'Perfecto en mobile, tablet y desktop.',
+  },
+  {
+    Icon: DollarSign,
+    title: 'Precios Accesibles',
+    desc: 'Calidad profesional sin arruinarte.',
+  },
+  {
+    Icon: Zap,
+    title: 'Entrega Rápida',
+    desc: 'Tu proyecto online en tiempo récord.',
+  },
+  {
+    Icon: Wrench,
+    title: 'Soporte Continuo',
+    desc: 'Mantenimiento y actualizaciones siempre.',
+  },
+  {
+    Icon: Palette,
+    title: 'Totalmente Personalizable',
+    desc: 'Tu marca, tu estilo. Todo a tu medida.',
+  },
+  {
+    Icon: Sparkles,
+    title: 'Ideas Bienvenidas',
+    desc: 'Nos encanta innovar. Traé tus ideas.',
+  }
+]
 
 const CTASection = () => {
   const { targetRef, hasIntersected } = useIntersectionObserver({
@@ -96,62 +129,69 @@ const CTASection = () => {
             {/* Contenido principal */}
             <div className="relative px-6 md:px-10 py-10">
               {/* Grid de 2 columnas */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 
                 {/* Columna Izquierda - Contenido */}
                 <div>
-                  <motion.h3
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: hasIntersected ? 0.2 : 0, ease: "easeOut" }}
-                    className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
-                  >
-                    Creemos
-                    <span className="block text-transparent bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text">
-                      Tu Sitio Web
-                    </span>
-                  </motion.h3>
-                  <div className='flex flex-row'>
-                    <motion.p
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                      transition={{ duration: 0.6, delay: hasIntersected ? 0.3 : 0, ease: "easeOut" }}
-                      className="text-lg text-gray-300 mb-6 leading-relaxed"
-                    >
-                      Te ayudamos a crear la presencia digital perfecta.
-                      <div className='flex flex-row'>
-                        <span className="text-amber-300 font-semibold"> Respuesta garantizada en 24 horas.</span>
-                      </div>
-                    </motion.p>
-                  </div>
-
-                  {/* Features compactos */}
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: hasIntersected ? 0.4 : 0, ease: "easeOut" }}
-                    className="space-y-3"
+                    transition={{ duration: 0.6, delay: hasIntersected ? 0.2 : 0, ease: "easeOut" }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
-                        <CheckCircle size={16} className="text-green-400" />
-                      </div>
-                      <p className="text-gray-300">Consulta gratuita y sin compromiso</p>
+                    <div className="inline-block mb-3">
+                      <span className="px-4 py-1.5 bg-gradient-to-r from-amber-400/20 to-orange-500/20 border border-amber-400/30 rounded-full text-amber-300 text-sm font-semibold">
+                        ✨ Por qué somos diferentes
+                      </span>
                     </div>
                     
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
-                        <DollarSign size={16} className="text-amber-400" />
-                      </div>
-                      <p className="text-gray-300">Precios súper competitivos</p>
-                    </div>
+                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+                      <span className="text-white">Tu proyecto digital</span>
+                      <br />
+                      <span className="text-transparent bg-gradient-to-r from-amber-300 via-orange-400 to-amber-400 bg-clip-text">
+                        en las mejores manos
+                      </span>
+                    </h3>
                     
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
-                        <CheckCircle size={16} className="text-blue-400" />
-                      </div>
-                      <p className="text-gray-300">Entrega en tiempo récord</p>
-                    </div>
+                    <p className="text-gray-300 text-base mb-6 leading-relaxed">
+                      Creamos sitios que realmente funcionan. Diseño moderno, adaptable, 
+                      y un equipo que te escucha. Sin vueltas, sin sorpresas — solo resultados.
+                      <span className="block text-amber-300 font-semibold mt-2">Respuesta garantizada en 24 horas.</span>
+                    </p>
+                  </motion.div>
+
+                  {/* Grid de features */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6, delay: hasIntersected ? 0.3 : 0, ease: "easeOut" }}
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                  >
+                    {features.map((feature, idx) => (
+                      <motion.div
+                        key={feature.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={hasIntersected ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ 
+                          duration: 0.4, 
+                          delay: hasIntersected ? 0.4 + (0.05 * idx) : 0,
+                          ease: "easeOut"
+                        }}
+                        className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 hover:bg-white/8 hover:border-white/20 transition-all duration-300"
+                      >
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400/20 to-orange-500/20 flex items-center justify-center border border-white/10">
+                          <feature.Icon size={20} className="text-amber-300" strokeWidth={2.5} />
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-white font-bold text-sm mb-1 tracking-wider">
+                            {feature.title}
+                          </h4>
+                          <p className="text-gray-200 text-sm">
+                            {feature.desc}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
                   </motion.div>
                 </div>
 
