@@ -70,6 +70,33 @@ const BrowserFrame = ({ children, templateInfo, viewportSize = 'desktop' }) => {
         const root = ReactDOM.createRoot(iframeRoot)
         root.render(children)
       }
+
+      // Agregar listener de scroll en el iframe
+      const iframeWindow = iframe.contentWindow
+      if (iframeWindow) {
+        let lastScrollTop = 0
+        
+        const handleIframeScroll = () => {
+          const scrollTop = iframeWindow.scrollY || iframeDoc.documentElement.scrollTop
+          
+          // Enviar mensaje al padre con información del scroll
+          window.postMessage({
+            type: 'IFRAME_SCROLL',
+            scrollTop: scrollTop,
+            scrollDirection: scrollTop > lastScrollTop ? 'down' : 'up',
+            isAtTop: scrollTop === 0
+          }, '*')
+          
+          lastScrollTop = scrollTop
+        }
+
+        iframeWindow.addEventListener('scroll', handleIframeScroll)
+        
+        // Cleanup
+        return () => {
+          iframeWindow.removeEventListener('scroll', handleIframeScroll)
+        }
+      }
     }, 100)
   }, [children, key])
 

@@ -2,23 +2,25 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Coffee, Monitor, Smartphone, Tablet, Star, Menu } from 'lucide-react'
 
-const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
+const Navigation = ({ templateInfo, viewportSize, setViewportSize, isNavVisible, setIsNavVisible }) => {
   const { templateId } = useParams()
-  const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false)
   const mobilePanelRef = useRef(null)
+  const [iframeScrollTop, setIframeScrollTop] = useState(0)
 
+  // Escuchar scroll del window principal
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         const currentScrollY = window.scrollY
         
         // Solo mostrar cuando esté cerca del top (primeros 100px)
-        if (currentScrollY < 100) {
-          setIsVisible(true)
+        // y el iframe también esté arriba
+        if (currentScrollY < 100 && iframeScrollTop < 100) {
+          setIsNavVisible(true)
         } else {
-          setIsVisible(false)
+          setIsNavVisible(false)
         }
         
         setLastScrollY(currentScrollY)
@@ -32,7 +34,34 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
         window.removeEventListener('scroll', controlNavbar)
       }
     }
-  }, [lastScrollY])
+  }, [lastScrollY, iframeScrollTop, setIsNavVisible])
+
+  // Escuchar mensajes del iframe
+  useEffect(() => {
+    const handleMessage = (event) => {
+      // Verificar que el mensaje viene de nuestro iframe
+      if (event.data && event.data.type === 'IFRAME_SCROLL') {
+        const { scrollTop, isAtTop } = event.data
+        
+        setIframeScrollTop(scrollTop)
+        
+        // Si el iframe hace scroll hacia abajo (más de 100px), ocultar navegación
+        if (scrollTop > 100) {
+          setIsNavVisible(false)
+        } 
+        // Si el iframe está arriba y la página principal también, mostrar navegación
+        else if (isAtTop && window.scrollY < 100) {
+          setIsNavVisible(true)
+        }
+      }
+    }
+
+    window.addEventListener('message', handleMessage)
+    
+    return () => {
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [setIsNavVisible])
 
   // Close mobile panel when clicking outside
   useEffect(() => {
@@ -55,7 +84,7 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize }) => {
 
   return (
     <div className={`fixed top-0 left-0 right-0 z-50 bg-amber-900/10 backdrop-blur-md shadow-lg border-b border-amber-900/40 transition-transform duration-300 ${
-      isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'
+      isNavVisible ? 'transform translate-y-0' : 'transform -translate-y-full'
     }`}>
       <div className="flex items-center justify-between px-6 py-4">
         {/* Left - Brand & Back */}
