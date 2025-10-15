@@ -118,11 +118,8 @@ const About = () => {
         <div className="md:hidden relative mb-12 px-16">
           <div className="relative aspect-[9/16] max-w-xs mx-auto">
             <AnimatePresence mode="wait">
-              <motion.a
+              <motion.div
                 key={currentSlide}
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
@@ -167,7 +164,7 @@ const About = () => {
                     <Instagram className="w-4 h-4 text-white" />
                   </div>
                 </div>
-              </motion.a>
+              </motion.div>
             </AnimatePresence>
 
             {/* Dots Indicator */}
@@ -202,11 +199,8 @@ const About = () => {
         {/* Desktop Grid */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {reels.map((reel, index) => (
-            <motion.a
+            <motion.div
               key={reel.id}
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -252,14 +246,12 @@ const About = () => {
               {/* Instagram Badge */}
               <div className="absolute top-4 right-4">
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 p-2 rounded-full">
-                  <Instagram className="w-4 h-4 text-white" />
-                </div>
+                <Instagram className="w-4 h-4 text-white" />
               </div>
-            </motion.a>
+              </div>
+            </motion.div>
           ))}
-        </div>
-
-        {/* CTA Button */}
+        </div>        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -267,18 +259,15 @@ const About = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <motion.a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-bold text-lg shadow-2xl hover:shadow-amber-500/50 transition-all duration-300"
+          <motion.div
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-bold text-lg shadow-2xl hover:shadow-amber-500/50 transition-all duration-300 cursor-pointer"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
             <Instagram className="w-6 h-6" />
             Seguinos en Instagram
             <Share2 className="w-5 h-5" />
-          </motion.a>
+          </motion.div>
           <p className="text-sm text-neutral-500 mt-4">
             Etiquetanos en tus fotos con <span className="font-bold text-amber-600">#AromaPremium</span>
           </p>
