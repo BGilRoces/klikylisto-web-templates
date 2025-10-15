@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Star, ShoppingCart, Check } from 'lucide-react';
+import { Star, ShoppingCart, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 const FeaturedMenu = () => {
@@ -12,6 +12,7 @@ const FeaturedMenu = () => {
 
   const { addToCart } = useCart();
   const [addedItems, setAddedItems] = useState({});
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleAddToCart = (item) => {
     addToCart(item);
@@ -19,6 +20,14 @@ const FeaturedMenu = () => {
     setTimeout(() => {
       setAddedItems(prev => ({ ...prev, [item.id]: false }));
     }, 2000);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % menuItems.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + menuItems.length) % menuItems.length);
   };
 
   const menuItems = [
@@ -113,7 +122,138 @@ const FeaturedMenu = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Mobile Carousel */}
+        <div className="md:hidden relative mb-12 px-8">
+          <div className="relative max-w-md mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.3 }}
+                className="group relative"
+              >
+                {/* Product Card */}
+                <div className="relative bg-white/90 backdrop-blur-md rounded-3xl border border-amber-200/50 overflow-hidden shadow-2xl shadow-amber-100/30 group-hover:shadow-3xl group-hover:shadow-amber-200/40 transition-all duration-500 flex flex-col">
+                  
+                  {/* Premium image container */}
+                  <div className="relative h-80 overflow-hidden">
+                    <motion.img 
+                      src={menuItems[currentSlide].image}
+                      alt={menuItems[currentSlide].name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      whileHover={{ scale: 1.05 }}
+                    />
+                    
+                    {/* Premium gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Floating badge with premium styling */}
+                    <motion.div 
+                      className="absolute top-6 left-6"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                    >
+                      <div className="px-4 py-2 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-xs font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
+                        {menuItems[currentSlide].badge}
+                      </div>
+                    </motion.div>
+                    
+                    {/* Category tag */}
+                    <div className="absolute top-6 right-6 px-3 py-1 bg-white/95 backdrop-blur-md text-amber-800 text-xs font-semibold rounded-full border border-amber-300/50 shadow-lg">
+                      {menuItems[currentSlide].category}
+                    </div>
+                  </div>
+                  
+                  {/* Premium content area */}
+                  <div className="p-8 flex-grow flex flex-col">
+                    <div className="mb-6 flex-grow">
+                      <h3 className="text-2xl font-display font-bold text-slate-900 mb-3 group-hover:text-amber-900 transition-colors duration-300">
+                        {menuItems[currentSlide].name}
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed font-light text-base">
+                        {menuItems[currentSlide].description}
+                      </p>
+                    </div>
+                    
+                    {/* Premium rating and stats */}
+                    <div className="flex items-center justify-between pt-4 border-t border-amber-200/30">
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                          ))}
+                        </div>
+                        <span className="text-slate-700 text-sm font-semibold">{menuItems[currentSlide].rating}</span>
+                      </div>
+                      
+                      <motion.button
+                        onClick={() => handleAddToCart(menuItems[currentSlide])}
+                        className={`group/btn relative p-2.5 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex items-center justify-center ${
+                          addedItems[menuItems[currentSlide].id]
+                            ? 'bg-green-600 shadow-green-500/25'
+                            : 'bg-gradient-to-r from-amber-600 to-orange-600 shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40'
+                        }`}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {addedItems[menuItems[currentSlide].id] ? (
+                          <Check className="w-5 h-5 text-white relative z-10" />
+                        ) : (
+                          <ShoppingCart className="w-5 h-5 text-white relative z-10" />
+                        )}
+                        {!addedItems[menuItems[currentSlide].id] && (
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-orange-700 to-red-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
+                          />
+                        )}
+                      </motion.button>
+                    </div>
+                  </div>
+                  
+                  {/* Premium hover effect overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  />
+                </div>
+                
+                {/* Floating glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-all duration-500 -z-10"></div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-6">
+              {menuItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide ? 'bg-amber-500 w-6' : 'bg-neutral-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Carousel Controls */}
+          <button
+            onClick={prevSlide}
+            className="absolute -left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+          >
+            <ChevronLeft className="w-4 h-4 text-neutral-800" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute -right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+          >
+            <ChevronRight className="w-4 h-4 text-neutral-800" />
+          </button>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {menuItems.map((item, index) => (
             <motion.div
               key={index}
