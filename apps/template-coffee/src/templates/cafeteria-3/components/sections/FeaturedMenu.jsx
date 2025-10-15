@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Star } from 'lucide-react';
+import { Star, ShoppingCart, Check } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 
 const FeaturedMenu = () => {
   const [ref, inView] = useInView({
@@ -9,8 +10,20 @@ const FeaturedMenu = () => {
     threshold: 0.1
   });
 
+  const { addToCart } = useCart();
+  const [addedItems, setAddedItems] = useState({});
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    setAddedItems(prev => ({ ...prev, [item.id]: true }));
+    setTimeout(() => {
+      setAddedItems(prev => ({ ...prev, [item.id]: false }));
+    }, 2000);
+  };
+
   const menuItems = [
     {
+      id: 'esp-luna',
       name: "Espresso Luna Premium",
       description: "Nuestra exclusiva mezcla signature con complejas notas de chocolate belga, caramelo artesanal y un toque de vainilla bourbon",
       price: "$6.50",
@@ -20,6 +33,7 @@ const FeaturedMenu = () => {
       image: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
     },
     {
+      id: 'cap-gold',
       name: "Cappuccino Artesanal Gold",
       description: "Espuma de leche de cabra perfectamente texturizada con arte latte personalizado y un toque de polvo de oro comestible",
       price: "$8.25",
@@ -29,6 +43,7 @@ const FeaturedMenu = () => {
       image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
     },
     {
+      id: 'croissant-almendra',
       name: "Croissant de Almendra & Miel",
       description: "Hojaldre artesanal horneado cada amanecer con almendras de Sicilia, miel de lavanda y mantequilla francesa",
       price: "$5.75",
@@ -36,6 +51,36 @@ const FeaturedMenu = () => {
       category: "Pastelería",
       rating: 4.9,
       image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      id: 'latte-caramelo',
+      name: "Latte Caramelo Salado",
+      description: "Café espresso con leche vaporizada y salsa de caramelo salado casero, coronado con crema batida",
+      price: "$7.00",
+      badge: "Popular",
+      category: "Latte",
+      rating: 4.7,
+      image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      id: 'muffin-arandanos',
+      name: "Muffin de Arándanos Azules",
+      description: "Suave muffin relleno de arándanos frescos con un toque de limón y streusel crujiente",
+      price: "$4.50",
+      badge: "Fresco",
+      category: "Pastelería",
+      rating: 4.8,
+      image: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      id: 'americano-especial',
+      name: "Americano de Origen Único",
+      description: "Granos seleccionados de una sola finca en Colombia, tostado medio con notas afrutadas",
+      price: "$5.25",
+      badge: "Exclusivo",
+      category: "Americano",
+      rating: 4.9,
+      image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
     }
   ];
 
@@ -58,13 +103,13 @@ const FeaturedMenu = () => {
             <span className="text-sm font-medium text-amber-900">Menú Destacado</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-display font-black text-neutral-900 mb-4">
-            Nuestras especialidades
+            Nuestros
             <span className="block mt-2 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-              favoritas
+              Productos Premium
             </span>
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            Cada creación es una obra de arte, elaborada con ingredientes seleccionados.
+            Cada creación es una obra de arte. Ordena online y disfruta en casa.
           </p>
         </motion.div>
 
@@ -140,14 +185,28 @@ const FeaturedMenu = () => {
                     </div>
                     
                     <motion.button
-                      className="group/btn relative px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white font-semibold rounded-xl overflow-hidden shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300"
+                      onClick={() => handleAddToCart(item)}
+                      className={`group/btn relative px-6 py-2 font-semibold rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex items-center gap-2 ${
+                        addedItems[item.id]
+                          ? 'bg-green-600 shadow-green-500/25'
+                          : 'bg-gradient-to-r from-amber-600 to-orange-600 shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40'
+                      }`}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="relative z-10 text-sm">Ordenar</span>
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-orange-700 to-red-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-                      />
+                      <span className="relative z-10 text-sm text-white">
+                        {addedItems[item.id] ? 'Agregado' : 'Agregar'}
+                      </span>
+                      {addedItems[item.id] ? (
+                        <Check className="w-4 h-4 text-white relative z-10" />
+                      ) : (
+                        <ShoppingCart className="w-4 h-4 text-white relative z-10" />
+                      )}
+                      {!addedItems[item.id] && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-orange-700 to-red-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
+                        />
+                      )}
                     </motion.button>
                   </div>
                 </div>

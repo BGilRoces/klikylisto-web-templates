@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Coffee, Menu, X } from 'lucide-react'
+import { Coffee, Menu, X, ShoppingBag } from 'lucide-react'
+import { useCart } from '../../context/CartContext'
 
 const Navigation = () => {
+  const { setIsCartOpen, getCartCount } = useCart();
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
@@ -170,14 +172,25 @@ const Navigation = () => {
             ))}
             
             <motion.button
-              className="group relative bg-gradient-to-r from-amber-600 to-orange-600 text-white px-8 py-3 rounded-2xl font-bold overflow-hidden shadow-xl shadow-amber-500/25 border border-amber-400/30"
+              onClick={() => setIsCartOpen(true)}
+              className="group relative bg-gradient-to-r from-amber-600 to-orange-600 text-white px-8 py-3 rounded-2xl font-bold overflow-hidden shadow-xl shadow-amber-500/25 border border-amber-400/30 flex items-center gap-2"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
             >
-              <span className="relative z-10">Reservar Mesa</span>
+              <ShoppingBag className="w-5 h-5 relative z-10" />
+              <span className="relative z-10">Ver Carrito</span>
+              {getCartCount() > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="relative z-10 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs"
+                >
+                  {getCartCount()}
+                </motion.span>
+              )}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-orange-700 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
@@ -240,14 +253,24 @@ const Navigation = () => {
             
             <div className="px-6 pt-4 border-t border-amber-200/30 mt-4">
               <motion.button 
-                className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-amber-500/25 border border-amber-400/30 hover:shadow-2xl transition-all duration-300"
+                onClick={() => {
+                  setIsCartOpen(true);
+                  setIsOpen(false);
+                }}
+                className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-amber-500/25 border border-amber-400/30 hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.3 }}
               >
-                Reservar Mesa
+                <ShoppingBag className="w-5 h-5" />
+                Ver Carrito
+                {getCartCount() > 0 && (
+                  <span className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs">
+                    {getCartCount()}
+                  </span>
+                )}
               </motion.button>
             </div>
           </motion.div>
