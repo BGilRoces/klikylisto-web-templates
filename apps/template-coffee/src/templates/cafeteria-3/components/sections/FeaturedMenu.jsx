@@ -252,8 +252,147 @@ const FeaturedMenu = () => {
           </button>
         </div>
 
-        {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Medium Screen Carousel (2 columns) */}
+        <div className="hidden md:block xl:hidden relative mb-12 px-12">
+          <div className="relative max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 gap-6">
+              <AnimatePresence mode="wait">
+                {[currentSlide, (currentSlide + 1) % menuItems.length].map((itemIndex, i) => (
+                  <motion.div
+                    key={`${currentSlide}-${i}`}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.3, delay: i * 0.1 }}
+                    className="group relative"
+                  >
+                    {/* Premium card with glassmorphism */}
+                    <div className="relative bg-white/90 backdrop-blur-md rounded-3xl border border-amber-200/50 overflow-hidden shadow-2xl shadow-amber-100/30 group-hover:shadow-3xl group-hover:shadow-amber-200/40 transition-all duration-500 h-full flex flex-col">
+                      
+                      {/* Premium image container */}
+                      <div className="relative h-80 overflow-hidden">
+                        <motion.img 
+                          src={menuItems[itemIndex].image}
+                          alt={menuItems[itemIndex].name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          whileHover={{ scale: 1.05 }}
+                        />
+                        
+                        {/* Premium gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        {/* Floating badge with premium styling */}
+                        <motion.div 
+                          className="absolute top-6 left-6"
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                        >
+                          <div className="px-4 py-2 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-xs font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
+                            {menuItems[itemIndex].badge}
+                          </div>
+                        </motion.div>
+                        
+                        {/* Category tag */}
+                        <div className="absolute top-6 right-6 px-3 py-1 bg-white/95 backdrop-blur-md text-amber-800 text-xs font-semibold rounded-full border border-amber-300/50 shadow-lg">
+                          {menuItems[itemIndex].category}
+                        </div>
+                      </div>
+                      
+                      {/* Premium content area */}
+                      <div className="p-8 flex-grow flex flex-col">
+                        <div className="mb-6 flex-grow">
+                          <h3 className="text-2xl font-display font-bold text-slate-900 mb-3 group-hover:text-amber-900 transition-colors duration-300">
+                            {menuItems[itemIndex].name}
+                          </h3>
+                          <p className="text-slate-600 leading-relaxed font-light text-base">
+                            {menuItems[itemIndex].description}
+                          </p>
+                        </div>
+                        
+                        {/* Premium rating and stats */}
+                        <div className="flex items-center justify-between pt-4 border-t border-amber-200/30">
+                          <div className="flex items-center gap-3">
+                            <div className="flex items-center">
+                              {[...Array(5)].map((_, starIndex) => (
+                                <Star key={starIndex} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                              ))}
+                            </div>
+                            <span className="text-slate-700 text-sm font-semibold">{menuItems[itemIndex].rating}</span>
+                          </div>
+                          
+                          <motion.button
+                            onClick={() => handleAddToCart(menuItems[itemIndex])}
+                            className={`group/btn relative px-6 py-2 font-semibold rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex items-center gap-2 ${
+                              addedItems[menuItems[itemIndex].id]
+                                ? 'bg-green-600 shadow-green-500/25'
+                                : 'bg-gradient-to-r from-amber-600 to-orange-600 shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40'
+                            }`}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <span className="relative z-10 text-sm text-white">
+                              {addedItems[menuItems[itemIndex].id] ? 'Agregado' : 'Agregar'}
+                            </span>
+                            {addedItems[menuItems[itemIndex].id] ? (
+                              <Check className="w-4 h-4 text-white relative z-10" />
+                            ) : (
+                              <ShoppingCart className="w-4 h-4 text-white relative z-10" />
+                            )}
+                            {!addedItems[menuItems[itemIndex].id] && (
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-orange-700 to-red-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
+                              />
+                            )}
+                          </motion.button>
+                        </div>
+                      </div>
+                      
+                      {/* Premium hover effect overlay */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      />
+                    </div>
+                    
+                    {/* Floating glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-all duration-500 -z-10"></div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-6">
+              {menuItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide || index === (currentSlide + 1) % menuItems.length
+                      ? 'bg-amber-500 w-6' 
+                      : 'bg-neutral-300'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Carousel Controls */}
+            <button
+              onClick={prevSlide}
+              className="absolute -left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+            >
+              <ChevronLeft className="w-5 h-5 text-neutral-800" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute -right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 z-10"
+            >
+              <ChevronRight className="w-5 h-5 text-neutral-800" />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop Grid (XL screens - 3 columns) */}
+        <div className="hidden xl:grid xl:grid-cols-3 gap-8">
           {menuItems.map((item, index) => (
             <motion.div
               key={index}
