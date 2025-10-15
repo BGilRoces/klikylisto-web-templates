@@ -34,7 +34,7 @@ const Footer = () => {
       
       <div className="relative container mx-auto px-4 max-w-7xl">
         {/* Main footer content */}
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-4 gap-12 mb-4">
           {/* Premium brand section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -55,7 +55,7 @@ const Footer = () => {
               </div>
             </div>
             
-            <p className="text-amber-100/80 leading-relaxed mb-6 font-light text-lg">
+            <p className="text-amber-100/80 leading-relaxed mb-6 font-light text-md">
               Desde 2020, creamos experiencias de café excepcionales que despiertan los sentidos 
               y conectan a las personas a través del arte del café artesanal premium.
             </p>
@@ -128,37 +128,6 @@ const Footer = () => {
             </div>
           </motion.div>
         </div>
-        
-        {/* Premium bottom section */}
-        <motion.div
-          className="pt-8 border-t border-amber-300/20"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Copyright premium */}
-            <div className="text-center md:text-left">
-              <p className="text-amber-100/80 flex items-center gap-2 justify-center md:justify-start">
-                Hecho con <Heart className="w-4 h-4 fill-amber-400 text-amber-400 animate-pulse" /> para los amantes del café premium
-              </p>
-              <p className="text-amber-200/60 text-sm mt-1">
-                © 2024 Aroma Premium Coffee. Todos los derechos reservados.
-              </p>
-            </div>
-            
-            {/* Scroll to top premium */}
-            <motion.button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="group p-4 bg-gradient-to-br from-amber-600 to-orange-600 rounded-2xl shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/40 transition-all duration-300 border border-amber-400/30"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Volver al inicio"
-            >
-              <ChevronUp className="w-6 h-6 text-white group-hover:animate-bounce" />
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
     </footer>
   );

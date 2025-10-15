@@ -6,14 +6,65 @@ import { Coffee, Menu, X } from 'lucide-react'
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
+    // Intentar detectar scroll directo primero
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY || window.pageYOffset || 0
+      
+      console.log('🎯 [TEMPLATE NAV] Scroll detectado:', currentScrollY)
+      
+      setScrolled(currentScrollY > 50)
+      
+      if (currentScrollY < 50) {
+        setIsVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+        setIsOpen(false)
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    
+    // Escuchar mensajes de scroll del padre/BrowserFrame
+    const handleMessage = (event) => {
+      if (event.data && event.data.type === 'IFRAME_SCROLL') {
+        const { scrollTop, scrollDirection, isAtTop } = event.data
+        
+        console.log('� [TEMPLATE NAV] Mensaje recibido:', scrollTop, scrollDirection)
+        
+        setScrolled(scrollTop > 50)
+        
+        if (isAtTop || scrollTop < 50) {
+          console.log('✅ Mostrando navbar (cerca del top)')
+          setIsVisible(true)
+        } else if (scrollDirection === 'down' && scrollTop > 100) {
+          console.log('⬇️ Ocultando navbar (scroll down)')
+          setIsVisible(false)
+          setIsOpen(false)
+        } else if (scrollDirection === 'up') {
+          console.log('⬆️ Mostrando navbar (scroll up)')
+          setIsVisible(true)
+        }
+        
+        setLastScrollY(scrollTop)
+      }
+    }
+    
+    console.log('🎬 [TEMPLATE NAV] Iniciando listeners')
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('message', handleMessage)
+    
+    return () => {
+      console.log('🛑 [TEMPLATE NAV] Removiendo listeners')
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [lastScrollY])
 
   const navItems = [
     { name: 'Inicio', href: '#home' },
@@ -26,8 +77,11 @@ const Navigation = () => {
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      animate={{ 
+        y: isVisible ? 0 : -100, 
+        opacity: isVisible ? 1 : 0 
+      }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled 
           ? 'bg-white/95 backdrop-blur-xl shadow-2xl shadow-amber-500/10 border-b border-amber-200/30' 

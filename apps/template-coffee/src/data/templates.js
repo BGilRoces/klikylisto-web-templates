@@ -1,11 +1,11 @@
 export const TEMPLATE_DATA = [
   {
-    id: 'cafeteria-1',
-    name: 'Boutique',
-    description: 'Elegancia que se siente, exclusividad que se vive. Para experiencias que trascienden el café.',
-    color: 'from-amber-600 via-orange-600 to-red-600',
+    id: 'cafeteria-3',
+    name: 'Artesanal',
+    description: 'El aroma del café recién molido cobra vida en cada pixel. Para cafeterías con alma y tradición.',
+    color: 'from-yellow-700 via-amber-800 to-orange-800',
     status: 'ready',
-    category: 'boutique'
+    category: 'artesanal'
   },
   {
     id: 'cafeteria-2',
@@ -16,12 +16,12 @@ export const TEMPLATE_DATA = [
     category: 'moderno'
   },
   {
-    id: 'cafeteria-3',
-    name: 'Artesanal',
-    description: 'El aroma del café recién molido cobra vida en cada pixel. Para cafeterías con alma y tradición.',
-    color: 'from-yellow-700 via-amber-800 to-orange-800',
+    id: 'cafeteria-1',
+    name: 'Boutique',
+    description: 'Elegancia que se siente, exclusividad que se vive. Para experiencias que trascienden el café.',
+    color: 'from-amber-600 via-orange-600 to-red-600',
     status: 'ready',
-    category: 'artesanal'
+    category: 'boutique'
   }
 ]
 
