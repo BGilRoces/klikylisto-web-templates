@@ -50,7 +50,7 @@ const ShowcaseSection = () => {
             className="relative group"
           >
             <a
-              href="https://berthacafe.netlify.app/"
+              href="https://berthacafe.com"
               target="_blank"
               rel="noopener noreferrer"
               className="block relative"

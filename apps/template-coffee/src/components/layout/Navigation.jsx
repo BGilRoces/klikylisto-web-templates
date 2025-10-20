@@ -94,7 +94,8 @@ const Navigation = ({ templateInfo, viewportSize, setViewportSize, isNavVisible,
             className="flex items-center gap-2 px-4 py-2 bg-amber-900 hover:from-amber-900 hover:to-orange-800 text-white rounded-lg transition-all duration-300 font-medium shadow-lg group"
           >
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            Catálogo
+            {/* Hide the word 'Catálogo' on small screens so only the arrow remains */}
+            <span className="hidden md:block">Catálogo</span>
           </Link>
           <div className="h-6 w-px bg-amber-900/20"></div>
             <div className="flex items-center gap-3">

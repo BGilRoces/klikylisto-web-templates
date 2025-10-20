@@ -72,7 +72,6 @@ const Navigation = () => {
     { name: 'Inicio', href: '#home' },
     { name: 'Nosotros', href: '#about' },
     { name: 'Menú', href: '#menu' },
-    { name: 'Experiencia', href: '#experience' },
     { name: 'Contacto', href: '#contact' },
   ]
 
