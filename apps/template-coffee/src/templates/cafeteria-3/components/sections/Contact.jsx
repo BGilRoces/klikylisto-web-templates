@@ -2,8 +2,10 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageCircle, Calendar, Star, Coffee } from 'lucide-react'
+import PreviewModal from '../../../../components/PreviewModal'
 
 const Contact = () => {
+  const [showPreview, setShowPreview] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,7 +28,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Contacto Directo",
-      primary: "+34 91 123 4567",
+  primary: "+54 11 6238-7920",
       secondary: "WhatsApp & Llamadas",
       action: "Llamar Ahora",
       gradient: "from-emerald-500 to-teal-600"
@@ -34,7 +36,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      primary: "hola@aroma.email",
+  primary: "klikylisto@gmail.com",
       secondary: "Respuesta en 2 horas",
       action: "Enviar Email",
       gradient: "from-blue-500 to-indigo-600"
@@ -210,6 +212,8 @@ const Contact = () => {
                   className="w-full mt-3 bg-amber-100 hover:bg-amber-200 text-amber-900 py-2 px-3 rounded-lg text-xs font-medium transition-all duration-300 border border-amber-300/50 hover:border-amber-400"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowPreview(true)}
+                  type="button"
                 >
                   {method.action}
                 </motion.button>
@@ -242,7 +246,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full p-4 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
+                      className="w-full p-2.5 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
                       placeholder="Tu nombre"
                     />
                   </div>
@@ -253,8 +257,8 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full p-4 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
-                      placeholder="+34 XXX XXX XXX"
+                      className="w-full p-2.5 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
+                      placeholder="+54 11 6238-7920"
                     />
                   </div>
                 </div>
@@ -267,8 +271,8 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full p-4 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
-                    placeholder="tu@email.com"
+                    className="w-full p-2.5 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
+                    placeholder="klikylisto@gmail.com"
                   />
                 </div>
                 
@@ -278,7 +282,7 @@ const Contact = () => {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full p-3 bg-white border border-amber-300/50 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
+                    className="w-full p-2 bg-white border border-amber-300/50 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300"
                   >
                     {serviceOptions.map((option) => (
                       <option key={option.value} value={option.value} className="bg-white text-neutral-900">
@@ -295,40 +299,26 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows="4"
-                    className="w-full p-3 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300 resize-none"
+                    rows="2"
+                    className="w-full p-2 bg-white border border-amber-300/50 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all duration-300 resize-none"
                     placeholder="Cuéntanos sobre tu consulta o reserva..."
                   ></textarea>
                 </div>
                 
                 <motion.button
-                  type="submit"
+                  type="button"
                   disabled={isLoading || isSubmitted}
-                  className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white py-4 rounded-xl font-bold text-lg shadow-2xl shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300 border border-amber-400/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white py-2.5 rounded-xl font-bold text-lg shadow-2xl shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300 border border-amber-400/30 disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowPreview(true)}
                 >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center gap-3">
-                      <motion.div
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      />
-                      Enviando...
-                    </div>
-                  ) : isSubmitted ? (
-                    <div className="flex items-center justify-center gap-3">
-                      <CheckCircle className="w-5 h-5" />
-                      ¡Mensaje Enviado!
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center gap-3">
-                      <Send className="w-5 h-5" />
-                      Enviar Mensaje
-                    </div>
-                  )}
+                  <div className="flex items-center justify-center gap-3">
+                    <Send className="w-5 h-5" />
+                    Enviar Mensaje
+                  </div>
                 </motion.button>
+  <PreviewModal show={showPreview} onClose={() => setShowPreview(false)} />
               </form>
             </div>
           </motion.div>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Plus, Minus, Trash2, ShoppingBag, CreditCard, AlertCircle, Mail } from 'lucide-react'
+import { X, Plus, Minus, Trash2, ShoppingBag, CreditCard } from 'lucide-react'
+import PreviewModal from '../../../../components/PreviewModal'
 import { useCart } from '../../context/CartContext'
 
 const CartDrawer = () => {
@@ -14,15 +15,7 @@ const CartDrawer = () => {
     clearCart 
   } = useCart()
   
-  const [showCheckout, setShowCheckout] = useState(false)
-
-  const handleCheckout = () => {
-    setShowCheckout(true)
-  }
-
-  const handleCloseCheckout = () => {
-    setShowCheckout(false)
-  }
+  const [showPreview, setShowPreview] = useState(false)
 
   return (
     <AnimatePresence>
@@ -168,7 +161,7 @@ const CartDrawer = () => {
                 </div>
                 
                 <motion.button
-                  onClick={handleCheckout}
+                  onClick={() => setShowPreview(true)}
                   className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold py-3 rounded-xl shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/40 transition-all duration-300 flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
@@ -203,111 +196,8 @@ const CartDrawer = () => {
             )}
           </motion.div>
 
-          {/* Checkout Modal */}
-          <AnimatePresence>
-            {showCheckout && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="fixed inset-0 flex items-center justify-center z-[60] p-4"
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={handleCloseCheckout}
-                  className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-                />
-                
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 50, opacity: 0 }}
-                  className="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl"
-                >
-                  {/* Close button */}
-                  <motion.button
-                    onClick={handleCloseCheckout}
-                    className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    whileHover={{ scale: 1.1, rotate: 90 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <X className="w-5 h-5 text-gray-500" />
-                  </motion.button>
-
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <ShoppingBag className="w-10 h-10 text-white" />
-                    </div>
-                    
-                    <h3 className="text-3xl font-display font-bold text-neutral-900 mb-3">
-                      ¡Contactanos!
-                    </h3>
-                    
-                    <p className="text-lg text-neutral-700 mb-6 leading-relaxed">
-                      Esta es una <strong className="text-amber-600">demostración interactiva</strong> de un sistema de e-commerce completo.
-                    </p>
-                    
-                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 mb-6 text-left">
-                      <h4 className="font-bold text-neutral-900 mb-3 flex items-center gap-2">
-                        <CreditCard className="w-5 h-5 text-amber-600" />
-                        Funcionalidad Completa Disponible:
-                      </h4>
-                      <ul className="space-y-2 text-sm text-neutral-700">
-                        <li className="flex items-start gap-2">
-                          <span className="text-amber-600 font-bold">✓</span>
-                          <span>Integración con MercadoPago</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-amber-600 font-bold">✓</span>
-                          <span>Gestión de pedidos e inventario</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-amber-600 font-bold">✓</span>
-                          <span>Notificaciones por email y WhatsApp</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4 mb-6">
-                      <p className="text-sm text-green-900 font-semibold">
-                        💼 ¿Te interesa este sistema para tu negocio?
-                        <br />
-                        <span className="font-normal">Contáctanos para implementarlo con todas las funcionalidades.</span>
-                      </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-3">
-                      <motion.button
-                        onClick={handleCloseCheckout}
-                        className="bg-white text-neutral-700 font-bold py-4 rounded-xl border-2 border-neutral-300 hover:bg-neutral-50 transition-all duration-300"
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Cerrar
-                      </motion.button>
-                      
-                      <motion.a
-                        href="/#contact"
-                        target="_parent"
-                        onClick={() => {
-                          handleCloseCheckout();
-                          setIsCartOpen(false);
-                        }}
-                        className="bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2"
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Mail className="w-5 h-5" />
-                        Contactar
-                      </motion.a>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Preview Modal */}
+          <PreviewModal show={showPreview} onClose={() => setShowPreview(false)} />
         </>
       )}
     </AnimatePresence>

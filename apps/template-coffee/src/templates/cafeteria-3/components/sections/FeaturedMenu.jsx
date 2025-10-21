@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PreviewModal from '../../../../components/PreviewModal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, ShoppingCart, Check, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -12,6 +13,7 @@ const FeaturedMenu = () => {
 
   const { addToCart } = useCart();
   const [addedItems, setAddedItems] = useState({});
+  const [showPreview, setShowPreview] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleAddToCart = (item) => {
@@ -21,6 +23,7 @@ const FeaturedMenu = () => {
       setAddedItems(prev => ({ ...prev, [item.id]: false }));
     }, 2000);
   };
+  const handlePreview = () => setShowPreview(true);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % menuItems.length);
@@ -105,26 +108,25 @@ const FeaturedMenu = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 rounded-full border border-amber-200 mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 rounded-full border border-amber-200 mb-2.5">
             <Star className="w-4 h-4 text-amber-600 fill-amber-600" />
             <span className="text-sm font-medium text-amber-900">Menú Destacado</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-display font-black text-neutral-900 mb-4">
-            Nuestros
+          <h2 className="text-4xl lg:text-5xl font-display font-black text-neutral-900 mb-2">
             <span className="block mt-2 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
               Productos Premium
             </span>
           </h2>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Cada creación es una obra de arte. Ordena online y disfruta en casa.
           </p>
         </motion.div>
 
         {/* Mobile Carousel */}
-        <div className="md:hidden relative mb-12 px-8">
-          <div className="relative max-w-md mx-auto">
+        <div className="md:hidden relative mb-12 px-2">
+          <div className="relative max-w-xs mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
@@ -135,73 +137,66 @@ const FeaturedMenu = () => {
                 className="group relative"
               >
                 {/* Product Card */}
-                <div className="relative bg-white/90 backdrop-blur-md rounded-3xl border border-amber-200/50 overflow-hidden shadow-2xl shadow-amber-100/30 group-hover:shadow-3xl group-hover:shadow-amber-200/40 transition-all duration-500 flex flex-col">
-                  
+                <div className="relative bg-white/90 backdrop-blur-md rounded-2xl border border-amber-200/50 overflow-hidden shadow-xl shadow-amber-100/30 group-hover:shadow-2xl group-hover:shadow-amber-200/40 transition-all duration-500 flex flex-col w-80 mx-auto">
                   {/* Premium image container */}
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <motion.img 
                       src={menuItems[currentSlide].image}
                       alt={menuItems[currentSlide].name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      whileHover={{ scale: 1.05 }}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      whileHover={{ scale: 1.03 }}
                     />
-                    
                     {/* Premium gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
                     {/* Floating badge with premium styling */}
                     <motion.div 
                       className="absolute top-6 left-6"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                     >
-                      <div className="px-4 py-2 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-xs font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
+                      <div className="px-2 py-1 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-[10px] font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
                         {menuItems[currentSlide].badge}
                       </div>
                     </motion.div>
-                    
                     {/* Category tag */}
                     <div className="absolute top-6 right-6 px-3 py-1 bg-white/95 backdrop-blur-md text-amber-800 text-xs font-semibold rounded-full border border-amber-300/50 shadow-lg">
                       {menuItems[currentSlide].category}
                     </div>
                   </div>
-                  
                   {/* Premium content area */}
-                  <div className="p-8 flex-grow flex flex-col">
-                    <div className="mb-6 flex-grow">
-                      <h3 className="text-2xl font-display font-bold text-slate-900 mb-3 group-hover:text-amber-900 transition-colors duration-300">
+                  <div className="p-4 flex-grow flex flex-col">
+                    <div className="mb-3 flex-grow">
+                      <h3 className="text-lg font-display font-bold text-slate-900 mb-1 group-hover:text-amber-900 transition-colors duration-300">
                         {menuItems[currentSlide].name}
                       </h3>
-                      <p className="text-slate-600 leading-relaxed font-light text-base">
+                      <p className="text-slate-600 leading-relaxed font-light text-sm">
                         {menuItems[currentSlide].description}
                       </p>
                     </div>
-                    
                     {/* Premium rating and stats */}
-                    <div className="flex items-center justify-between pt-4 border-t border-amber-200/30">
-                      <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-between pt-2 border-t border-amber-200/30">
+                      <div className="flex items-center gap-2">
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                            <Star key={i} className="w-5 h-5 fill-amber-500 text-amber-500" />
                           ))}
                         </div>
-                        <span className="text-slate-700 text-sm font-semibold">{menuItems[currentSlide].rating}</span>
+                        <span className="text-slate-700 text-xs font-semibold">{menuItems[currentSlide].rating}</span>
                       </div>
-                      
                       <motion.button
                         onClick={() => handleAddToCart(menuItems[currentSlide])}
-                        className={`group/btn relative p-2.5 rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex items-center justify-center ${
+                        className={`group/btn relative p-3 rounded-xl overflow-hidden shadow transition-all duration-300 flex items-center justify-center ${
                           addedItems[menuItems[currentSlide].id]
                             ? 'bg-green-600 shadow-green-500/25'
                             : 'bg-gradient-to-r from-amber-600 to-orange-600 shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40'
                         }`}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: 1.04, y: -1 }}
+                        whileTap={{ scale: 0.97 }}
                       >
                         {addedItems[menuItems[currentSlide].id] ? (
-                          <Check className="w-5 h-5 text-white relative z-10" />
+                          <Check className="w-6 h-6 text-white relative z-10" />
                         ) : (
-                          <ShoppingCart className="w-5 h-5 text-white relative z-10" />
+                          <ShoppingCart className="w-6 h-6 text-white relative z-10" />
                         )}
                         {!addedItems[menuItems[currentSlide].id] && (
                           <motion.div
@@ -211,7 +206,6 @@ const FeaturedMenu = () => {
                       </motion.button>
                     </div>
                   </div>
-                  
                   {/* Premium hover effect overlay */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -253,8 +247,8 @@ const FeaturedMenu = () => {
         </div>
 
         {/* Medium Screen Carousel (2 columns) */}
-        <div className="hidden md:block xl:hidden relative mb-12 px-12">
-          <div className="relative max-w-5xl mx-auto">
+        <div className="hidden md:block xl:hidden relative mb-12 px-2">
+          <div className="relative max-w-2xl mx-auto">
             <div className="grid grid-cols-2 gap-6">
               <AnimatePresence mode="wait">
                 {[currentSlide, (currentSlide + 1) % menuItems.length].map((itemIndex, i) => (
@@ -267,15 +261,15 @@ const FeaturedMenu = () => {
                     className="group relative"
                   >
                     {/* Premium card with glassmorphism */}
-                    <div className="relative bg-white/90 backdrop-blur-md rounded-3xl border border-amber-200/50 overflow-hidden shadow-2xl shadow-amber-100/30 group-hover:shadow-3xl group-hover:shadow-amber-200/40 transition-all duration-500 h-full flex flex-col">
+                    <div className="relative bg-white/90 backdrop-blur-md rounded-2xl border border-amber-200/50 overflow-hidden shadow-xl shadow-amber-100/30 group-hover:shadow-2xl group-hover:shadow-amber-200/40 transition-all duration-500 h-full flex flex-col w-80 mx-auto">
                       
                       {/* Premium image container */}
-                      <div className="relative h-80 overflow-hidden">
+                      <div className="relative h-48 overflow-hidden">
                         <motion.img 
                           src={menuItems[itemIndex].image}
                           alt={menuItems[itemIndex].name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          whileHover={{ scale: 1.05 }}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          whileHover={{ scale: 1.03 }}
                         />
                         
                         {/* Premium gradient overlay */}
@@ -283,60 +277,55 @@ const FeaturedMenu = () => {
                         
                         {/* Floating badge with premium styling */}
                         <motion.div 
-                          className="absolute top-6 left-6"
+                          className="absolute top-3 left-3"
                           initial={{ scale: 0.8, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                         >
-                          <div className="px-4 py-2 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-xs font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
+                          <div className="px-2 py-1 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-[10px] font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
                             {menuItems[itemIndex].badge}
                           </div>
                         </motion.div>
                         
                         {/* Category tag */}
-                        <div className="absolute top-6 right-6 px-3 py-1 bg-white/95 backdrop-blur-md text-amber-800 text-xs font-semibold rounded-full border border-amber-300/50 shadow-lg">
+                        <div className="absolute top-3 right-3 px-2 py-0.5 bg-white/95 backdrop-blur-md text-amber-800 text-[10px] font-semibold rounded-full border border-amber-300/50 shadow-lg">
                           {menuItems[itemIndex].category}
                         </div>
                       </div>
                       
                       {/* Premium content area */}
-                      <div className="p-8 flex-grow flex flex-col">
-                        <div className="mb-6 flex-grow">
-                          <h3 className="text-2xl font-display font-bold text-slate-900 mb-3 group-hover:text-amber-900 transition-colors duration-300">
+                      <div className="p-4 flex-grow flex flex-col">
+                        <div className="mb-3 flex-grow">
+                          <h3 className="text-lg font-display font-bold text-slate-900 mb-1 group-hover:text-amber-900 transition-colors duration-300">
                             {menuItems[itemIndex].name}
                           </h3>
-                          <p className="text-slate-600 leading-relaxed font-light text-base">
+                          <p className="text-slate-600 leading-relaxed font-light text-sm">
                             {menuItems[itemIndex].description}
                           </p>
                         </div>
-                        
                         {/* Premium rating and stats */}
-                        <div className="flex items-center justify-between pt-4 border-t border-amber-200/30">
-                          <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-between pt-2 border-t border-amber-200/30">
+                          <div className="flex items-center gap-2">
                             <div className="flex items-center">
                               {[...Array(5)].map((_, starIndex) => (
-                                <Star key={starIndex} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                                <Star key={starIndex} className="w-5 h-5 fill-amber-500 text-amber-500" />
                               ))}
                             </div>
-                            <span className="text-slate-700 text-sm font-semibold">{menuItems[itemIndex].rating}</span>
+                            <span className="text-slate-700 text-xs font-semibold">{menuItems[itemIndex].rating}</span>
                           </div>
-                          
                           <motion.button
                             onClick={() => handleAddToCart(menuItems[itemIndex])}
-                            className={`group/btn relative px-6 py-2 font-semibold rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex items-center gap-2 ${
+                            className={`group/btn relative p-3 rounded-xl overflow-hidden shadow transition-all duration-300 flex items-center justify-center ${
                               addedItems[menuItems[itemIndex].id]
                                 ? 'bg-green-600 shadow-green-500/25'
                                 : 'bg-gradient-to-r from-amber-600 to-orange-600 shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40'
                             }`}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.98 }}
+                            whileHover={{ scale: 1.04, y: -1 }}
+                            whileTap={{ scale: 0.97 }}
                           >
-                            <span className="relative z-10 text-sm text-white">
-                              {addedItems[menuItems[itemIndex].id] ? 'Agregado' : 'Agregar'}
-                            </span>
                             {addedItems[menuItems[itemIndex].id] ? (
-                              <Check className="w-4 h-4 text-white relative z-10" />
+                              <Check className="w-6 h-6 text-white relative z-10" />
                             ) : (
-                              <ShoppingCart className="w-4 h-4 text-white relative z-10" />
+                              <ShoppingCart className="w-6 h-6 text-white relative z-10" />
                             )}
                             {!addedItems[menuItems[itemIndex].id] && (
                               <motion.div
@@ -392,7 +381,7 @@ const FeaturedMenu = () => {
         </div>
 
         {/* Desktop Grid (XL screens - 3 columns) */}
-        <div className="hidden xl:grid xl:grid-cols-3 gap-8">
+  <div className="hidden xl:grid xl:grid-cols-3 gap-4">
           {menuItems.map((item, index) => (
             <motion.div
               key={index}
@@ -402,52 +391,46 @@ const FeaturedMenu = () => {
               className="group relative"
             >
               {/* Premium card with glassmorphism */}
-              <div className="relative bg-white/90 backdrop-blur-md rounded-3xl border border-amber-200/50 overflow-hidden shadow-2xl shadow-amber-100/30 group-hover:shadow-3xl group-hover:shadow-amber-200/40 transition-all duration-500 h-full flex flex-col">
-                
+              <div className="relative bg-white/90 backdrop-blur-md rounded-2xl border border-amber-200/50 overflow-hidden shadow-xl shadow-amber-100/30 group-hover:shadow-2xl group-hover:shadow-amber-200/40 transition-all duration-500 h-full flex flex-col mx-auto">
                 {/* Premium image container */}
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <motion.img 
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    whileHover={{ scale: 1.05 }}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    whileHover={{ scale: 1.03 }}
                   />
-                  
                   {/* Premium gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
                   {/* Floating badge with premium styling */}
                   <motion.div 
-                    className="absolute top-6 left-6"
+                    className="absolute top-3 left-3"
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: index * 0.1 + 0.5 }}
                   >
-                    <div className="px-4 py-2 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-xs font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
+                    <div className="px-2 py-1 bg-gradient-to-r from-amber-500/95 to-orange-600/95 backdrop-blur-xl text-white text-[10px] font-bold rounded-full border border-amber-400/30 shadow-xl shadow-amber-500/25">
                       {item.badge}
                     </div>
                   </motion.div>
-                  
                   {/* Category tag */}
-                  <div className="absolute top-6 right-6 px-3 py-1 bg-white/95 backdrop-blur-md text-amber-800 text-xs font-semibold rounded-full border border-amber-300/50 shadow-lg">
+                  <div className="absolute top-3 right-3 px-2 py-0.5 bg-white/95 backdrop-blur-md text-amber-800 text-[10px] font-semibold rounded-full border border-amber-300/50 shadow-lg">
                     {item.category}
                   </div>
                 </div>
-                
                 {/* Premium content area */}
-                <div className="p-8 flex-grow flex flex-col">
-                  <div className="mb-6 flex-grow">
-                    <h3 className="text-2xl font-display font-bold text-slate-900 mb-3 group-hover:text-amber-900 transition-colors duration-300">
+                <div className="p-4 flex-grow flex flex-col">
+                  <div className="mb-3 flex-grow">
+                    <h3 className="text-lg font-display font-bold text-slate-900 mb-1 group-hover:text-amber-900 transition-colors duration-300">
                       {item.name}
                     </h3>
-                    <p className="text-slate-600 leading-relaxed font-light text-base">
+                    <p className="text-slate-600 leading-relaxed font-light text-sm">
                       {item.description}
                     </p>
                   </div>
-                  
                   {/* Premium rating and stats */}
-                  <div className="flex items-center justify-between pt-4 border-t border-amber-200/30">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between pt-2 border-t border-amber-200/30">
+                    <div className="flex items-center gap-2">
                       <div className="flex items-center">
                         {[...Array(5)].map((_, i) => (
                           <motion.div
@@ -456,30 +439,26 @@ const FeaturedMenu = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.1 + i * 0.1 + 0.8 }}
                           >
-                            <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                            <Star className="w-5 h-5 fill-amber-500 text-amber-500" />
                           </motion.div>
                         ))}
                       </div>
-                      <span className="text-slate-700 text-sm font-semibold">{item.rating}</span>
+                      <span className="text-slate-700 text-xs font-semibold">{item.rating}</span>
                     </div>
-                    
                     <motion.button
                       onClick={() => handleAddToCart(item)}
-                      className={`group/btn relative px-6 py-2 font-semibold rounded-xl overflow-hidden shadow-lg transition-all duration-300 flex items-center gap-2 ${
+                      className={`group/btn relative p-3 rounded-xl overflow-hidden shadow transition-all duration-300 flex items-center justify-center ${
                         addedItems[item.id]
                           ? 'bg-green-600 shadow-green-500/25'
                           : 'bg-gradient-to-r from-amber-600 to-orange-600 shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40'
                       }`}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.04, y: -1 }}
+                      whileTap={{ scale: 0.97 }}
                     >
-                      <span className="relative z-10 text-sm text-white">
-                        {addedItems[item.id] ? 'Agregado' : 'Agregar'}
-                      </span>
                       {addedItems[item.id] ? (
-                        <Check className="w-4 h-4 text-white relative z-10" />
+                        <Check className="w-6 h-6 text-white relative z-10" />
                       ) : (
-                        <ShoppingCart className="w-4 h-4 text-white relative z-10" />
+                        <ShoppingCart className="w-6 h-6 text-white relative z-10" />
                       )}
                       {!addedItems[item.id] && (
                         <motion.div
@@ -487,9 +466,9 @@ const FeaturedMenu = () => {
                         />
                       )}
                     </motion.button>
+  <PreviewModal show={showPreview} onClose={() => setShowPreview(false)} />
                   </div>
                 </div>
-                
                 {/* Premium hover effect overlay */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"

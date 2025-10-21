@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
+import PreviewModal from '../../../../components/PreviewModal';
 import { motion, AnimatePresence } from 'framer-motion'
 import { Instagram, Heart, MessageCircle, Share2, Play, TrendingUp, Users, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const About = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [showPreview, setShowPreview] = useState(false);
   
   const instagramStats = [
     { icon: Users, value: "50K+", label: "Seguidores" },
@@ -125,6 +127,7 @@ const About = () => {
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.3 }}
                 className="group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer block"
+                onClick={() => setShowPreview(true)}
               >
                 {/* Reel Thumbnail */}
                 <img
@@ -207,6 +210,7 @@ const About = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer"
+              onClick={() => setShowPreview(true)}
             >
               {/* Reel Thumbnail */}
               <img
@@ -263,6 +267,7 @@ const About = () => {
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-bold text-lg shadow-2xl hover:shadow-amber-500/50 transition-all duration-300 cursor-pointer"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => setShowPreview(true)}
           >
             <Instagram className="w-6 h-6" />
             Seguinos en Instagram
@@ -273,6 +278,7 @@ const About = () => {
           </p>
         </motion.div>
       </div>
+      <PreviewModal show={showPreview} onClose={() => setShowPreview(false)} />
     </section>
   )
 }
