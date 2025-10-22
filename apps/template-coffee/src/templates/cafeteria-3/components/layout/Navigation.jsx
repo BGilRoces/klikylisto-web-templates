@@ -100,9 +100,9 @@ const Navigation = () => {
                 className="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl shadow-lg shadow-amber-500/25 border border-amber-400/30"
                 animate={{ 
                   boxShadow: [
-                    '0 10px 25px rgba(245, 158, 11, 0.25)',
-                    '0 15px 35px rgba(245, 158, 11, 0.4)',
-                    '0 10px 25px rgba(245, 158, 11, 0.25)'
+                    '10px 25px rgba(245, 158, 11, 0.25)',
+                    '15px 35px rgba(245, 158, 11, 0.4)',
+                    '10px 25px rgba(245, 158, 11, 0.25)'
                   ]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -155,13 +155,6 @@ const Navigation = () => {
                 whileHover={{ y: -2 }}
               >
                 <span className="relative z-10">{item.name}</span>
-                
-                {/* Premium hover background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-500/20 rounded-lg backdrop-blur-sm border border-amber-300/30 opacity-0 group-hover:opacity-100 transition-all duration-300 -m-2 px-4 py-2"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
                 
                 {/* Elegant underline */}
                 <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 group-hover:w-full shadow-lg shadow-amber-400/50"></span>

@@ -254,25 +254,24 @@ const MenuPage = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-amber-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          <div className="flex items-center justify-between">
-            <motion.button
-              onClick={onBack}
-              className="flex items-center gap-2 text-stone-600 hover:text-amber-700 transition-colors duration-200 font-medium"
-              whileHover={{ x: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="hidden sm:inline">Volver</span>
-            </motion.button>
+      <div className="bg-white shadow-sm border-b border-amber-100 relative">
+        {/* Botón Volver fijo arriba a la izquierda */}
+        <motion.button
+          onClick={onBack}
+          className="fixed top-4 left-4 z-50 flex items-center gap-2 text-stone-600 hover:text-amber-700 transition-colors duration-200 font-medium bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-md border border-amber-100"
+          whileHover={{ x: -3 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="hidden sm:inline">Volver</span>
+        </motion.button>
 
-            <div className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+          <div className="flex items-center justify-center">
+            <div className="flex items-center gap-2">
               <Coffee className="w-5 h-5 sm:w-6 sm:h-6 text-amber-700" />
               <h1 className="text-lg sm:text-2xl font-bold text-stone-900">Menú Completo</h1>
             </div>
-
-            <div className="w-20"></div>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const MinimalNav = ({ onMenuClick }) => {
   const navItems = [
     { name: 'Inicio', href: '#home', action: null },
     { name: 'Nosotros', href: '#about', action: null },
-    { name: 'Menú', href: '#menu', action: onMenuClick },
+    { name: 'Menú', href: '#menu', action: null },
     { name: 'Experiencia', href: '#experience', action: null },
     { name: 'Contacto', href: '#contact', action: null }
   ]

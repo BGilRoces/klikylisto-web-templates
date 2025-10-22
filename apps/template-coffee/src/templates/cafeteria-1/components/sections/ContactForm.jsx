@@ -26,19 +26,19 @@ const ContactForm = () => {
     {
       icon: MapPin,
       title: 'Ubicación',
-      value: 'Av. Café 123, Centro Histórico',
-      subtitle: 'Ciudad de México, 06000'
+      value: 'Av. Ficticia 123, Centro Histórico',
+      subtitle: 'Bs As, 06000'
     },
     {
       icon: Phone,
       title: 'Teléfono',
-      value: '+52 55 1234 5678',
+      value: '+54 11 6238-7920',
       subtitle: 'Lun - Dom: 7:00 AM - 10:00 PM'
     },
     {
       icon: Mail,
       title: 'Email',
-      value: 'hola@aromacafe.mx',
+      value: 'klikylisto@gmail.com',
       subtitle: 'Respuesta en 24 horas'
     },
     {
