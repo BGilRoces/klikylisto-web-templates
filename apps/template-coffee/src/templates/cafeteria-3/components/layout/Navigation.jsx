@@ -56,13 +56,11 @@ const Navigation = () => {
         setLastScrollY(scrollTop)
       }
     }
-    
-    console.log('🎬 [TEMPLATE NAV] Iniciando listeners')
+
     window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('message', handleMessage)
     
     return () => {
-      console.log('🛑 [TEMPLATE NAV] Removiendo listeners')
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('message', handleMessage)
     }

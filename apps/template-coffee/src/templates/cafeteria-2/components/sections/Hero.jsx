@@ -6,7 +6,6 @@ const Hero = () => {
   const scrollToNext = () => {
     document.querySelector('#experience')?.scrollIntoView({ behavior: 'smooth' });
   };
-
   return (
     <section id="home" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Video/Image */}

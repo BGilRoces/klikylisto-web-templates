@@ -1,33 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Menu, X, Coffee, ShoppingCart } from 'lucide-react';
 
-const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
+const Navigation = ({ cart = [], setCartOpen }) => {
+    const [isOpen, setIsOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+    const [isVisible, setIsVisible] = useState(true)
+    const [lastScrollY, setLastScrollY] = useState(0)
+    const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
 
-  const navItems = [
-    { name: 'Inicio', href: '#home' },
-    { name: 'Experiencia', href: '#experience' },
-    { name: 'Tienda', href: '#tienda' },
-    { name: 'Contacto', href: '#contact' }
-  ];
-
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80; // Altura del navbar
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+    useEffect(() => {
+      // Intentar detectar scroll directo primero
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY || window.pageYOffset || 0
+        
+        setScrolled(currentScrollY > 50)
+        
+        if (currentScrollY < 50) {
+          setIsVisible(true)
+        } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false)
+          setIsOpen(false)
+        } else if (currentScrollY < lastScrollY) {
+          setIsVisible(true)
+        }
+        
+        setLastScrollY(currentScrollY)
+      }
       
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-    setIsOpen(false);
-  };
+      // Escuchar mensajes de scroll del padre/BrowserFrame
+      const handleMessage = (event) => {
+        if (event.data && event.data.type === 'IFRAME_SCROLL') {
+          const { scrollTop, scrollDirection, isAtTop } = event.data
+          
+          setScrolled(scrollTop > 50)
+          
+          if (isAtTop || scrollTop < 50) {
+            setIsVisible(true)
+          } else if (scrollDirection === 'down' && scrollTop > 100) {
+            setIsVisible(false)
+            setIsOpen(false)
+          } else if (scrollDirection === 'up') {
+            console.log('⬆️ Mostrando navbar (scroll up)')
+            setIsVisible(true)
+          }
+          
+          setLastScrollY(scrollTop)
+        }
+      }
+  
+      window.addEventListener('scroll', handleScroll, { passive: true })
+      window.addEventListener('message', handleMessage)
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('message', handleMessage)
+      }
+    }, [lastScrollY])
+  
+    const navItems = [
+      { name: 'Inicio', href: '#home' },
+      { name: 'Experiencia', href: '#experience' },
+      { name: 'Tienda', href: '#tienda' },
+      { name: 'Contacto', href: '#contact' },
+    ]
 
   return (
     <>
@@ -54,13 +90,27 @@ const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  href={item.href}
+                  onClick={e => {
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      e.preventDefault();
+                      const offset = 80;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - offset;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                    setIsOpen(false);
+                  }}
                   className="text-white/90 hover:text-white hover:-translate-y-1 transition-all duration-300 font-medium text-sm tracking-wide py-2 border-b-2 border-transparent hover:border-amber-400"
                 >
                   {item.name}
-                </button>
+                </a>
               ))}
               
               {/* Cart Icon */}
@@ -110,7 +160,6 @@ const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
       </motion.nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -122,22 +171,35 @@ const Navigation = ({ cart = [], setShowCheckoutModal, setCartOpen }) => {
             <div className="relative bg-gradient-to-br from-gray-900 via-black to-amber-950 py-6 min-h-screen px-6 mt-12 rounded-b-xl shadow-2xl">
               <div className="max-w-sm mx-auto">
                 {navItems.map((item, index) => (
-                  <motion.button
+                  <motion.a
                     key={item.name}
+                    href={item.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={e => {
+                      const element = document.querySelector(item.href);
+                      if (element) {
+                        e.preventDefault();
+                        const offset = 80;
+                        const elementPosition = element.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: 'smooth'
+                        });
+                      }
+                      setIsOpen(false);
+                    }}
                     className="block w-full text-left text-white/80 hover:text-white py-4 text-lg font-medium border-b border-amber-400/20 last:border-b-0 hover:pl-4 transition-all duration-300"
                   >
                     {item.name}
-                  </motion.button>
+                  </motion.a>
                 ))}
               </div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
     </>
   );
 };
