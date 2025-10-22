@@ -112,20 +112,7 @@ const BrowserFrame = ({ children, templateInfo, viewportSize = 'desktop' }) => {
         {/* Browser header */}
         <div className="px-6 py-3 border-b border-black/20 bg-gray-50">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-              </div>
-              <div className="px-4 py-2 rounded-md border border-black/20 text-sm text-black/60 font-mono bg-white">
-                <div className="flex items-center gap-2">
-                  <Coffee size={12} className="text-black/60"/>
-                  klikylisto.com
-                </div>
-              </div>
-            </div>
-            
+            {/* Flecha a la izquierda */}
             <a 
               href="/"
               className="flex items-center gap-2 px-4 py-2 bg-gray-700/15 hover:bg-gray-800/35 text-gray-700 text-sm font-medium rounded-lg transition-colors duration-200"
@@ -134,6 +121,19 @@ const BrowserFrame = ({ children, templateInfo, viewportSize = 'desktop' }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </a>
+
+            {/* Caja blanca con nombre web */}
+            <div className="px-4 py-2 rounded-md border border-black/20 text-sm text-black/60 font-mono bg-white flex items-center gap-2">
+              <Coffee size={12} className="text-black/60"/>
+              klikylisto.com
+            </div>
+
+            {/* 3 puntitos de colores a la derecha */}
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+              <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+              <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+            </div>
           </div>
         </div>
         
